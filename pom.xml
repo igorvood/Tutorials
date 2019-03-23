@@ -10,6 +10,7 @@
     <modules>
         <module>maven-plugin-template</module>
         <module>maven-plugin-template-test-use</module>
+        <module>alogorithm-random-string</module>
     </modules>
 
     <packaging>pom</packaging>
