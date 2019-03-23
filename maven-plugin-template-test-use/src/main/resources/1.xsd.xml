@@ -1,0 +1,18 @@
+<pluginTines username="username" password="password" url="url" dataBaseDriver="dataBaseDriver">
+    <table_class_list>
+        <class_from_tables>
+            <generatingClass>ENTITY</generatingClass>
+            <table_list>
+                <table table_name="string" table_owner="string"/>
+                <table table_name="string" table_owner="string"/>
+            </table_list>
+        </class_from_tables>
+        <class_from_tables>
+            <generatingClass>ENUM</generatingClass>
+            <table_list>
+                <table table_name="string" table_owner="string"/>
+                <table table_name="string" table_owner="string"/>
+            </table_list>
+        </class_from_tables>
+    </table_class_list>
+</pluginTines>

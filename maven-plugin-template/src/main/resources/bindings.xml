@@ -1,0 +1,23 @@
+<jxb:bindings
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        version="2.1">
+    <jxb:bindings>
+        <jxb:globalBindings>
+
+            <jxb:javaType name="java.lang.Integer" xmlType="xsd:int"/>
+            <jxb:javaType name="java.lang.Integer" xmlType="xsd:integer"/>
+            <jxb:javaType name="java.lang.Long" xmlType="xsd:long"/>
+            <!--
+                        <jxb:javaType name="java.util.Date" xmlType="xsd:dateTime"
+                                      parseMethod="ru.sberbank.okr.core.util.date.DateUtil.parseDateTime"
+                                      printMethod="ru.sberbank.okr.core.util.date.DateUtil.printDateTime"/>
+                        <jxb:javaType name="java.util.Date" xmlType="xsd:date"
+                                      parseMethod="ru.sberbank.okr.core.util.date.DateUtil.parseDate"
+                                      printMethod="ru.sberbank.okr.core.util.date.DateUtil.printDate"/>
+            -->
+            <xjc:simple/>
+        </jxb:globalBindings>
+    </jxb:bindings>
+</jxb:bindings>
