@@ -11,6 +11,7 @@
         <module>alogorithm-random-string</module>
         <module>maven-plugin-custom</module>
         <module>hibernate-performance-tuning</module>
+        <module>spring-integration</module>
     </modules>
 
     <packaging>pom</packaging>
