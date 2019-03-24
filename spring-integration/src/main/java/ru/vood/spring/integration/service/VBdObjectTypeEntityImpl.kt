@@ -2,6 +2,7 @@ package ru.vood.spring.integration.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import ru.vood.spring.integration.repository.VBdObjectTypeEntityRepository
 
 @Service
 @Transactional
