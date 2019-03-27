@@ -16,7 +16,7 @@ import java.util.concurrent.ForkJoinPool
 
 
 @Configuration
-open class ConfigurationFlowByDsl() {
+open class ConfigurationFlowByDsl {
 
 
     @Bean

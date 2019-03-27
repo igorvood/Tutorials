@@ -3,7 +3,7 @@ package ru.vood.spring.integration.transformer
 import org.springframework.integration.transformer.GenericTransformer
 
 //@Component
-open class TransformerOne(/*var vBdObjectTypeEntityService: VBdObjectTypeEntityService*/) : GenericTransformer<String, String> {
+open class TransformerOne : GenericTransformer<String, String> {
     override fun transform(source: String?): String {
         return "%${source?.toUpperCase()}%"
     }
