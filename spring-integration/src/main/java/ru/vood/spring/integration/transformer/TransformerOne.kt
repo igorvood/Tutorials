@@ -10,7 +10,7 @@ open class TransformerOne(/*var vBdObjectTypeEntityService: VBdObjectTypeEntityS
         return "%${source?.toUpperCase()}%"
     }
 
-    fun transform(code: String, @Headers headerMap: Map<String, Object>): String {
+    fun transform(code: String, @Headers headerMap: Map<String, Any>): String {
         println("${Thread.currentThread().name} ${this::class.java.name} -> Transform value $code headerMap-> ${transformHeaderMap(headerMap)} ")
         return "%${code.toUpperCase()}%"
     }

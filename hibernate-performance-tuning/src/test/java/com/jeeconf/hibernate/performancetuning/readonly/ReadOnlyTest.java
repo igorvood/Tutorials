@@ -12,10 +12,11 @@ public class ReadOnlyTest extends BaseTest {
     @SuppressWarnings("unchecked")
     @Test
     public void hqlConstructor() {
-        String query = "select new com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary(c.id,c.name,sum(a.amount)) " +
-                "from Client c " +
-                "left join c.accounts a " +
-                "where c.id=:id group by a.client";
+        String query =
+                "select new com.jeeconf.hibernate.performancetuning.readonly.dto.ClientSummary(c.id,c.name,sum(a.amount)) " +
+                        "from Client c " +
+                        "left join c.accounts a " +
+                        "where c.id=:id group by a.client";
         ClientSummary result = (ClientSummary) session.createQuery(query)
                 .setParameter("id", 1).uniqueResult();
         System.out.println(result);

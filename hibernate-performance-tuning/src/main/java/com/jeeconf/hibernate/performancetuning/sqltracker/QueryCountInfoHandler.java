@@ -31,7 +31,6 @@ public class QueryCountInfoHandler implements QueryHandler {
         String trimmedQuery = removeRedundantSymbols(query);
         char firstChar = trimmedQuery.charAt(0);
 
-        QueryType type;
         switch (firstChar) {
             case 'w': // query can be started 'with'
             case 's':

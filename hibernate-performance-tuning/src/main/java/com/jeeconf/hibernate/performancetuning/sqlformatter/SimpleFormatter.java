@@ -8,7 +8,8 @@ public class SimpleFormatter implements MessageFormattingStrategy {
     private static final Formatter HIBERNATE_SQL_FORMATTER = new BasicFormatterImpl();
 
     @Override
-    public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared, String sql) {
+    public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared,
+                                String sql) {
         if (sql.isEmpty()) {
             return "";
         }

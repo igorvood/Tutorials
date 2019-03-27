@@ -3,6 +3,9 @@ package com.jeeconf.hibernate.performancetuning.sqltracker;
 import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoHolder.getQueryInfo;
 
 public class AssertSqlCount {
+    private AssertSqlCount() {
+    }
+
     public static void reset() {
         getQueryInfo().clear();
     }

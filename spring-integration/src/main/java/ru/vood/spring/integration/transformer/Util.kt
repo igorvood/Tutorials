@@ -2,7 +2,7 @@ package ru.vood.spring.integration.transformer
 
 import java.text.MessageFormat
 
-fun transformHeaderMap(headerMap: Map<String, Object>): String {
+fun transformHeaderMap(headerMap: Map<String, Any>): String {
     var s: String = ""
     for (key in headerMap.keys) {
         val value = headerMap[key]

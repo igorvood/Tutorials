@@ -1,4 +1,4 @@
-package ru.vood.templatePlugin;
+package ru.vood.template.plugin;
 
 public class SomeDataClass {
     private String name;

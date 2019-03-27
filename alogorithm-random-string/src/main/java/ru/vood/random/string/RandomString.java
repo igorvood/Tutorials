@@ -1,22 +1,26 @@
-package ru.vood.randomString;
-
 import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
+`package ru.vood.random.string;
+
 public class RandomString {
-    private static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String lower = upper.toLowerCase(Locale.ROOT);
-    private static final String digits = "0123456789";
-    private static final String alphanum = upper + lower + digits;
+    private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String LOWER = UPPER.toLowerCase(Locale.ROOT);
+    private static final String DIGITS = "0123456789";
+    private static final String ALPHANUM = UPPER + LOWER + DIGITS;
     private final Random random;
     private final char[] symbols;
     private final char[] buf;
 
     public RandomString(int length, Random random, String symbols) {
-        if (length < 1) throw new IllegalArgumentException();
-        if (symbols.length() < 2) throw new IllegalArgumentException();
+        if (length < 1) {
+            throw new IllegalArgumentException();
+        }
+        if (symbols.length() < 2) {
+            throw new IllegalArgumentException();
+        }
         this.random = Objects.requireNonNull(random);
         this.symbols = symbols.toCharArray();
         this.buf = new char[length];
@@ -26,7 +30,7 @@ public class RandomString {
      * Create an alphanumeric string generator.
      */
     public RandomString(int length, Random random) {
-        this(length, random, alphanum);
+        this(length, random, ALPHANUM);
     }
 
     /**
@@ -47,8 +51,9 @@ public class RandomString {
      * Generate a random string.
      */
     public String nextString() {
-        for (int idx = 0; idx < buf.length; ++idx)
+        for (int idx = 0; idx < buf.length; ++idx) {
             buf[idx] = symbols[random.nextInt(symbols.length)];
+        }
         return new String(buf);
     }
 

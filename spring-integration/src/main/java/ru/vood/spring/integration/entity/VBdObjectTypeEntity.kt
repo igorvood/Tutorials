@@ -7,7 +7,7 @@ data class VBdObjectTypeEntity(
 
         var code: String?,
 
-                               var name: String?) {
+        var name: String?) {
     constructor() : this(null, null, null)
 
 }

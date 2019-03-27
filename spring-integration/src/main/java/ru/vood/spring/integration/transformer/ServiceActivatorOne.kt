@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 @Component
 open class ServiceActivatorOne {
 
-    fun activate(code: String, @Headers headerMap: Map<String, Object>) {
+    fun activate(code: String, @Headers headerMap: Map<String, Any>) {
         println("${Thread.currentThread().name} ${this::class.java.name} -> ServiceActivatorOne value $code headerMap-> ${transformHeaderMap(headerMap)} ")
         //return "%${code.toUpperCase()}%"
     }

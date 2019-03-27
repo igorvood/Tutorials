@@ -9,7 +9,7 @@ import java.util.*
 @Component
 class SplitterOne(var vBdObjectTypeEntityService: VBdObjectTypeEntityService) {
 
-    fun split(code: String, @Headers headerMap: Map<String, Object>): Collection<String> {
+    fun split(code: String, @Headers headerMap: Map<String, Any>): Collection<String> {
 
         println("${Thread.currentThread().name} ${this::class.java.name} -> Split value $code headerMap-> ${transformHeaderMap(headerMap)} ")
 

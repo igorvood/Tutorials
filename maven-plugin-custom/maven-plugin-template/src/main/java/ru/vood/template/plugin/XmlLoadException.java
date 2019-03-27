@@ -1,4 +1,4 @@
-package ru.vood.templatePlugin;
+package ru.vood.template.plugin;
 
 public class XmlLoadException extends RuntimeException {
     public XmlLoadException(String message) {
