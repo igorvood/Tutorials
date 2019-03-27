@@ -1,9 +1,9 @@
+package ru.vood.random.string;
 import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
-`package ru.vood.random.string;
 
 public class RandomString {
     private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
