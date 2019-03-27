@@ -1,12 +1,13 @@
 package ru.vood.spring.integration.configuration
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.integration.channel.DirectChannel
 import org.springframework.integration.channel.ExecutorChannel
 import org.springframework.integration.dsl.IntegrationFlow
 import org.springframework.integration.dsl.IntegrationFlows
+import ru.vood.spring.integration.repository.VBdObjectTypeEntityRepository
+import ru.vood.spring.integration.service.VBdObjectTypeEntityImpl
 import ru.vood.spring.integration.splitter.SplitterOne
 import ru.vood.spring.integration.transformer.TransformerOne
 import ru.vood.spring.integration.transformer.TransformerTwo
@@ -15,12 +16,7 @@ import java.util.concurrent.ForkJoinPool
 
 
 @Configuration
-open class ConfigurationFlowByDsl(@Autowired
-                                  var transformerOne: TransformerOne,
-                                  @Autowired
-                                  var transformerTwo: TransformerTwo,
-                                  @Autowired
-                                  var splitterOne: SplitterOne) {
+open class ConfigurationFlowByDsl() {
 
 
     @Bean
@@ -38,20 +34,36 @@ open class ConfigurationFlowByDsl(@Autowired
         return ExecutorChannel(executor())
     }
 
-    fun upcase(): IntegrationFlow {
+    @Bean
+    open fun transformerOne() = TransformerOne()
+
+    @Bean
+    open fun transformerTwo() = TransformerTwo()
+
+    @Bean
+    open fun vBdObjectTypeEntityRepository() = VBdObjectTypeEntityRepository()
+
+    @Bean
+    open fun vBdObjectTypeEntityImpl(vBdObjectTypeEntityRepository: VBdObjectTypeEntityRepository) = VBdObjectTypeEntityImpl(vBdObjectTypeEntityRepository)
+
+    @Bean
+    open fun splitterOne(vBdObjectTypeEntityImpl: VBdObjectTypeEntityImpl) = SplitterOne(vBdObjectTypeEntityImpl)
+
+    //@Bean
+    open fun upCase(transformerOne: TransformerOne, splitterOne: SplitterOne, transformerTwo: TransformerTwo, requestChannelExecutor: ExecutorChannel): IntegrationFlow {
         return IntegrationFlow { f ->
             f.channel(requestChannel())
                     .transform(transformerOne, "transform")
                     .split(splitterOne)
-                    .channel(requestChannelExecutor())
+                    .channel(requestChannelExecutor)
                     .transform(transformerTwo)
                     .log()
         }
     }
 
 
-    @Bean
-    open fun dslFlow(): IntegrationFlow {
+    //@Bean
+    open fun dslFlow(transformerOne: TransformerOne, splitterOne: SplitterOne, transformerTwo: TransformerTwo, requestChannelExecutor: ExecutorChannel): IntegrationFlow {
         return IntegrationFlows.from(requestChannel())
                 .transform(transformerOne, "transform")
                 .split(splitterOne)

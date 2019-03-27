@@ -1,12 +1,11 @@
 package ru.vood.spring.integration.splitter
 
 import org.springframework.messaging.handler.annotation.Headers
-import org.springframework.stereotype.Component
 import ru.vood.spring.integration.service.VBdObjectTypeEntityService
 import ru.vood.spring.integration.transformer.transformHeaderMap
 import java.util.*
 
-@Component
+//@Component
 class SplitterOne(var vBdObjectTypeEntityService: VBdObjectTypeEntityService) {
 
     fun split(code: String, @Headers headerMap: Map<String, Any>): Collection<String> {
