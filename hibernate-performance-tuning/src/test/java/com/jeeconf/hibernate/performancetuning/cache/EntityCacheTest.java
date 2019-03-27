@@ -15,7 +15,7 @@ public class EntityCacheTest extends BaseTest {
     public void secondLevelCache() {
         City city = session.get(City.class, 1);
         Cache secondLevelCache = getSessionFactory().getCache();
-        assertTrue(secondLevelCache.containsEntity(City.class, 1));
+        assertTrue("Cache not contains entity", secondLevelCache.containsEntity(City.class, 1));
         //secondLevelCache.evictEntity(City.class, 1);
         session.clear(); // clear first level cache
         City cachedCity = session.get(City.class, 1);

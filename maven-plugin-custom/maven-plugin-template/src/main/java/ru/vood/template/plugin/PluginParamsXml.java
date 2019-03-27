@@ -12,7 +12,7 @@ import java.io.StringWriter;
 public class PluginParamsXml {
     private final JAXBContext jaxbContext;
 
-    public PluginParamsXml() {
+    PluginParamsXml() {
         try {
             jaxbContext = JAXBContext.newInstance(PluginTines.class);
         } catch (JAXBException e) {

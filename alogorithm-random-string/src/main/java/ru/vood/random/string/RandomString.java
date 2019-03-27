@@ -14,7 +14,7 @@ public class RandomString {
     private final char[] symbols;
     private final char[] buf;
 
-    public RandomString(int length, Random random, String symbols) {
+    private RandomString(int length, Random random, String symbols) {
         if (length < 1) {
             throw new IllegalArgumentException();
         }
@@ -29,7 +29,7 @@ public class RandomString {
     /**
      * Create an alphanumeric string generator.
      */
-    public RandomString(int length, Random random) {
+    private RandomString(int length, Random random) {
         this(length, random, ALPHANUM);
     }
 

@@ -44,7 +44,7 @@ public class PluginTestParams extends AbstractMojo {
 
     }
 
-    public String toString(PluginTines pluginTines) {
+    private String toString(PluginTines pluginTines) {
         List<ClassFromTablesType> lists = pluginTines.getTableClassList().getClassFromTables();
         String s = lists.stream()
                 .map(classTablesType -> "class=" + classTablesType.getGeneratingClass() + " TableList=" +

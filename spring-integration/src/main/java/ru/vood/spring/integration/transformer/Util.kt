@@ -3,7 +3,7 @@ package ru.vood.spring.integration.transformer
 import java.text.MessageFormat
 
 fun transformHeaderMap(headerMap: Map<String, Any>): String {
-    var s: String = ""
+    var s = ""
     for (key in headerMap.keys) {
         val value = headerMap[key]
         if (key !== "sequenceSize" && key !== "timestamp")

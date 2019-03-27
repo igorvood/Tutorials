@@ -49,7 +49,7 @@ public abstract class BaseTest {
 
     @AfterTransaction
     public void showSqlCount() {
-        System.out.printf("\nSql count: " + getQueryInfo().countAll());
+        System.out.println("\nSql count: " + getQueryInfo().countAll());
     }
 
     protected SessionFactory getSessionFactory() {
