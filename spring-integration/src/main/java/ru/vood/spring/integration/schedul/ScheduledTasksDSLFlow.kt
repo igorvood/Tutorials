@@ -21,8 +21,6 @@ class ScheduledTasksDSLFlow(
     @Scheduled(fixedRate = 5000)
     fun reportCurrentTime() {
         log.info("Sending orders to input channel")
-        //chanel.send(MessageBuilder.withPayload("ta").build())
-
         chanelSecond.send(MessageBuilder.withPayload("t").build())
     }
 }

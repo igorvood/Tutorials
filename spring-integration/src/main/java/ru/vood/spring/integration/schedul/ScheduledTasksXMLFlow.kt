@@ -21,6 +21,5 @@ class ScheduledTasksXMLFlow(@Autowired
     fun reportCurrentTime() {
         log.info("Sending orders to input channel")
         chanel.send(MessageBuilder.withPayload("ta").build())
-
     }
 }
