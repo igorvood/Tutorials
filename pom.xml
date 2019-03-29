@@ -12,6 +12,8 @@
         <module>maven-plugin-custom</module>
         <module>hibernate-performance-tuning</module>
         <module>spring-integration</module>
+        <module>algorithm-big-file-sort</module>
+        <module>cuncurrency</module>
     </modules>
 
     <packaging>pom</packaging>
