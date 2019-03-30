@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.integration.support.MessageBuilder
 import org.springframework.messaging.MessageChannel
 import org.springframework.scheduling.annotation.Scheduled
-import org.springframework.stereotype.Component
 
 
-@Component
+//@Component
 class ScheduledTasksDSLFlow(
         @Autowired
         @Qualifier("requestChannel")

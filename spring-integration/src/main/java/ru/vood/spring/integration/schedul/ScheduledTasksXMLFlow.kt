@@ -20,6 +20,6 @@ class ScheduledTasksXMLFlow(@Autowired
     @Scheduled(fixedRate = 5000)
     fun reportCurrentTime() {
         log.info("Sending orders to input channel")
-        chanel.send(MessageBuilder.withPayload("ta").build())
+        chanel.send(MessageBuilder.withPayload("t").build())
     }
 }

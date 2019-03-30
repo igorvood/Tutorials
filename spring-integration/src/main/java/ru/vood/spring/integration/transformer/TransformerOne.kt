@@ -1,11 +1,14 @@
 package ru.vood.spring.integration.transformer
 
+import org.slf4j.LoggerFactory
 import org.springframework.integration.transformer.GenericTransformer
 
 //@Component
 open class TransformerOne : GenericTransformer<String, String> {
+    val log = LoggerFactory.getLogger(TransformerOne::class.java)
     override fun transform(source: String?): String {
-        return "%${source?.toUpperCase()}%"
+        log.info("Transform string->$source")
+        return "${source?.toUpperCase()}"
     }
 
 /*

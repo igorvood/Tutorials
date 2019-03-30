@@ -19,7 +19,7 @@ class VBdObjectTypeEntityRepository {
 
     fun findByCodeLike(code: String): List<VBdObjectTypeEntity> {
         return typeEntity.asSequence()
-                .filter { it.contentEquals(code) }
+                .filter { it.contains(code) }
                 .map {
                     VBdObjectTypeEntity(
                             BigDecimal(it.hashCode()),
