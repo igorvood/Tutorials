@@ -14,6 +14,7 @@
         <module>spring-integration</module>
         <module>algorithm-big-file-sort</module>
         <module>cuncurrency</module>
+        <module>spring-integration-baeldung</module>
     </modules>
 
     <packaging>pom</packaging>
