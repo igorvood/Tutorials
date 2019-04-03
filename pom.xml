@@ -15,9 +15,19 @@
         <module>algorithm-big-file-sort</module>
         <module>cuncurrency</module>
         <module>spring-integration-baeldung</module>
+        <module>spring-boot-liquibase</module>
     </modules>
 
     <packaging>pom</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,5 +41,10 @@
         <springframework.boot.version>2.1.3.RELEASE</springframework.boot.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>oracle</id>
+        </profile>
+    </profiles>
 
 </project>
