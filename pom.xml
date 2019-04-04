@@ -44,6 +44,14 @@
     <profiles>
         <profile>
             <id>oracle</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <db.user>vood</db.user>
+                <db.password>vood</db.password>
+                <db.url>jdbc:oracle:thin:@192.168.1.2:1521:vood</db.url>
+            </properties>
         </profile>
     </profiles>
 
