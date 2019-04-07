@@ -16,6 +16,7 @@
         <module>cuncurrency</module>
         <module>spring-integration-baeldung</module>
         <module>spring-boot-liquibase</module>
+        <module>algorithm-xml-validator</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -26,6 +27,12 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
     </dependencies>
 
 
