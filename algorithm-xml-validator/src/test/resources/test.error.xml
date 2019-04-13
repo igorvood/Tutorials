@@ -1,0 +1,12 @@
+<pluginTines username="string" password="string" url="string">
+    <table_class_list>
+        <!--Zero or more repetitions:-->
+        <class_from_tables>
+            <generatingClass>ENTITYq</generatingClass>
+            <table_list>
+                <!--Zero or more repetitions:-->
+                <table table_name="string" table_owner="string">string</table>
+            </table_list>
+        </class_from_tables>
+    </table_class_list>
+</pluginTines>

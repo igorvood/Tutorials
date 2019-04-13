@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified"
+           elementFormDefault="qualified">
+
+    <xs:element name="pluginTines" type="pluginTinesType"/>
+
+    <xs:complexType name="tableType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="table_name" use="optional"/>
+                <xs:attribute type="xs:string" name="table_owner" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="pluginTinesType">
+        <xs:sequence>
+            <xs:element type="table_class_listType" name="table_class_list"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="username"/>
+        <xs:attribute type="xs:string" name="password"/>
+        <xs:attribute type="xs:string" name="url"/>
+        <xs:attribute type="xs:string" name="dataBaseDriver"/>
+    </xs:complexType>
+
+    <xs:complexType name="class_from_tablesType">
+        <xs:sequence>
+            <xs:element name="generatingClass">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="ENTITY"/>
+                        <xs:enumeration value="ENUM"/>
+                        <xs:enumeration value="REPOSITORY"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="table_listType" name="table_list"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="table_listType">
+        <xs:sequence>
+            <xs:element type="tableType" name="table" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="table_class_listType">
+        <xs:sequence>
+            <xs:element type="class_from_tablesType" name="class_from_tables" maxOccurs="unbounded"
+                        minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
