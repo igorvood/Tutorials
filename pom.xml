@@ -17,6 +17,7 @@
         <module>spring-integration-baeldung</module>
         <module>spring-boot-liquibase</module>
         <module>algorithm-xml-validator</module>
+        <module>algorithm-join-point</module>
     </modules>
 
     <packaging>pom</packaging>

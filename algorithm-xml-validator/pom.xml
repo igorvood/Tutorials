@@ -12,6 +12,16 @@
     <artifactId>algorithm-xml-validator</artifactId>
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resource</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.q</include>
+                </includes>
+            </testResource>
+        </testResources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
