@@ -41,7 +41,6 @@ public class PluginTestParams extends AbstractMojo {
         System.out.println("------>\n" + sb + "\n");
         final PluginTines pluginTines = pluginParamsXml.xmlToObj(sb.toString());
         System.out.println("pluginTines------>" + toString(pluginTines));
-
     }
 
     private String toString(PluginTines pluginTines) {

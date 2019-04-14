@@ -11,6 +11,7 @@
 
     <name>template-maven-plugin Maven Mojo</name>
     <artifactId>maven-plugin-template</artifactId>
+    <packaging>maven-plugin</packaging>
 
     <properties>
         <maven-plugin.version>3.6.0</maven-plugin.version>
@@ -29,6 +30,7 @@
             <artifactId>maven-plugin-api</artifactId>
             <version>${maven-plugin.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
@@ -66,6 +68,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.22.0-GA</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
@@ -77,7 +85,13 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -97,26 +111,8 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <encoding>UTF-8</encoding>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.5</version>
-                <configuration>
-                    <!-- see http://jira.codehaus.org/browse/MNG-5346 -->
-                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
-                </configuration>
-
-                <executions>
-                    <execution>
-                        <id>mojo-descriptor</id>
-                        <goals>
-                            <goal>descriptor</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
@@ -133,7 +129,7 @@
                     <generatePackage>ru.vood.template.plugin.generated.from.xsd</generatePackage>
                     <schemaDirectory>src/main/resources</schemaDirectory>
                     <schemaIncludes>
-                        <include>1.xsd</include>
+                        <include>parameters.xsd</include>
                     </schemaIncludes>
                     <bindingDirectory>src/main/resources</bindingDirectory>
                     <bindingIncludes>
@@ -143,7 +139,6 @@
                     <cleanPackageDirectories>true</cleanPackageDirectories>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>
