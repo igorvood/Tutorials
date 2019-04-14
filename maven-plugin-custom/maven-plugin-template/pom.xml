@@ -127,11 +127,11 @@
                 </executions>
                 <configuration>
                     <generatePackage>ru.vood.template.plugin.generated.from.xsd</generatePackage>
-                    <schemaDirectory>src/main/resources</schemaDirectory>
+                    <schemaDirectory>src/main/resources/XSDSchema</schemaDirectory>
                     <schemaIncludes>
                         <include>parameters.xsd</include>
                     </schemaIncludes>
-                    <bindingDirectory>src/main/resources</bindingDirectory>
+                    <bindingDirectory>src/main/resources/XSDSchema</bindingDirectory>
                     <bindingIncludes>
                         <include>bindings.xml</include>
                     </bindingIncludes>
