@@ -1,14 +1,14 @@
 create table act_join_point (
-  id                 varchar2(20) not null,
+  id                 number       not null,
   constraint act_join_point_pk primary key (id)
     using index tablespace i_dict,
   dict_join_point_id varchar2(20) not null,
-  date_beg           date         not null,
-  request_id         varchar2(20) not null,
-  responce_id        varchar2(20),
-  date_end           date,
+  date_beg           timestamp    not null,
+  --   request_id         varchar2(20) not null,
+  --   responce_id        varchar2(20),
+  date_end           timestamp,
   context            clob         not null,
-  parent             varchar2(20)
+  parent             number
 )
 /
 alter table act_join_point
@@ -38,12 +38,12 @@ is 'Ссылка на справочник join point'
 comment on column act_join_point.date_beg
 is 'Дата начала вычислений'
 /
-comment on column act_join_point.request_id
-is 'Ссылка на запрос'
-/
-comment on column act_join_point.responce_id
-is 'Ссылка на ответ'
-/
+-- comment on column act_join_point.request_id
+-- is 'Ссылка на запрос'
+-- /
+-- comment on column act_join_point.responce_id
+-- is 'Ссылка на ответ'
+-- /
 comment on column act_join_point.date_end
 is 'Дата окончания процесса вычислений'
 /

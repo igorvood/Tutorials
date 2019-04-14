@@ -16,6 +16,11 @@
         <sqlFile path="liquibase/release_001/task_001/10.DICT_ACT_STATE.sql"/>
     </changeSet>
 
+    <changeSet id="001/001/11.DICT_ACT_STATE_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/11.DICT_ACT_STATE_data.sql"/>
+    </changeSet>
+
     <changeSet id="001/001/20.DICT_ACT_JP_TUNE.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/20.DICT_ACT_JP_TUNE.sql"/>
