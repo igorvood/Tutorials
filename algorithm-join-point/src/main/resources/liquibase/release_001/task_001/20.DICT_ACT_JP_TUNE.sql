@@ -1,7 +1,7 @@
 create table dict_act_jp_tune (
-  id                   varchar2(20)  not null
-    constraint dict_act_jp_tune_pk
-    primary key,
+  id                   varchar2(20)  not null,
+  constraint dict_act_jp_tune_pk primary key (id)
+    using index tablespace i_dict,
   name                 varchar2(255) not null,
   global_timeout       number        not null,
   reprocessing_timeout number,
