@@ -1,7 +1,7 @@
 create table dict_act_state (
-  id          varchar2(20)  not null
-    constraint dict_act_state_pk
-    primary key,
+  id          varchar2(20)  not null,
+  constraint dict_act_state_pk primary key (id),
+  ---
   description varchar2(255) not null
 )
 /

@@ -63,19 +63,15 @@ comment on column act_join_point.parent
 is 'ссылка на корневой join point'
 /
 
-comment on column act_join_point.deal_id
-is 'Ссылка на сделку'
-/
-
 create index act_join_point_is_closed
   on act_join_point (is_closed)
 /
 
 create unique index act_join_point_uk
-  on act_join_point (dict_join_point_id, deal_id)
+  on act_join_point (dict_join_point_id)
 /
 
 alter table act_join_point
   add constraint act_join_point_uk
-unique (dict_join_point_id, deal_id)
+unique (dict_join_point_id)
 /

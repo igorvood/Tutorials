@@ -3,8 +3,31 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="001/001/10.DICT_ACT_STATE.sql" author="vood">
+
+
+    <changeSet id="dropAll.sql" author="vood" runAlways="true">
+        <sqlFile path="liquibase/release_001/dropAll.sql" endDelimiter="/"/>
+    </changeSet>
+
+
+    <changeSet id="001/001/10.DICT_ACT_STATE.sql" author="vood" runAlways="true">
         <sqlFile path="liquibase/release_001/task_001/10.DICT_ACT_STATE.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/20.DICT_ACT_JP_TUNE.sql" author="vood" runAlways="true">
+        <sqlFile path="liquibase/release_001/task_001/20.DICT_ACT_JP_TUNE.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/30.DICT_ACT_EVENT.sql" author="vood" runAlways="true">
+        <sqlFile path="liquibase/release_001/task_001/30.DICT_ACT_EVENT.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/40.DICT_ACT_JOIN_POINT.sql" author="vood" runAlways="true">
+        <sqlFile path="liquibase/release_001/task_001/40.DICT_ACT_JOIN_POINT.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/50.ACT_JOIN_POINT.sql" author="vood" runAlways="true">
+        <sqlFile path="liquibase/release_001/task_001/50.ACT_JOIN_POINT.sql"/>
     </changeSet>
 
 </databaseChangeLog>
