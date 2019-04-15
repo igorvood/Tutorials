@@ -6,6 +6,9 @@ create table dict_act_event (
   bean_name varchar2(255) not null
 )
 /
+comment on table dict_act_event
+is 'Справочник состояний'
+/
 comment on column dict_act_event.id
 is 'Идентификатор'
 /

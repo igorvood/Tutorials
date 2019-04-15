@@ -31,9 +31,19 @@
         <sqlFile path="liquibase/release_001/task_001/30.DICT_ACT_EVENT.sql"/>
     </changeSet>
 
+    <changeSet id="001/001/31.DICT_ACT_TYPE_CONTEXT.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/31.DICT_ACT_TYPE_CONTEXT.sql"/>
+    </changeSet>
+
     <changeSet id="001/001/40.DICT_ACT_JOIN_POINT.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/40.DICT_ACT_JOIN_POINT.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/49.ACT_JOIN_POINT_CONTEXT.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/49.ACT_JOIN_POINT_CONTEXT.sql"/>
     </changeSet>
 
     <changeSet id="001/001/50.ACT_JOIN_POINT.sql" author="vood" runAlways="true">
