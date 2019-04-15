@@ -18,6 +18,7 @@
         <module>spring-boot-liquibase</module>
         <module>algorithm-xml-validator</module>
         <module>algorithm-join-point</module>
+        <module>enum-from-table-maven-plugin</module>
     </modules>
 
     <packaging>pom</packaging>
