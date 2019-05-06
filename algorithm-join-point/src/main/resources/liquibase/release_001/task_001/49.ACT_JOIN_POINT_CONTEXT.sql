@@ -5,7 +5,7 @@ create table act_join_point_context (
   type_context varchar2(512) not null,
   constraint act_join_point_context_type_fk foreign key (type_context) REFERENCES dict_act_type_context (id),
   --
-  context      clob
+  context      clob          not null
 )
 /
 comment on table act_join_point_context
