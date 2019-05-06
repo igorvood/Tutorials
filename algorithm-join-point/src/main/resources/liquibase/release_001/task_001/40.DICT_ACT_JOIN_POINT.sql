@@ -12,12 +12,19 @@ create table dict_act_join_point (
   --   constraint dict_act_join_point_pub_evt_fk foreign key (publish_event_id) references dict_act_event (id),
   global_timeout         number        not null,
   constraint dict_act_join_point_timeout_ck check (global_timeout > 0),
+  --
   reprocessing_timeout   number,
   constraint dict_act_join_point_reptime_ck check (reprocessing_timeout > 0 ),
+  --
   process_bean_name      varchar2(255) not null,
+  constraint dict_act_join_process_bean_fk foreign key (process_bean_name) references dict_act_bean (bean_id),
+  --
   reprocessing_bean_name varchar2(255),
+  constraint dict_act_join_reproces_bean_fk foreign key (reprocessing_bean_name) references dict_act_bean (bean_id),
+  --
   status                 varchar2(1)   not null,
   constraint dict_act_join_point_state_ck check (status in ('d', 'o', 'm'))
+  --
 )
 /
 
@@ -55,3 +62,4 @@ is 'таймаут, сколько ждем ответа, после этого 
 comment on column dict_act_join_point.status
 is 'Состояние o-опционально(не обязательно), m - mandatory(обязательна),  d - disabled(выключена) '
 /
+
