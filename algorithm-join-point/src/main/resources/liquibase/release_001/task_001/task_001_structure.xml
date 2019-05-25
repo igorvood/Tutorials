@@ -10,20 +10,20 @@
         <sqlFile path="liquibase/release_001/task_001/10.DICT_ACT_STATE.sql"/>
     </changeSet>
 
-    <changeSet id="001/001/11.DICT_ACT_STATE_data.sql" author="vood" runAlways="true">
+    <changeSet id="001/001/11.DICT_ACT_FLOW_TYPE.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/11.DICT_ACT_STATE_data.sql"/>
+        <sqlFile path="liquibase/release_001/task_001/11.DICT_ACT_FLOW_TYPE.sql"/>
     </changeSet>
 
-    <changeSet id="001/001/20.DICT_ACT_JP_TUNE.sql" author="vood" runAlways="true">
-        <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/20.DICT_ACT_JP_TUNE.sql"/>
-    </changeSet>
+    <!--    <changeSet id="001/001/20.DICT_ACT_JP_TUNE.sql" author="vood" runAlways="true">-->
+    <!--        <validCheckSum>any</validCheckSum>-->
+    <!--        <sqlFile path="liquibase/release_001/task_001/20.DICT_ACT_JP_TUNE.sql"/>-->
+    <!--    </changeSet>-->
 
-    <changeSet id="001/001/30.DICT_ACT_EVENT.sql" author="vood" runAlways="true">
-        <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/30.DICT_ACT_EVENT.sql"/>
-    </changeSet>
+    <!--    <changeSet id="001/001/30.DICT_ACT_EVENT.sql" author="vood" runAlways="true">-->
+    <!--        <validCheckSum>any</validCheckSum>-->
+    <!--        <sqlFile path="liquibase/release_001/task_001/30.DICT_ACT_EVENT.sql"/>-->
+    <!--    </changeSet>-->
 
     <changeSet id="001/001/31.DICT_ACT_TYPE_CONTEXT.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
