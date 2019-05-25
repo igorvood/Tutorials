@@ -40,6 +40,18 @@
         <sqlFile path="liquibase/release_001/task_001/400.DICT_ACT_JOIN_POINT.sql"/>
     </changeSet>
 
+    <changeSet id="001/001/406.DICT_ACT_RUNNER.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/406.DICT_ACT_RUNNER.sql"/>
+    </changeSet>
+
+    <!--
+        <changeSet id="001/001/405.DICT_ACT_JP_FLOW.sql" author="vood" runAlways="true">
+            <validCheckSum>any</validCheckSum>
+            <sqlFile path="liquibase/release_001/task_001/405.DICT_ACT_JP_FLOW.sql"/>
+        </changeSet>
+    -->
+
     <changeSet id="001/001/410.DICT_ACT_RUN.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/410.DICT_ACT_RUN.sql"/>

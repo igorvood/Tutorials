@@ -29,6 +29,19 @@
         <sqlFile path="liquibase/release_001/task_001/data/500.dict_act_join_point_data.sql"/>
     </changeSet>
 
+    <!--
+        <changeSet id="001/001/data/505.dict_act_jp_flow_data.sql" author="vood" runAlways="true">
+            <validCheckSum>any</validCheckSum>
+            <sqlFile path="liquibase/release_001/task_001/data/505.dict_act_jp_flow_data.sql"/>
+        </changeSet>
+    -->
+
+
+    <changeSet id="001/001/data/590.dict_act_runner_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/590.dict_act_runner_data.sql"/>
+    </changeSet>
+
     <changeSet id="001/001/data/600.dict_act_run_data.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/data/600.dict_act_run_data.sql"/>

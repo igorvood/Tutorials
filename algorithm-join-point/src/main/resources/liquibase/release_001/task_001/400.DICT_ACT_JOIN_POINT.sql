@@ -5,8 +5,9 @@ create table dict_act_join_point (
 --   parent                 varchar2(20),
 --   constraint dict_act_join_point_parent_fk foreign key (parent) references dict_act_join_point (id),
   --
-                                     flow_type      varchar2(20)  not null,
-                                     constraint dict_act_join_flow_type_fk foreign key (flow_type) references dict_act_flow_type (id),
+--                                      flow_type      varchar2(20)  not null,
+--                                      constraint dict_act_join_flow_type_fk foreign key (flow_type) references dict_act_flow_type (id),
+    --
                                      description    varchar2(255) not null,
   --   listen_event_id  varchar2(20) not null,
   --   constraint dict_act_join_point_gen_evt_fk foreign key (listen_event_id) references dict_act_event (id),
