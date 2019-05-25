@@ -56,5 +56,6 @@
     </changeSet>
 
     <include file="liquibase/release_001/task_001/data/task_001_data.xml"/>
+    <include file="liquibase/release_001/task_001/view/task_001_views.xml"/>
 
 </databaseChangeLog>
