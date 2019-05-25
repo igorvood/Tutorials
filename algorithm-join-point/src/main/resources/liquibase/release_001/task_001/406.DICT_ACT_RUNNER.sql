@@ -8,7 +8,7 @@ create table dict_act_runner
     constraint dict_act_runner_flow_fk foreign key (flow)
         references DICT_ACT_FLOW_TYPE (id),
     ---
-    constraint dict_act_runner_pk primary key (join_point, flow)
+    constraint dict_act_runner_pk primary key (join_point, flow) using index tablespace jp_idx
 )
 /
 comment on table dict_act_runner

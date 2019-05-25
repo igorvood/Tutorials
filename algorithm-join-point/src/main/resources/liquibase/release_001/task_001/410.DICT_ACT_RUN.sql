@@ -19,7 +19,7 @@ create table dict_act_run
     constraint dict_act_run_runnable_ck check ( (runnable is null and runnable_flow is null) or
                                                 (runnable is not null and runnable_flow is not null) ),
     constraint dict_act_run_jp_ck check ( runner != runnable),
-    constraint dict_act_run_pk primary key (runner, runner_flow, runnable, runnable_flow)
+    constraint dict_act_run_pk primary key (runner, runner_flow, runnable, runnable_flow) using index tablespace jp_idx
 )
 /
 create index dict_act_run_runner_i on dict_act_run (runner, runner_flow) tablespace jp_idx
