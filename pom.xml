@@ -20,6 +20,7 @@
         <module>algorithm-join-point</module>
         <module>enum-from-table-maven-plugin</module>
         <module>kotlin-examples</module>
+        <module>oracle-pluggable-db</module>
     </modules>
 
     <packaging>pom</packaging>
