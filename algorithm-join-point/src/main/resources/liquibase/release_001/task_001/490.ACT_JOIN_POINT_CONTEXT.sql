@@ -1,22 +1,35 @@
-create table act_join_point_context (
-  id           number        not null,
-  constraint act_join_point_context_pk primary key (id)
-    using index tablespace jp_idx,
-  type_context varchar2(512) not null,
-  constraint act_join_point_context_type_fk foreign key (type_context) REFERENCES dict_act_type_context (id),
-  --
-  context      clob          not null
+create table act_join_point_context
+(
+    join_point        number        not null,
+    bean_id           varchar2(255) not null,
+    run_context_id    varchar2(20)  not null,
+    return_context_id varchar2(20)  not null,
+    constraint act_join_point_context_pk primary key (join_point)
+        using index tablespace jp_idx,
+    --
+    constraint act_join_point_context_bean_fk foreign key (bean_id, run_context_id, return_context_id) references DICT_ACT_BEAN (bean_id, run_context, return_context),
+    run_context       clob,
+    return_context    clob
 )
 /
 comment on table act_join_point_context
-is 'Операционная таблица контеста запуска'
+    is 'Операционная таблица контеста запуска'
 /
-comment on column act_join_point_context.id
-is 'Идентификатор'
+comment on column act_join_point_context.join_point
+    is 'Идентификатор'
 /
-comment on column act_join_point_context.type_context
-is 'тип контекста'
+comment on column act_join_point_context.run_context_id
+    is 'тип контекста запуска'
 /
-comment on column act_join_point_context.context
-is 'контекст в формате json'
+comment on column act_join_point_context.return_context_id
+    is 'тип возвращаемого контекста'
+/
+comment on column act_join_point_context.bean_id
+    is ' бин'
+/
+comment on column act_join_point_context.run_context
+    is 'контекст запуска в формате json '
+/
+comment on column act_join_point_context.return_context
+    is 'возвращаемый контекст в формате json '
 /

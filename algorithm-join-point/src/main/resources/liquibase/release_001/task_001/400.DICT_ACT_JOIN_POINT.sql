@@ -19,13 +19,15 @@ create table dict_act_join_point (
 --   reprocessing_timeout   number,
 --   constraint dict_act_join_point_reptime_ck check (reprocessing_timeout > 0 ),
   --
-                                     process_bean_name      varchar2(255) not null,
-                                     constraint dict_act_join_process_bean_fk foreign key (process_bean_name) references dict_act_bean (bean_id),
+                                     bean_name      varchar2(255) not null,
+                                     run_context    varchar2(512) not null,
+                                     return_context varchar2(512) not null,
+                                     constraint dict_act_join_process_bean_fk foreign key (bean_name, run_context, return_context) references dict_act_bean (bean_id, run_context, return_context),
   --
 --   reprocessing_bean_name varchar2(255),
 --   constraint dict_act_join_reproces_bean_fk foreign key (reprocessing_bean_name) references dict_act_bean (bean_id),
   --
-                                     status                 varchar2(1)   not null,
+                                     status         varchar2(1)   not null,
                                      constraint dict_act_join_point_state_ck check (status in ('d', 'o', 'm'))
   --
 
@@ -43,7 +45,7 @@ is 'Наименование'
 -- comment on column dict_act_join_point.parent
 -- is 'Родительский JOIN_POINT'
 -- /
-comment on column dict_act_join_point.process_bean_name
+comment on column dict_act_join_point.bean_name
 is 'Наименование класса обработчика'
 /
 -- comment on column dict_act_join_point.reprocessing_bean_name

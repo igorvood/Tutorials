@@ -1,20 +1,20 @@
 create or replace view runner_join_point_vw as
     with jp as (
-        select jp.ID                 RUNNER_JP,
+        select jp.ID                RUNNER_JP,
                jp.GLOBAL_TIMEOUT,
-               jp.PROCESS_BEAN_NAME  runner_bean,
-               rbl.PROCESS_BEAN_NAME RUNNABLE_bean,
-               r.RUNNABLE            RUNNABLE_JP,
-               run_b.RUN_CONTEXT     RUNNER_bean_in_context,
-               run_b.RETURN_CONTEXT  RUNNER_bean_out_context,
-               rbl_b.RUN_CONTEXT     RUNNABLE_bean_in_context,
-               rbl_b.RETURN_CONTEXT  RUNNABLE_bean_out_context
+               jp.BEAN_NAME         runner_bean,
+               rbl.BEAN_NAME        RUNNABLE_bean,
+               r.RUNNABLE           RUNNABLE_JP,
+               run_b.RUN_CONTEXT    RUNNER_bean_in_context,
+               run_b.RETURN_CONTEXT RUNNER_bean_out_context,
+               rbl_b.RUN_CONTEXT    RUNNABLE_bean_in_context,
+               rbl_b.RETURN_CONTEXT RUNNABLE_bean_out_context
 
         from jp.DICT_ACT_JOIN_POINT jp
                  join jp.DICT_ACT_RUN r on jp.ID = r.RUNNER
-                 join jp.DICT_ACT_BEAN run_b on run_b.BEAN_ID = jp.PROCESS_BEAN_NAME
+                 join jp.DICT_ACT_BEAN run_b on run_b.BEAN_ID = jp.BEAN_NAME
                  left join jp.DICT_ACT_JOIN_POINT rbl on r.RUNNABLE = rbl.id
-                 left join jp.DICT_ACT_BEAN rbl_b on rbl_b.BEAN_ID = rbl.PROCESS_BEAN_NAME
+                 left join jp.DICT_ACT_BEAN rbl_b on rbl_b.BEAN_ID = rbl.BEAN_NAME
     )
     select level lv,
            j.RUNNER_JP,

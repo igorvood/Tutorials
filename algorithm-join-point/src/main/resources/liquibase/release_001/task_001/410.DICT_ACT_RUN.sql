@@ -15,8 +15,10 @@ create table dict_act_run
     constraint dict_act_run_runnable_flow_fk foreign key (runnable_flow)
         references DICT_ACT_FLOW_TYPE (id),
     ---
-    constraint dict_act_run_flow_ck check ( runner_flow = runnable_flow or runnable_flow is null ),
-    constraint dict_act_run_jp_ck check ( runner != runnable or runnable is null ),
+    constraint dict_act_run_flow_ck check ( runner_flow = nvl(runnable_flow, runner_flow)),
+    constraint dict_act_run_runnable_ck check ( (runnable is null and runnable_flow is null) or
+                                                (runnable is not null and runnable_flow is not null) ),
+    constraint dict_act_run_jp_ck check ( runner != runnable),
     constraint dict_act_run_pk primary key (runner, runner_flow, runnable, runnable_flow)
 )
 /

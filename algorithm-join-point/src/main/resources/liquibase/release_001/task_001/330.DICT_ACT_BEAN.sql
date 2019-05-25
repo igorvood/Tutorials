@@ -11,8 +11,7 @@ create table dict_act_bean
     description    varchar2(255),
     ---
     constraint dict_act_bean_pk primary key (bean_id, run_context, return_context)
-        using index tablespace jp_idx,
-    constraint dict_act_bean_bean_uk unique (bean_id)
+        using index tablespace jp_idx
 )
 /
 comment on table dict_act_bean
