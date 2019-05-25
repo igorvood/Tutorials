@@ -14,7 +14,7 @@ open class JoinPointConfiguration {
 
     @Bean
     open fun getJointPointConfigurationBeanFactoryPostProcessor(): BeanFactoryPostProcessor {
-        return JointPointConfigurationBeanFactoryPostProcessor(jdbcTemplate)
+        return JointPointConfigurationBeanFactoryPostProcessor()
     }
 
 }

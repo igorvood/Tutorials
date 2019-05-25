@@ -1,6 +1,7 @@
 package ru.vood.joinpoint.configuration.beanfactory
 
 import org.apache.commons.logging.LogFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory
 import org.springframework.beans.factory.support.BeanDefinitionBuilder
@@ -11,7 +12,10 @@ import java.sql.ResultSet
 
 
 //@Component
-class JointPointConfigurationBeanFactoryPostProcessor(private val jdbcTemplate: JdbcTemplate) : BeanFactoryPostProcessor, RowMapper<Pair<String, String>> {
+open class JointPointConfigurationBeanFactoryPostProcessor() : BeanFactoryPostProcessor, RowMapper<Pair<String, String>> {
+
+    @Autowired
+    private lateinit var jdbcTemplate: JdbcTemplate
 
     private val logger = LogFactory.getLog(JointPointConfigurationBeanFactoryPostProcessor::class.java)
 

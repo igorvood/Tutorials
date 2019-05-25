@@ -9,12 +9,11 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 public class JointPointConfigurationBeanFactoryPostProcessorJava implements BeanFactoryPostProcessor {
 
     private static final Log logger = LogFactory.getLog(JointPointConfigurationBeanFactoryPostProcessorJava.class);

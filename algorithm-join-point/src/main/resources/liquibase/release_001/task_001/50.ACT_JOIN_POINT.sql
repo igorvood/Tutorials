@@ -35,8 +35,8 @@ create table act_join_point (
   constraint act_join_point_date_ck check (date_beg <= date_end)
 )
 /
-create index act_join_point_is_closed
-  on act_join_point (is_closed)
+create index act_join_point_is_closed_i
+  on act_join_point (is_closed) tablespace jp_idx
 /
 comment on table act_join_point
 is 'Операционная таблица join point'

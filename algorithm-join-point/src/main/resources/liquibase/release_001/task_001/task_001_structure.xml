@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="001/001/10.DICT_ACT_STATE.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/10.DICT_ACT_STATE.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/11.DICT_ACT_STATE_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/11.DICT_ACT_STATE_data.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/20.DICT_ACT_JP_TUNE.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/20.DICT_ACT_JP_TUNE.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/30.DICT_ACT_EVENT.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/30.DICT_ACT_EVENT.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/31.DICT_ACT_TYPE_CONTEXT.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/31.DICT_ACT_TYPE_CONTEXT.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/33.DICT_ACT_BEAN.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/33.DICT_ACT_BEAN.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/40.DICT_ACT_JOIN_POINT.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/40.DICT_ACT_JOIN_POINT.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/41.DICT_ACT_RUN.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/41.DICT_ACT_RUN.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/49.ACT_JOIN_POINT_CONTEXT.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/49.ACT_JOIN_POINT_CONTEXT.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/50.ACT_JOIN_POINT.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/50.ACT_JOIN_POINT.sql"/>
+    </changeSet>
+
+    <include file="liquibase/release_001/task_001/data/task_001_data.xml"/>
+
+</databaseChangeLog>
