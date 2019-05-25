@@ -10,5 +10,10 @@
         <sqlFile path="liquibase/release_001/task_001/data/100.dict_act_type_context_data.sql"/>
     </changeSet>
 
+    <changeSet id="001/001/data/200.dict_act_bean_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/200.dict_act_bean_data.sql"/>
+    </changeSet>
+
 
 </databaseChangeLog>

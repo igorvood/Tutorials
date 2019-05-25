@@ -1,31 +1,15 @@
 insert into JP.dict_act_type_context(ID, DESCRIPTION)
-SELECT 'Bean1RunContext', 'Bean1RunContext DESCRIPTION'
-from DUAL
-union all
-SELECT 'Bean2RunContext', 'Bean2RunContext DESCRIPTION'
-from DUAL
-union all
-SELECT 'Bean3RunContext', 'Bean3RunContext DESCRIPTION'
-from DUAL
-union all
-SELECT 'Bean4RunContext', 'Bean4RunContext DESCRIPTION'
-from DUAL
-union all
-SELECT 'Bean5RunContext', 'Bean5RunContext DESCRIPTION'
-from DUAL
-union all
----
-SELECT 'Bean1ReturnContext', 'Bean1ReturnContext DESCRIPTION'
-from DUAL
-union all
-SELECT 'Bean2ReturnContext', 'Bean2ReturnContext DESCRIPTION'
-from DUAL
-union all
-SELECT 'Bean3ReturnContext', 'Bean3ReturnContext DESCRIPTION'
-from DUAL
-union all
-SELECT 'Bean4ReturnContext', 'Bean4ReturnContext DESCRIPTION'
-from DUAL
-union all
-SELECT 'Bean5ReturnContext', 'Bean5ReturnContext DESCRIPTION'
-from DUAL --union all
+with d as (select level num
+           from DUAL
+           connect by level <= 5
+),
+     ---
+     b as (select 'Bean{num}RunContext' id, 'Bean{num}RunContext DESCRIPTION' descr
+           from DUAL
+           union all
+           select 'Bean{num}ReturnContext' id, 'Bean{num}ReturnContext DESCRIPTION' descr
+           from DUAL)
+select replace(b.id, '{num}', d.num), replace(b.descr, '{num}', d.num)
+from b
+         cross join d
+
