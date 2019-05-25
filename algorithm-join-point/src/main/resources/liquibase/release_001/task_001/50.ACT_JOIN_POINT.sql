@@ -1,11 +1,11 @@
 create table act_join_point (
   id                 number       not null,
   constraint act_join_point_pk primary key (id)
-    using index tablespace i_dict,
+    using index tablespace jp_idx,
   ---
   dict_join_point_id varchar2(20) not null,
   constraint act_join_point_uk unique (dict_join_point_id)
-    using index tablespace i_dict,
+    using index tablespace jp_idx,
   constraint act_join_point_jp_id_fk foreign key (dict_join_point_id) references dict_act_join_point (id),
   --
   date_beg           timestamp    not null,
@@ -14,8 +14,12 @@ create table act_join_point (
   --   responce_id        varchar2(20),
   date_end           timestamp,
   --
-  context_id         number       not null,
-  constraint act_join_point_context_fk foreign key (context_id) references act_join_point_context (id),
+  run_context_id         number       not null,
+  constraint act_join_point_run_context_fk foreign key (run_context_id) references act_join_point_context (id),
+  --
+  return_context_id         number       not null,
+  constraint act_join_point_ret_context_fk foreign key (return_context_id) references act_join_point_context (id),
+
   --
   state              varchar2(20) not null,
   constraint act_join_point_state_fk foreign key (state) references dict_act_state (id),
@@ -55,8 +59,11 @@ is 'Дата начала вычислений'
 comment on column act_join_point.date_end
 is 'Дата окончания процесса вычислений'
 /
-comment on column act_join_point.context_id
+comment on column act_join_point.run_context_id
 is 'контекст запуска'
+/
+comment on column act_join_point.run_context_id
+  is 'контекст результата'
 /
 comment on column act_join_point.parent
 is 'ссылка на корневой join point'

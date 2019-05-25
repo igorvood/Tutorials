@@ -2,7 +2,7 @@ create table dict_act_join_point (
   id                     varchar2(20)  not null,
   parent                 varchar2(20),
   constraint dict_act_join_point_pk primary key (id)
-    using index tablespace I_DICT,
+    using index tablespace jp_idx,
   constraint dict_act_join_point_parent_fk foreign key (parent) references dict_act_join_point (id),
   --
   description            varchar2(255) not null,
@@ -25,9 +25,9 @@ create table dict_act_join_point (
   status                 varchar2(1)   not null,
   constraint dict_act_join_point_state_ck check (status in ('d', 'o', 'm'))
   --
+
 )
 /
-
 comment on table dict_act_join_point
 is 'Справочник настроек join point'
 /

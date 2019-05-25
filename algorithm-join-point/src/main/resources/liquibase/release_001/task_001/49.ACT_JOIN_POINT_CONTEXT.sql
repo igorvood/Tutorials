@@ -1,7 +1,7 @@
 create table act_join_point_context (
   id           number        not null,
   constraint act_join_point_context_pk primary key (id)
-    using index tablespace i_dict,
+    using index tablespace jp_idx,
   type_context varchar2(512) not null,
   constraint act_join_point_context_type_fk foreign key (type_context) REFERENCES dict_act_type_context (id),
   --

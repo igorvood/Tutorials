@@ -1,17 +1,17 @@
 create table dict_act_bean (
-  bean_id        varchar2(255) not null,
-  constraint dict_act_bean_pk primary key (bean_id)
-    using index tablespace i_dict,
+                               bean_id        varchar2(255) not null,
+                               constraint dict_act_bean_pk primary key (bean_id)
+                                   using index tablespace jp_idx,
   --
-  method         varchar2(255) not null,
+                               method         varchar2(255) not null,
   --
-  run_context    varchar2(512) not null,
-  constraint dict_act_join_run_context_fk foreign key (run_context) references vood.dict_act_type_context (id),
+                               run_context    varchar2(512) not null,
+                               constraint dict_act_join_run_context_fk foreign key (run_context) references dict_act_type_context (id),
   --
-  return_context varchar2(512) not null,
-  constraint dict_act_join_ret_context_fk foreign key (return_context) references vood.dict_act_type_context (id),
+                               return_context varchar2(512) not null,
+                               constraint dict_act_join_ret_context_fk foreign key (return_context) references dict_act_type_context (id),
   --
-  description    varchar2(255)
+                               description    varchar2(255)
 )
 /
 comment on table dict_act_bean
