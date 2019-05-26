@@ -3,9 +3,12 @@ create table dict_act_run
     runner        varchar2(20) not null,
     ---
     runner_flow   varchar2(20) not null,
+    --
+    is_async_run  number,
+    constraint dict_act_run_async_ck check ( is_async_run in (0, 1)),
     ---
-    constraint dict_act_run_runner_fk foreign key (runner, runner_flow)
-        references DICT_ACT_RUNNER (JOIN_POINT, flow),
+    constraint dict_act_run_runner_fk foreign key (runner, runner_flow, is_async_run)
+        references DICT_ACT_RUNNER (JOIN_POINT, flow, is_async_run),
 ---
     runnable      varchar2(20),
     constraint dict_act_run_runnable_fk foreign key (runnable)

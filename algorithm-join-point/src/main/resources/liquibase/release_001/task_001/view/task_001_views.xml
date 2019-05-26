@@ -5,9 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-    <changeSet id="001/001/view/100.runner_join_point_vw.sql" author="vood" runAlways="true">
+    <changeSet id="001/001/view/100.act_order_join_point_vw.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/view/100.runner_join_point_vw.sql"/>
+        <sqlFile path="liquibase/release_001/task_001/view/100.act_order_join_point_vw.sql"/>
     </changeSet>
 
 </databaseChangeLog>
