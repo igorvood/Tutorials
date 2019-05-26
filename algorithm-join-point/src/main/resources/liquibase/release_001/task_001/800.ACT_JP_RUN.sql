@@ -5,14 +5,17 @@ create table act_jp_run
     ---
     runner_flow   varchar2(20) not null,
     ---
-    constraint act_jp_run_runner_fk foreign key (runner_id, runner, runner_flow)
-        references ACT_JP_RUNNER (id, JOIN_POINT, flow),
+    is_async_run  number,
+    constraint act_jp_run_async_ck check ( is_async_run in (0, 1)),
+
+    constraint act_jp_run_runner_fk foreign key (runner_id, runner, runner_flow, is_async_run)
+        references ACT_JP_RUNNER (id, JOIN_POINT, flow, is_async_run),
 ---
     runnable_id   number       not null,
     runnable      varchar2(20),
     runnable_flow varchar2(20),
-    constraint act_jp_run_runnable_fk foreign key (runnable_id, runnable, runnable_flow)
-        references ACT_JOIN_POINT (id, join_point, flow_type),
+    constraint act_jp_run_runnable_fk foreign key (runnable_id, runnable)
+        references ACT_JOIN_POINT (id, join_point),
     ---
     constraint act_jp_run_runnable_ck check ( (runnable_id is null and runnable is null and runnable_flow is null) or
                                               (runnable_id is not null and runnable is not null and

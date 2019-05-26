@@ -2,15 +2,10 @@ create table act_join_point
 (
     id           number       not null,
     join_point   varchar2(20) not null,
-    flow_type    varchar2(20) not null,
-    is_async_run number,
-    constraint act_join_point_async_ck check ( is_async_run in (0, 1)),
 
-    constraint act_join_point_pk primary key (id, join_point, flow_type)
+    constraint act_join_point_pk primary key (id, join_point)
         using index tablespace jp_idx,
     ---
-    constraint act_join_point_jp_id_fk foreign key (join_point, flow_type, is_async_run) references dict_act_runner (join_point, flow, is_async_run),
-    --
     date_beg     timestamp    not null,
     ---
     --   request_id         varchar2(20) not null,

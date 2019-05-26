@@ -2,10 +2,9 @@ create table act_join_point_context
 (
     id                number        not null,
     join_point        varchar2(20)  not null,
-    flow_type         varchar2(20)  not null,
-    constraint act_join_point_context_pk primary key (id, join_point, flow_type)
+    constraint act_join_point_context_pk primary key (id, join_point)
         using index tablespace jp_idx,
-    constraint act_join_point_jp_fk foreign key (id, join_point, flow_type) references act_join_point (id, join_point, flow_type),
+    constraint act_join_point_jp_fk foreign key (id, join_point) references act_join_point (id, join_point),
     bean_id           varchar2(255) not null,
     run_context_id    varchar2(20)  not null,
     return_context_id varchar2(20)  not null,
