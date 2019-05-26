@@ -1,4 +1,14 @@
 begin
+    for r in (SELECT 'drop package ' || s.owner || '.' || s.object_name cmd
+              FROM ALL_PROCEDURES s
+              where s.owner = 'JP'
+        )
+        loop
+            execute immediate r.cmd;
+        end loop;
+end;
+/
+begin
     for r in (select 'alter table ' || ac.table_name || ' drop constraint ' || ac.constraint_name cmd
               from all_constraints ac
                        join all_tables at on (ac.owner, ac.table_name) = ((at.owner, at.table_name))
@@ -24,16 +34,6 @@ begin
     for r in (SELECT 'drop sequence ' || s.sequence_name cmd
               FROM all_sequences s
               where s.sequence_owner = 'JP'
-        )
-        loop
-            execute immediate r.cmd;
-        end loop;
-end;
-/
-begin
-    for r in (SELECT 'drop package ' || s.owner || '.' || s.object_name cmd
-              FROM ALL_PROCEDURES s
-              where s.owner = 'JP'
         )
         loop
             execute immediate r.cmd;
