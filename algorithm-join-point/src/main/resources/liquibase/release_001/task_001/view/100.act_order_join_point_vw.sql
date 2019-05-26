@@ -21,12 +21,12 @@ create or replace view act_order_join_point_vw as
                       full join runner_only ro on (ro.jp_runner_flow, ro.jp_runner) = ((r.RUNNABLE_FLOW, r.RUNNABLE))
          ),
          ord as (
-             select level              lv,
-                    CONNECT_BY_ISCYCLE cycl,
+             select level                                                         lv,
+                    CONNECT_BY_ISCYCLE                                            cycl,
+                    SYS_CONNECT_BY_PATH(t.RUNNABLE/*||'_'||RUNNABLE_FLOW*/, '->') path,
+                    t.RUNNABLE_FLOW                                               FLOW,
                     t.RUNNER,
-                    t.RUNNER_FLOW,
                     t.RUNNABLE,
-                    t.RUNNABLE_FLOW,
                     id,
                     parent
              from tree t
@@ -37,9 +37,11 @@ create or replace view act_order_join_point_vw as
            run_jp.BEAN_NAME      run_bean,
            run_jp.RUN_CONTEXT    run_bean_in_ctx,
            run_jp.RETURN_CONTEXT run_bean_ret_ctx,
+           run_jp.GLOBAL_TIMEOUT run_bean_timeout,
            rbl_jp.BEAN_NAME      rbl_bean,
            rbl_jp.RUN_CONTEXT    rbl_bean_in_ctx,
-           rbl_jp.RETURN_CONTEXT rbl_bean_ret_ctx
+           rbl_jp.RETURN_CONTEXT rbl_bean_ret_ctx,
+           rbl_jp.GLOBAL_TIMEOUT rbl_bean_timeout
     from ord o
              left join DICT_ACT_JOIN_POINT rbl_jp on o.RUNNABLE = rbl_jp.id
              left join DICT_ACT_JOIN_POINT run_jp on o.RUNNER = run_jp.id

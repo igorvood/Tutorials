@@ -1,6 +1,6 @@
 create table act_join_point_context
 (
-    id                number        not null,
+    id                varchar2(100) not null,
     join_point        varchar2(20)  not null,
     constraint act_join_point_context_pk primary key (id, join_point)
         using index tablespace jp_idx,

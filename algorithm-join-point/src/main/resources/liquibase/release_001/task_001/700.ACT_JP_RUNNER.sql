@@ -1,8 +1,8 @@
 create table ACT_JP_RUNNER
 (
-    id           number       not null,
-    join_point   varchar2(20) not null,
-    flow         varchar2(20) not null,
+    id           varchar2(100) not null,
+    join_point   varchar2(20)  not null,
+    flow         varchar2(20)  not null,
     is_async_run number,
     constraint ACT_JP_RUNNER_async_ck check ( is_async_run in (0, 1)),
     ---

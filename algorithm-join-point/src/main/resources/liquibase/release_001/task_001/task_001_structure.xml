@@ -78,7 +78,10 @@
     </changeSet>
 
 
-    <include file="liquibase/release_001/task_001/data/task_001_data.xml"/>
+    <include file="liquibase/release_001/task_001/sequence/task_001_sequence.xml"/>
     <include file="liquibase/release_001/task_001/view/task_001_views.xml"/>
+    <!--    <include file="liquibase/release_001/task_001/package/task_001_package.xml"/>-->
+    <include file="liquibase/release_001/task_001/data/task_001_data.xml"/>
+
 
 </databaseChangeLog>
