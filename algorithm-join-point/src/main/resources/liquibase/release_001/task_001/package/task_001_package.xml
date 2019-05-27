@@ -6,7 +6,7 @@
 
     <property name="sqlBatchDelimiter" value="\n/"/>
 
-    <changeSet id="001/001/package/100.run_flow.pck" author="vood" runAlways="true">
+    <changeSet id="001/001/package/100.run_flow.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/package/100.run_flow.sql" endDelimiter="${sqlBatchDelimiter}"/>
     </changeSet>
