@@ -1,10 +1,10 @@
 create or replace package run_flow
 IS
-    function run(flow_id in varchar2) return number;
+    function run(flow_id in varchar2) return varchar2;
 end run_flow;
 /
 create or replace package body run_flow is
-    function run(flow_id in varchar2) return number
+    function run(flow_id in varchar2) return varchar2
     is
         current_id number := SEQ_ID.nextval;
         current_time timestamp := current_timestamp;
