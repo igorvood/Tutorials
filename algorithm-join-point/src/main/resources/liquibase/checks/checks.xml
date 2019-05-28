@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <property name="sqlBatchDelimiter" value="\n/"/>
+
+    <changeSet id="check_indexes_tablespace.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/checks/check_indexes_tablespace.sql" endDelimiter="${sqlBatchDelimiter}"/>
+    </changeSet>
+
+    <changeSet id="check_long_obj_names.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/checks/check_long_obj_names.sql" endDelimiter="${sqlBatchDelimiter}"/>
+    </changeSet>
+
+    <changeSet id="check_postfix_constraint.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/checks/check_postfix_constraint.sql" endDelimiter="${sqlBatchDelimiter}"/>
+    </changeSet>
+
+</databaseChangeLog>
