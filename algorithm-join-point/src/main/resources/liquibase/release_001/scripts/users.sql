@@ -1,8 +1,8 @@
 create user jp_admin identified by "123456"
-  default tablespace jp_tab
-  temporary tablespace temp
-  -- quota 0 on users
-  quota 20m on jp_tab
+    default tablespace jp_tab
+    temporary tablespace temp
+    -- quota 0 on users
+    quota 20 m on jp_tab
 /
 
 grant semidba_basic to jp_admin with admin option
@@ -21,12 +21,12 @@ grant select any table to jp_admin
 /
 
 create user jp identified by "123456"
-  default tablespace jp_tab
-  temporary tablespace temp
-  -- quota 0 on users
-  quota unlimited on jp_tab
-  quota unlimited on jp_idx
-  quota unlimited on jp_lob
+    default tablespace jp_tab
+    temporary tablespace temp
+    -- quota 0 on users
+    quota unlimited on jp_tab
+    quota unlimited on jp_idx
+    quota unlimited on jp_lob
 /
 
 grant create session to jp

@@ -4,18 +4,18 @@ revoke semidba_basic from sys
 /
 
 grant
-administer sql tuning set, advisor,
+    administer sql tuning set, advisor,
 --
-analyze any,
+    analyze any,
 --
-create
-  credential, create job, create session,
+    create
+    credential, create job, create session,
 --
 manage any queue,
 --
 select any table,
 --
-select_catalog_role
+    select_catalog_role
 --
-to semidba_basic
+    to semidba_basic
 /

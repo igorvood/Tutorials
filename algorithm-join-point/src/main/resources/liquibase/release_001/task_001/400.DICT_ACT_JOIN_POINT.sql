@@ -1,15 +1,15 @@
 create table dict_act_join_point
 (
-    id          varchar2(20)  not null,
+    id             varchar2(20)  not null,
     constraint dict_act_join_point_pk primary key (id) using index tablespace jp_idx,
 
-    parent      varchar2(20),
+    parent         varchar2(20),
     constraint dict_act_join_point_parent_fk foreign key (parent) references dict_act_join_point (id),
     --
 --                                      flow_type      varchar2(20)  not null,
 --                                      constraint dict_act_join_flow_type_fk foreign key (flow_type) references dict_act_flow_type (id),
     --
-    description varchar2(255) not null,
+    description    varchar2(255) not null,
     --   listen_event_id  varchar2(20) not null,
     --   constraint dict_act_join_point_gen_evt_fk foreign key (listen_event_id) references dict_act_event (id),
     --   publish_event_id     varchar2(20) not null,
@@ -28,7 +28,7 @@ create table dict_act_join_point
 --   reprocessing_bean_name varchar2(255),
 --   constraint dict_act_join_reproces_bean_fk foreign key (reprocessing_bean_name) references dict_act_bean (bean_id),
     --
-    status      varchar2(1)   not null,
+    status         varchar2(1)   not null,
     constraint dict_act_join_point_state_ck check (status in ('d', 'o', 'm'))
     --
 
