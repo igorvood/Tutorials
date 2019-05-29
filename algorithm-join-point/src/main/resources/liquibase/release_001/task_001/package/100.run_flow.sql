@@ -1,6 +1,6 @@
-create or replace package run_flow
+create or replace package run
 IS
-    function run(in_flow_id in varchar2) return varchar2;
+    function run_flow(in_flow_id in varchar2) return varchar2;
 
     procedure ins_ACT_JOIN_POINT(in_flow_id in varchar2, in_current_id in number, in_current_time in timestamp);
 
@@ -8,12 +8,12 @@ IS
 
     procedure ins_ACT_JP_RUN(in_flow_id in varchar2, in_current_id in number);
 
-end run_flow;
+end run;
 /
-create or replace package body run_flow is
-    function run(in_flow_id in varchar2) return varchar2
+create or replace package body run is
+    function run_flow(in_flow_id in varchar2) return varchar2
     is
-        PRAGMA AUTONOMOUS_TRANSACTION;
+        --PRAGMA AUTONOMOUS_TRANSACTION;
         l_current_id number := SEQ_ID.nextval;
         l_current_time timestamp := current_timestamp;
     begin
@@ -24,7 +24,7 @@ create or replace package body run_flow is
         ins_ACT_JP_RUN(in_flow_id, l_current_id);
         --
         return l_current_id;
-    end run;
+    end;
 
     procedure ins_ACT_JOIN_POINT(in_flow_id in varchar2, in_current_id in number, in_current_time in timestamp)
     is
@@ -64,5 +64,5 @@ create or replace package body run_flow is
             from ACT_ORDER_JOIN_POINT_VW ord
             where ord.FLOW = in_flow_id and ord.RUN_BEAN is not null;
     end;
-end run_flow;
+end run;
 /

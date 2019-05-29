@@ -16,7 +16,7 @@ open class RunFlowDaoImpl(private val jdbcTemplate: JdbcTemplate) : RunFlowDao {
         val execute = jdbcTemplate.execute(
                 CallableStatementCreator { conn ->
                     val cs = conn.prepareCall(
-                            "begin :1 := package.function(:2); end;"
+                            "begin :1 := run.run_flow(:2); end;"
                     )
                     cs.registerOutParameter(1, OracleTypes.VARCHAR)
                     cs.setString(2, ft.name)
