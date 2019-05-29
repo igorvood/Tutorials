@@ -6,7 +6,7 @@ create table okr_admin.databasechangeloglock
     lockedby    varchar2(255),
     --
     constraint pk_databasechangeloglock primary key (id)
-        using index tablespace okr_tab storage (initial 64 k next 64 k)
+        using index tablespace jp_idx storage (initial 64 k next 64 k)
 )
     tablespace okr_tab
     storage

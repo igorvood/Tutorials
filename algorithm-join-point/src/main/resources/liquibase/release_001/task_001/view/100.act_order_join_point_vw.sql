@@ -13,6 +13,7 @@ create or replace view act_order_join_point_vw as
          tree as (
              select r.RUNNER,
                     r.RUNNER_FLOW,
+                    r.IS_ASYNC_RUN,
                     nvl(ro.jp_runner, r.RUNNABLE)                                                   RUNNABLE,
                     nvl(ro.jp_runner_flow, r.RUNNABLE_FLOW)                                         RUNNABLE_FLOW,
                     nvl(ro.jp_runner, r.RUNNABLE) || '~' || nvl(ro.jp_runner_flow, r.RUNNABLE_FLOW) id,
@@ -26,6 +27,7 @@ create or replace view act_order_join_point_vw as
                     SYS_CONNECT_BY_PATH(t.RUNNABLE/*||'_'||RUNNABLE_FLOW*/, '->') path,
                     t.RUNNABLE_FLOW                                               FLOW,
                     t.RUNNER,
+                    t.IS_ASYNC_RUN,
                     t.RUNNABLE,
                     id,
                     parent

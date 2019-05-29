@@ -6,6 +6,7 @@ begin
         from all_indexes i
         where i.owner = 'JP'
           and i.tablespace_name != 'JP_IDX'
+          and i.table_name not in ('DATABASECHANGELOG', 'DATABASECHANGELOGLOCK')
           and rownum <= 10
         )
         loop

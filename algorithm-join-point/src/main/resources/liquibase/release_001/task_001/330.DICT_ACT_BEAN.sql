@@ -1,6 +1,7 @@
 create table dict_act_bean
 (
     bean_id        varchar2(255) not null,
+    constraint dict_act_bean_b_ck check ( bean_id = trim(bean_id) ),
     ---
     run_context    varchar2(512) not null,
     constraint dict_act_join_run_context_fk foreign key (run_context) references dict_act_type_context (id),

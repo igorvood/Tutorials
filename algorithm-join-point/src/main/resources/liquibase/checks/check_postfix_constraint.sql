@@ -15,6 +15,7 @@ begin
             or (not regexp_like(c.constraint_name, '(*)_FK$|(*)_DFK$') and c.constraint_type = 'F')
             )
           and not regexp_like(upper(c.constraint_name), '^BIN\$(*)')
+          and c.table_name not in ('DATABASECHANGELOG', 'DATABASECHANGELOGLOCK')
           and rownum <= 10
         )
         loop
