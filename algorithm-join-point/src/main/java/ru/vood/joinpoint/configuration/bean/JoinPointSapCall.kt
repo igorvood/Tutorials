@@ -1,7 +1,7 @@
 package ru.vood.joinpoint.configuration.bean
 
-import ru.vood.joinpoint.configuration.context.ContextSapCall
-import ru.vood.joinpoint.configuration.context.ContextSapReturn
+import ru.vood.joinpoint.configuration.infrastructure.context.ContextSapCall
+import ru.vood.joinpoint.configuration.infrastructure.context.ContextSapReturn
 
 
 class JoinPointSapCall : JoinPointBean<ContextSapCall, ContextSapReturn> {
