@@ -1,5 +1,7 @@
 package ru.vood.joinpoint.configuration.infrastructure.flow
 
 interface RunFlowDao {
-    fun runFlow(ft: FlowType): String
+    fun createRunnableFlow(ft: FlowType): String
+
+    fun runFirstFlowBean(ft: FlowType): String
 }

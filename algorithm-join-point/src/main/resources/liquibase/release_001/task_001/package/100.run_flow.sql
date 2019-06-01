@@ -1,6 +1,6 @@
 create or replace package run
 IS
-    function run_flow(in_flow_id in varchar2) return varchar2;
+    function create_runnable_flow(in_flow_id in varchar2) return varchar2;
 
     procedure ins_ACT_JOIN_POINT(in_flow_id in varchar2, in_current_id in number, in_current_time in timestamp);
 
@@ -31,28 +31,28 @@ create or replace package body run is
     begin
         insert into jp.ACT_JOIN_POINT(ID, JOIN_POINT, PARENT_ID, PARENT_JOIN_POINT, EXPIRE_AT, TIMOUT_DETECTED_AT,
                                       DATE_BEG, DATE_END, STATE)
-            select
-            in_current_id,
-            ord.RUNNABLE,
-            null,
-            null,
-            in_current_time + ord.RBL_BEAN_TIMEOUT,
-            null,
-            null,
-            null,
-            'WAIT_RUNNING'
-            from ACT_ORDER_JOIN_POINT_VW ord
-            where ord.FLOW = in_flow_id
-            order by ord.LV;
+        select in_current_id,
+               ord.RUNNABLE,
+               null,
+               null,
+               in_current_time + ord.RBL_BEAN_TIMEOUT,
+               null,
+               null,
+               null,
+               'WAIT_RUNNING'
+        from ACT_ORDER_JOIN_POINT_VW ord
+        where ord.FLOW = in_flow_id
+        order by ord.LV;
     end;
 
     procedure ins_ACT_JP_RUNNER(in_flow_id in varchar2, in_current_id in number)
     is
     begin
         insert into jp.ACT_JP_RUNNER(ID, JOIN_POINT, FLOW, IS_ASYNC_RUN)
-            select in_current_id, ord.RUNNER, ord.FLOW, ord.IS_ASYNC_RUN
-            from ACT_ORDER_JOIN_POINT_VW ord
-            where ord.FLOW = in_flow_id and ord.RUN_BEAN is not null;
+        select in_current_id, ord.RUNNER, ord.FLOW, ord.IS_ASYNC_RUN
+        from ACT_ORDER_JOIN_POINT_VW ord
+        where ord.FLOW = in_flow_id
+          and ord.RUN_BEAN is not null;
     end;
 
     procedure ins_ACT_JP_RUN(in_flow_id in varchar2, in_current_id in number)
@@ -60,9 +60,10 @@ create or replace package body run is
     begin
         insert into jp.ACT_JP_RUN(RUNNER_ID, RUNNER_JP, RUNNER_FLOW, IS_ASYNC_RUN, RUNNABLE_ID, RUNNABLE_JP,
                                   RUNNABLE_FLOW)
-            select in_current_id, ord.RUNNER, ord.FLOW, ord.IS_ASYNC_RUN, in_current_id, ord.RUNNABLE, ord.FLOW
-            from ACT_ORDER_JOIN_POINT_VW ord
-            where ord.FLOW = in_flow_id and ord.RUN_BEAN is not null;
+        select in_current_id, ord.RUNNER, ord.FLOW, ord.IS_ASYNC_RUN, in_current_id, ord.RUNNABLE, ord.FLOW
+        from ACT_ORDER_JOIN_POINT_VW ord
+        where ord.FLOW = in_flow_id
+          and ord.RUN_BEAN is not null;
     end;
 end run;
 /

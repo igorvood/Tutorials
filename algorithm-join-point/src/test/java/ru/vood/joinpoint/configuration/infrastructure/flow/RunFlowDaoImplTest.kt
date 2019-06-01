@@ -17,7 +17,7 @@ class RunFlowDaoImplTest {
 
     @Test
     fun runFlow() {
-        val runFlow = runFlowDao.runFlow(FlowType.FLOW_1)
+        val runFlow = runFlowDao.createRunnableFlow(FlowType.FLOW_1)
         Assert.assertNotNull(runFlow)
     }
 }

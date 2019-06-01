@@ -4,7 +4,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.query
 import org.springframework.stereotype.Component
-import ru.vood.joinpoint.configuration.infrastructure.jp.JoinPointService
+import ru.vood.joinpoint.configuration.infrastructure.jp.BeanInterface
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl
 
 @Component
@@ -18,7 +18,7 @@ class JoinPointBeanPostProcessor(private val jdbcTemplate: JdbcTemplate) : BeanP
         if ("Bean1".equals(beanName)) {
             val find = bean.javaClass.genericInterfaces
                     .asSequence()
-                    .find { type -> (type as ParameterizedTypeImpl).rawType == JoinPointService::class.java }
+                    .find { type -> (type as ParameterizedTypeImpl).rawType == BeanInterface::class.java }
             val parameterizedTypeImpl = find as ParameterizedTypeImpl
             parameterizedTypeImpl.actualTypeArguments[1]
             println(find)

@@ -14,14 +14,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class RunFlowJ implements FlowService {
+public class RunFlowJ /*implements FlowService*/ {
     private final JdbcTemplate jdbcTemplate;
 
     public RunFlowJ(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
+    //@Override
     public void runFlow(@NotNull FlowType ft) {
 
         String execute = jdbcTemplate.execute(
