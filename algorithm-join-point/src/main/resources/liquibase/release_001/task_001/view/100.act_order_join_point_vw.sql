@@ -47,6 +47,7 @@ create or replace view act_order_join_point_vw as
     from ord o
              left join DICT_ACT_JOIN_POINT rbl_jp on o.RUNNABLE = rbl_jp.id
              left join DICT_ACT_JOIN_POINT run_jp on o.RUNNER = run_jp.id
+    order by o.flow, o.lv
 --
 --
 -- /

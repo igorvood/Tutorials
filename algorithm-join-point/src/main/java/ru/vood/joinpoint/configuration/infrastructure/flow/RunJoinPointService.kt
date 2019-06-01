@@ -6,4 +6,6 @@ interface RunJoinPointService<IN_CTX, OUT_CTX> {
     fun run(inCtx: IN_CTX, bean: BeanInterface<IN_CTX, OUT_CTX>): OUT_CTX
 
     fun run(inCtx: IN_CTX, beanName: String): OUT_CTX
+
+
 }
