@@ -17,6 +17,8 @@ GRANT create session TO JP
 /
 GRANT connect TO JP
 /
+grant execute on dbms_crypto to JP
+/
 commit
 /
 
