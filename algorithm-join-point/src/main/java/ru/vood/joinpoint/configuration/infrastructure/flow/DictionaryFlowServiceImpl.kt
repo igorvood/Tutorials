@@ -32,10 +32,10 @@ class DictionaryFlowServiceImpl(private val jdbcTemplate: JdbcTemplate) : Dictio
     override fun getFirstJoinPoint(flowType: FlowType): DictionaryJoinPointData {
         val queryForObject = jdbcTemplate.queryForObject(
                 "select lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout " +
-                        " from act_order_join_point_vw jp" +
+                        " from ACT_ORDER_JOIN_POINT_VW jp" +
                         " where jp.flow=:1 and jp.lv=1",
                 rowMapper,
-                flowType.name
+                flowType.flowName
         )
         return queryForObject
     }
@@ -44,13 +44,14 @@ class DictionaryFlowServiceImpl(private val jdbcTemplate: JdbcTemplate) : Dictio
         val beanList = jdbcTemplate.query(
                 "select lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout " +
                         " from act_order_join_point_vw jp" +
-                        " where jp.flow=:1 and jp.RUNNER=:2",
+                        " where jp.flow=:1 and jp.run_bean=:2",
                 rowMapper,
-                flowType.name, currentBean
+                flowType.flowName, currentBean
         )
 
         val nextBeans = beanList.asSequence()
-                .map { dd -> Pair<String, DictionaryJoinPointData>(dd.run_bean, dd) }
+                //.filter{dd->dd.run_bean !=null}
+                .map { dd -> Pair<String, DictionaryJoinPointData>(dd.rbl_bean, dd) }
                 .toMap()
         return nextBeans
     }
