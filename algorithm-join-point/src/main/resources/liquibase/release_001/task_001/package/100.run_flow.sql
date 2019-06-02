@@ -2,6 +2,8 @@ create or replace package run
 IS
     function create_runnable_flow(in_flow_id in varchar2) return varchar2;
 
+    function create_first_context(id_flow_id in varchar2, in_context varchar2) return varchar2;
+
     procedure ins_ACT_JOIN_POINT(in_flow_id in varchar2, in_current_id in number, in_current_time in timestamp);
 
     procedure ins_ACT_JP_RUNNER(in_flow_id in varchar2, in_current_id in number);
@@ -11,7 +13,14 @@ IS
 end run;
 /
 create or replace package body run is
-    function run_flow(in_flow_id in varchar2) return varchar2
+    function create_first_context(id_flow_id in varchar2, in_context varchar2) return varchar2
+    is
+    begin
+        null;
+    end;
+
+
+    function create_runnable_flow(in_flow_id in varchar2) return varchar2
     is
         --PRAGMA AUTONOMOUS_TRANSACTION;
         l_current_id number := SEQ_ID.nextval;
