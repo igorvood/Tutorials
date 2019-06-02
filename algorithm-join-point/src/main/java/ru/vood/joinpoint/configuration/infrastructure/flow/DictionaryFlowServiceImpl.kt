@@ -31,9 +31,9 @@ class DictionaryFlowServiceImpl(private val jdbcTemplate: JdbcTemplate) : Dictio
     //    lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout
     override fun getFirstJoinPoint(flowType: FlowType): DictionaryJoinPointData {
         val queryForObject = jdbcTemplate.queryForObject(
-                "select lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout " +
-                        " from ACT_ORDER_JOIN_POINT_VW jp" +
-                        " where jp.flow=:1 and jp.lv=1",
+                """select lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout
+                            from ACT_ORDER_JOIN_POINT_VW jp
+                            where jp.flow=:1 and jp.lv=1""",
                 rowMapper,
                 flowType.flowName
         )
@@ -42,9 +42,9 @@ class DictionaryFlowServiceImpl(private val jdbcTemplate: JdbcTemplate) : Dictio
 
     override fun getNextJoinPoint(flowType: FlowType, currentBean: String): Map<String, DictionaryJoinPointData> {
         val beanList = jdbcTemplate.query(
-                "select lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout " +
-                        " from act_order_join_point_vw jp" +
-                        " where jp.flow=:1 and jp.run_bean=:2",
+                """select lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout
+                            from act_order_join_point_vw jp
+                            where jp.flow=:1 and jp.run_bean=:2""",
                 rowMapper,
                 flowType.flowName, currentBean
         )
