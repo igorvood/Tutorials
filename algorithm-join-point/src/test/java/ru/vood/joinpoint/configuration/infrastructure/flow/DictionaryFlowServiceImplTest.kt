@@ -23,7 +23,7 @@ class DictionaryFlowServiceImplTest : AbstractJoinPointDataSourceTest() {
     @Test
     fun getNextJoinPoint() {
         val nextJoinPoint = dictionaryFlowServiceImpl.getNextJoinPoint(FlowType.FLOW_1, "Bean2")
-        println(nextJoinPoint)
-
+        Assert.assertNotNull(nextJoinPoint)
+        Assert.assertEquals(1, nextJoinPoint.size)
     }
 }
