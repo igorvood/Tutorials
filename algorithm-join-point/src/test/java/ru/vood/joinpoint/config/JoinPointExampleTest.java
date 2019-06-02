@@ -1,10 +1,9 @@
 package ru.vood.joinpoint.config;
 
 import org.junit.Test;
-import org.springframework.transaction.annotation.Transactional;
 import ru.vood.test.db.DataSourceTestUtil;
 
-@Transactional
+//@Transactional
 public class JoinPointExampleTest extends AbstractJoinPointDataSourceTest {
 
     @Override

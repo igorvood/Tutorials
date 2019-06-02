@@ -3,12 +3,15 @@ package ru.vood.joinpoint.config
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.ContextHierarchy
 import org.springframework.transaction.PlatformTransactionManager
-import org.springframework.transaction.annotation.EnableTransactionManagement
 import ru.vood.test.db.AbstractSmartDatasourceTests
 
-@ContextConfiguration(classes = [ConfigurationJointPointDatabaseTest::class])
-@EnableTransactionManagement
+
+@ContextHierarchy(
+        ContextConfiguration(classes = [ConfigurationJointPointDatabaseTest::class]),
+        ContextConfiguration(locations = ["classpath:tst-ctx-datasource-standard.xml"])
+)
 open class AbstractJoinPointDataSourceTest :
         AbstractSmartDatasourceTests() {
 

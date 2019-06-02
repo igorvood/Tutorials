@@ -12,7 +12,7 @@ import javax.sql.DataSource
 @Configuration
 open class ConfigurationJointPointDatabaseTest {
 
-    @Bean
+    @Bean("dataSource")
     open fun getDataSource(): DataSource {
         return SimpleDriverDataSource(
                 OracleDriver(),
