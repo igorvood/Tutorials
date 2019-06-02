@@ -2,7 +2,7 @@ create or replace package run
 IS
     function create_runnable_flow(in_flow_id in varchar2) return varchar2;
 
-    function create_first_context(id_flow_id in varchar2, in_context varchar2) return varchar2;
+    function create_first_context(in_id in varchar2, in_context varchar2) return varchar2;
 
     procedure ins_ACT_JOIN_POINT(in_flow_id in varchar2, in_current_id in number, in_current_time in timestamp);
 
@@ -13,10 +13,16 @@ IS
 end run;
 /
 create or replace package body run is
-    function create_first_context(id_flow_id in varchar2, in_context varchar2) return varchar2
+    function create_first_context(in_id in varchar2, in_context varchar2) return varchar2
     is
     begin
-        null;
+        insert into jp.ACT_JOIN_POINT_CONTEXT(ID, JOIN_POINT, BEAN_ID, RUN_CONTEXT_ID, RETURN_CONTEXT_ID, RUN_CONTEXT,
+                                              RETURN_CONTEXT)
+        select v.RUNNER_ID, v.RUNNER, v.RUN_BEAN, v.RUN_BEAN_IN_CTX, v.RUN_BEAN_RET_CTX, in_context, null
+        from created_act_order_join_point_vw v
+        where v.RUNNER_ID = in_id
+          and v.LV = 2;
+        return 'true';
     end;
 
 
