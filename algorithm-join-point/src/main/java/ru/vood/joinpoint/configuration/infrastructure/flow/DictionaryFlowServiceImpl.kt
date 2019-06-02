@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class DictionaryFlowServiceImpl(private val jdbcTemplate: JdbcTemplate) : DictionaryFlowService {
-    val rowMapper = RowMapper<DictionaryJoinPointData> { rs, rowNum ->
+    val rowMapper = RowMapper { rs, rowNum ->
         DictionaryJoinPointData(
                 rs.getInt(1),
                 rs.getInt(2),
