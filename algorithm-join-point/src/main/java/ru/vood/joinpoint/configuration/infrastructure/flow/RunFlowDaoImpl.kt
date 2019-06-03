@@ -30,7 +30,7 @@ open class RunFlowDaoImpl(private val jdbcTemplate: JdbcTemplate) : RunFlowDao {
         return runnableFlowId
     }
 
-    override fun runFirstFlowBean(ft: FlowType, inCtx: String): String {
+    override fun runFirstFlowBean(ft: FlowType, inCtx: Any): String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
