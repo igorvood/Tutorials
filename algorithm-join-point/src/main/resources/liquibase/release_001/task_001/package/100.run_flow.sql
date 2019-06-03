@@ -32,11 +32,34 @@ create or replace package body run is
         l_current_id number := SEQ_ID.nextval;
         l_current_time timestamp := current_timestamp;
     begin
-        ins_ACT_JOIN_POINT(in_flow_id, l_current_id, l_current_time);
-        --
-        ins_ACT_JP_RUNNER(in_flow_id, l_current_id);
+        insert all
+            when 1 = 1 then
+            into jp.act_join_point(id, join_point, parent_id, parent_join_point, expire_at,
+                                   timout_detected_at, date_beg, date_end, state)
+        values (l_current_id, join_point, null, null, expire_at, null, null, null,
+                'WAIT_RUNNING') when run_bean is not null then
+        into jp.act_jp_runner(id, join_point, flow, is_async_run)
+        values (l_current_id, runner, flow, is_async_run) when run_bean is not null then
+        into jp.act_jp_run(runner_id, runner_jp, runner_flow, is_async_run, runnable_id, runnable_jp,
+                           runnable_flow)
+        values (l_current_id, runner, flow, is_async_run, l_current_id, runnable, flow)
+        select runnable                                                     join_point,
+               l_current_time + numtodsinterval(rbl_bean_timeout, 'second') expire_at,
+               runner                                                       runner,
+               flow                                                         flow,
+               run_bean                                                     run_bean,
+               is_async_run                                                 is_async_run,
+               runnable                                                     runnable
+        from act_order_join_point_vw
+        where flow = in_flow_id
+        order by lv;
 
-        ins_ACT_JP_RUN(in_flow_id, l_current_id);
+
+        --         ins_ACT_JOIN_POINT(in_flow_id, l_current_id, l_current_time);
+--         --
+--         ins_ACT_JP_RUNNER(in_flow_id, l_current_id);
+--
+--         ins_ACT_JP_RUN(in_flow_id, l_current_id);
         --
         return l_current_id;
     end;
