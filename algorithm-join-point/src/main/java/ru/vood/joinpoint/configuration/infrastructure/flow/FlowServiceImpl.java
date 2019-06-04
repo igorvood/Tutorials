@@ -4,25 +4,26 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import ru.vood.joinpoint.configuration.wrap.FunctionalWrapper;
 
-import java.util.function.Function;
-
 @Service
 public class FlowServiceImpl implements FlowService, FunctionalWrapper {
 
     private final RunFlowDao runFlowDao;
     private final RunJoinPointService runJoinPointService;
 
-    public FlowServiceImpl(RunFlowDao runFlowDao, RunJoinPointService runJoinPointService) {
+    public FlowServiceImpl(
+            RunFlowDao runFlowDao
+            , RunJoinPointService runJoinPointService) {
         this.runFlowDao = runFlowDao;
         this.runJoinPointService = runJoinPointService;
     }
 
     @Override
     public void runFlow(@NotNull FlowType ft, Object inCtx) {
-        final Function<Object, String> objectStringFunction =
-                first(() -> runFlowDao.createRunnableFlow(ft))
-                        .andThen(s -> runFlowDao.runFirstFlowBean(ft, inCtx));
-        final String wrap = wrap(objectStringFunction, null);
+//        final String runnableFlow = runFlowDao.createRunnableFlow(ft, inCtx);
+//        final Function<Object, String> objectStringFunction =
+//                first(() -> runFlowDao.createRunnableFlow(ft))
+//                        .andThen(s -> runFlowDao.runFirstFlowBean(ft, inCtx));
+//        final String wrap = wrap(objectStringFunction, null);
 
 //        final Function<FlowType, String> first = first(runFlowDao::createRunnableFlow);
 //        first.andThen(runFlowDao::runFirstFlowBean);

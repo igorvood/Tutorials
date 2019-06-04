@@ -10,9 +10,9 @@
         <sqlFile path="liquibase/release_001/task_001/view/100.act_order_join_point_vw.sql"/>
     </changeSet>
 
-    <changeSet id="001/001/view/101.created_act_order_join_point_vw.sql" author="vood" runAlways="true">
+    <changeSet id="001/001/view/101.created_act_ord_join_point_vw.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/view/101.created_act_order_join_point_vw.sql"/>
+        <sqlFile path="liquibase/release_001/task_001/view/101.created_act_ord_join_point_vw.sql"/>
     </changeSet>
 
 

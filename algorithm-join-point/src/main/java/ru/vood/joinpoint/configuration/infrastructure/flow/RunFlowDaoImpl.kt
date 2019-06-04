@@ -12,14 +12,15 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 open class RunFlowDaoImpl(private val jdbcTemplate: JdbcTemplate) : RunFlowDao {
 
-    override fun createRunnableFlow(ft: FlowType): String {
+    override fun createRunnableFlow(ft: FlowType, inCtx: String): String {
         val runnableFlowId = jdbcTemplate.execute(
                 CallableStatementCreator { conn ->
                     val cs = conn.prepareCall(
-                            "begin :1 := run.create_runnable_flow(:2); end;"
+                            "begin :1 := run.create_runnable_flow(:2, :3); end;"
                     )
                     cs.registerOutParameter(1, OracleTypes.VARCHAR)
                     cs.setString(2, ft.name)
+                    cs.setString(3, inCtx)
                     cs
                 },
                 CallableStatementCallback<String> { cs ->
@@ -28,9 +29,5 @@ open class RunFlowDaoImpl(private val jdbcTemplate: JdbcTemplate) : RunFlowDao {
                 }
         )
         return runnableFlowId
-    }
-
-    override fun runFirstFlowBean(ft: FlowType, inCtx: Any): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
