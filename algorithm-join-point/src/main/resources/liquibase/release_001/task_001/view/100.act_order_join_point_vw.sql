@@ -7,7 +7,7 @@ create or replace view act_order_join_point_vw as
                          where not exists(select *
                                           from DICT_ACT_RUN r
                                           WHERE runner.JOIN_POINT = R.RUNNABLE
-                                            and runner.FLOW = r.RUNNABLE_FLOW
+                             --and runner.FLOW = r.RUNNABLE_FLOW
                              )
     ),
          tree as (
@@ -15,17 +15,18 @@ create or replace view act_order_join_point_vw as
                     r.RUNNER_FLOW,
                     r.IS_ASYNC_RUN,
                     nvl(ro.jp_runner, r.RUNNABLE)                                                   RUNNABLE,
-                    nvl(ro.jp_runner_flow, r.RUNNABLE_FLOW)                                         RUNNABLE_FLOW,
-                    nvl(ro.jp_runner, r.RUNNABLE) || '~' || nvl(ro.jp_runner_flow, r.RUNNABLE_FLOW) id,
+                    --nvl(ro.jp_runner_flow, r.RUNNABLE_FLOW)                                         RUNNABLE_FLOW,
+                    --nvl(ro.jp_runner, r.RUNNABLE) || '~' || nvl(ro.jp_runner_flow, r.RUNNABLE_FLOW) id,
+                    nvl(ro.jp_runner, r.RUNNABLE) || '~' || ro.jp_runner_flow                       id,
                     r.RUNNER || '~' || r.RUNNER_FLOW                                                parent
              from DICT_ACT_RUN r
-                      full join runner_only ro on (ro.jp_runner_flow, ro.jp_runner) = ((r.RUNNABLE_FLOW, r.RUNNABLE))
+                      full join runner_only ro on (ro.jp_runner_flow, ro.jp_runner) = ((ro.jp_runner_flow, r.RUNNABLE))
          ),
          ord as (
              select level                                                         lv,
                     CONNECT_BY_ISCYCLE                                            cycl,
                     SYS_CONNECT_BY_PATH(t.RUNNABLE/*||'_'||RUNNABLE_FLOW*/, '->') path,
-                    t.RUNNABLE_FLOW                                               FLOW,
+                    t.RUNNER_FLOW                                                 FLOW,
                     t.RUNNER,
                     t.IS_ASYNC_RUN,
                     t.RUNNABLE,
