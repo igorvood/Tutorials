@@ -7,7 +7,7 @@ create or replace view act_order_join_point_vw as
                                  select 1 from dict_act_run r where runner.join_point = r.runnable_jp))
        ---
        , tree as (select r.runner_jp,
-                         r.flow,
+                         nvl(r.flow, ro.jp_runner_flow)                                            flow,
                          r.is_async_run,
                          nvl(ro.jp_runner, r.runnable_jp)                                          runnable_jp,
                          nvl(ro.jp_runner, r.runnable_jp) || '~' || nvl(r.flow, ro.jp_runner_flow) id,
