@@ -21,7 +21,7 @@ create or replace package body run is
                v.run_bean_ret_ctx_type,
                in_context,
                null
-        from jp.created_act_ord_join_point_vw v
+        from jp.act_ordered_jp_vw v
         where v.runner_id = in_id
           and v.lv = 2;
     end;
