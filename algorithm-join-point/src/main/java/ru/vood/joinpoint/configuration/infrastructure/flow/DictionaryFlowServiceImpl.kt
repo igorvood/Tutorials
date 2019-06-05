@@ -28,7 +28,6 @@ class DictionaryFlowServiceImpl(private val jdbcTemplate: JdbcTemplate) : Dictio
         )
     }
 
-    //    lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout
     override fun getFirstJoinPoint(flowType: FlowType): DictionaryJoinPointData {
         val queryForObject = jdbcTemplate.queryForObject(
                 """select lv, cycl, path, flow, runner, is_async_run, runnable, id, parent, run_bean, run_bean_in_ctx, run_bean_ret_ctx, run_bean_timeout, rbl_bean, rbl_bean_in_ctx, rbl_bean_ret_ctx, rbl_bean_timeout

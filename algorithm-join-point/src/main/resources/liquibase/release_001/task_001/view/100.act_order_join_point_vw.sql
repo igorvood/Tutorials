@@ -1,4 +1,5 @@
-create or replace view act_order_join_point_vw as
+--create or replace view act_order_join_point_vw as
+create or replace view dict_act_ordered_jp_vw as
     with runner_only as (select runner.join_point jp_runner, runner.flow jp_runner_flow
                          from dict_act_runner runner
                                   join dict_act_run run
