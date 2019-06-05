@@ -1,9 +1,9 @@
-insert into jp.dict_act_run(RUNNER, RUNNER_FLOW, RUNNABLE, IS_ASYNC_RUN)
+insert into jp.dict_act_run(runner, flow, runnable, is_async_run)
 with fdf1 as (select level num
-                  from DUAL
-                  connect by level <= 4),
+              from dual
+              connect by level <= 4),
      ---
-     f1 (RUNNER, RUNNER_FLOW, RUNNABLE) as (
+     f1 (runner, runner_flow, runnable) as (
          select 'join point ' || fdf1.num, 'FLOW 1', 'join point ' || (fdf1.num + 1)
         from DUAL
                  cross join fdf1),
@@ -13,14 +13,14 @@ with fdf1 as (select level num
              connect by level <= 3
         ),
      ---
-     f2 (RUNNER, RUNNER_FLOW, RUNNABLE) as (
+     f2 (runner, runner_flow, runnable) as (
          select 'join point ' || fdf2.num, 'FLOW 2', 'join point ' || (fdf2.num + 1)
         from DUAL
                  cross join fdf2)
-select f1.RUNNER, f1.RUNNER_FLOW, f1.RUNNABLE, 0
+select f1.runner, f1.runner_flow, f1.runnable, 0
 from f1
 union all
-select f2.RUNNER, f2.RUNNER_FLOW, f2.RUNNABLE, 0
+select f2.runner, f2.runner_flow, f2.runnable, 0
 from f2
 
 

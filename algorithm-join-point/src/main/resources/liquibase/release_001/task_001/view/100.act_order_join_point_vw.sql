@@ -2,17 +2,17 @@ create or replace view act_order_join_point_vw as
     with runner_only as (select runner.join_point jp_runner, runner.flow jp_runner_flow
                          from dict_act_runner runner
                                   join dict_act_run run
-                                       on runner.join_point = run.runner and runner.flow = run.runner_flow
+                                       on runner.join_point = run.runner and runner.flow = run.flow
                          where not exists(
                                  select * from dict_act_run r where runner.join_point = r.runnable))
 
        ---
        , tree as (select r.runner,
-                         r.runner_flow,
+                         r.flow,
                          r.is_async_run,
-                         nvl(ro.jp_runner, r.runnable)                                                 runnable,
-                         nvl(ro.jp_runner, r.runnable) || '~' || nvl(r.runner_flow, ro.jp_runner_flow) id,
-                         r.runner || '~' || r.runner_flow                                              parent
+                         nvl(ro.jp_runner, r.runnable)                                          runnable,
+                         nvl(ro.jp_runner, r.runnable) || '~' || nvl(r.flow, ro.jp_runner_flow) id,
+                         r.runner || '~' || r.flow                                              parent
                   from dict_act_run r
                            full join runner_only ro
                                      on (ro.jp_runner_flow, ro.jp_runner) = ((ro.jp_runner_flow, r.runnable)))
@@ -20,7 +20,7 @@ create or replace view act_order_join_point_vw as
        , ord as (select level                                                         lv,
                         connect_by_iscycle                                            cycl,
                         SYS_CONNECT_BY_PATH(t.runnable/*||'_'||RUNNABLE_FLOW*/, '->') path,
-                        t.runner_flow                                                 flow,
+                        t.flow                                                        flow,
                         t.runner,
                         t.is_async_run,
                         t.runnable,

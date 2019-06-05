@@ -1,16 +1,16 @@
 create table dict_act_run
 (
-    runner        varchar2(20) not null,
+    runner       varchar2(20) not null,
     ---
-    runner_flow   varchar2(20) not null,
+    flow         varchar2(20) not null,
     --
-    is_async_run  number,
+    is_async_run number,
     constraint dict_act_run_async_ck check ( is_async_run in (0, 1)),
     ---
-    constraint dict_act_run_runner_fk foreign key (runner, runner_flow, is_async_run)
+    constraint dict_act_run_runner_fk foreign key (runner, flow, is_async_run)
         references DICT_ACT_RUNNER (JOIN_POINT, flow, is_async_run),
 ---
-    runnable      varchar2(20),
+    runnable     varchar2(20),
     constraint dict_act_run_runnable_fk foreign key (runnable)
         references dict_act_join_point (id),
     ----
@@ -22,10 +22,10 @@ create table dict_act_run
 --     constraint dict_act_run_runnable_ck check ( (runnable is null and runnable_flow is null) or
 --                                                 (runnable is not null and runnable_flow is not null) ),
     constraint dict_act_run_jp_ck check ( runner != runnable),
-    constraint dict_act_run_pk primary key (runner, runner_flow, runnable) using index tablespace jp_idx
+    constraint dict_act_run_pk primary key (runner, flow, runnable) using index tablespace jp_idx
 )
 /
-create index dict_act_run_runner_i on dict_act_run (runner, runner_flow) tablespace jp_idx
+create index dict_act_run_runner_i on dict_act_run (runner, flow) tablespace jp_idx
 /
 -- create index dict_act_run_runable_i on dict_act_run (runnable, runnable_flow) tablespace jp_idx
 -- /
@@ -38,7 +38,7 @@ comment on column dict_act_run.runner
 comment on column dict_act_run.runnable
     is 'Запускаемый'
 /
-comment on column dict_act_run.runner_flow
+comment on column dict_act_run.flow
     is 'флоу Запускающего'
 -- /
 -- comment on column dict_act_run.runnable_flow
