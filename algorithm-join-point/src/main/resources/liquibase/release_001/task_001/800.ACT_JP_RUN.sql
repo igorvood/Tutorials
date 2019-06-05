@@ -11,16 +11,16 @@ create table act_jp_run
     constraint act_jp_run_runner_fk foreign key (runner_id, runner_jp, flow, is_async_run)
         references ACT_JP_RUNNER (id, JOIN_POINT, flow, is_async_run),
 ---
-    runnable_id  varchar2(100),
+--    runnable_id  varchar2(100),
     runnable_jp  varchar2(20),
     --runnable_flow varchar2(20),
-    constraint act_jp_run_runnable_fk foreign key (runnable_id, runnable_jp)
+    constraint act_jp_run_runnable_fk foreign key (runner_id, runnable_jp)
         references ACT_JOIN_POINT (id, join_point),
     ---
 --     constraint act_jp_run_runnable_ck check ( (runnable_id is null and runnable_jp is null and runnable_flow is null) or
 --                                               (runnable_id is not null and runnable_jp is not null and
 --                                                runnable_flow is not null) ),
-    constraint act_jp_run_pk primary key (runner_id, runner_jp, flow, runnable_id, runnable_jp) using index tablespace jp_idx,
+    constraint act_jp_run_pk primary key (runner_id, runner_jp, flow, runnable_jp) using index tablespace jp_idx,
     constraint act_jp_run_run_fk foreign key (runner_jp, flow, runnable_jp) references jp.DICT_ACT_RUN (runner_jp, flow, runnable_jp)
 
 )
