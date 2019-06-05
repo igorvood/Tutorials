@@ -1,4 +1,4 @@
-insert into jp.dict_act_run(runner, flow, runnable, is_async_run)
+insert into jp.dict_act_run(runner_jp, flow, runnable_jp, is_async_run)
 with fdf1 as (select level num
               from dual
               connect by level <= 4),

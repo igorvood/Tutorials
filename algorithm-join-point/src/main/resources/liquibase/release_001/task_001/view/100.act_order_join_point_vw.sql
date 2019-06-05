@@ -2,28 +2,27 @@ create or replace view act_order_join_point_vw as
     with runner_only as (select runner.join_point jp_runner, runner.flow jp_runner_flow
                          from dict_act_runner runner
                                   join dict_act_run run
-                                       on runner.join_point = run.runner and runner.flow = run.flow
+                                       on runner.join_point = run.runner_jp and runner.flow = run.flow
                          where not exists(
-                                 select * from dict_act_run r where runner.join_point = r.runnable))
-
+                                 select 1 from dict_act_run r where runner.join_point = r.runnable_jp))
        ---
-       , tree as (select r.runner,
+       , tree as (select r.runner_jp,
                          r.flow,
                          r.is_async_run,
-                         nvl(ro.jp_runner, r.runnable)                                          runnable,
-                         nvl(ro.jp_runner, r.runnable) || '~' || nvl(r.flow, ro.jp_runner_flow) id,
-                         r.runner || '~' || r.flow                                              parent
+                         nvl(ro.jp_runner, r.runnable_jp)                                          runnable_jp,
+                         nvl(ro.jp_runner, r.runnable_jp) || '~' || nvl(r.flow, ro.jp_runner_flow) id,
+                         r.runner_jp || '~' || r.flow                                              parent
                   from dict_act_run r
                            full join runner_only ro
-                                     on (ro.jp_runner_flow, ro.jp_runner) = ((ro.jp_runner_flow, r.runnable)))
+                                     on (ro.jp_runner_flow, ro.jp_runner) = ((ro.jp_runner_flow, r.runnable_jp)))
        ---
-       , ord as (select level                                                         lv,
-                        connect_by_iscycle                                            cycl,
-                        SYS_CONNECT_BY_PATH(t.runnable/*||'_'||RUNNABLE_FLOW*/, '->') path,
-                        t.flow                                                        flow,
-                        t.runner,
+       , ord as (select level                                                            lv,
+                        connect_by_iscycle                                               cycl,
+                        SYS_CONNECT_BY_PATH(t.runnable_jp/*||'_'||RUNNABLE_FLOW*/, '->') path,
+                        t.flow                                                           flow,
+                        t.runner_jp,
                         t.is_async_run,
-                        t.runnable,
+                        t.runnable_jp,
                         id,
                         parent
                  from tree t
@@ -34,9 +33,9 @@ create or replace view act_order_join_point_vw as
            o.cycl,
            o.path,
            o.flow,
-           o.runner              runner_jp,
+           o.runner_jp           runner_jp,
            o.is_async_run,
-           o.runnable            runnable_jp,
+           o.runnable_jp         runnable_jp,
            o.id                  synthetic_id,
            o.parent,
            run_jp.bean_name      run_bean,
@@ -48,8 +47,8 @@ create or replace view act_order_join_point_vw as
            rbl_jp.return_context rbl_bean_ret_ctx_type,
            rbl_jp.global_timeout rbl_bean_timeout
     from ord o
-             left join dict_act_join_point rbl_jp on o.runnable = rbl_jp.id
-             left join dict_act_join_point run_jp on o.runner = run_jp.id
+             left join dict_act_join_point rbl_jp on o.runnable_jp = rbl_jp.id
+             left join dict_act_join_point run_jp on o.runner_jp = run_jp.id
     order by o.lv, o.flow nulls first
 --
 --

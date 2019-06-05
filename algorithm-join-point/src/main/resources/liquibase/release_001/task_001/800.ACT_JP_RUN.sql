@@ -21,7 +21,7 @@ create table act_jp_run
 --                                               (runnable_id is not null and runnable_jp is not null and
 --                                                runnable_flow is not null) ),
     constraint act_jp_run_pk primary key (runner_id, runner_jp, flow, runnable_id, runnable_jp) using index tablespace jp_idx,
-    constraint act_jp_run_run_fk foreign key (runner_jp, flow, runnable_jp) references jp.DICT_ACT_RUN (runner, flow, runnable)
+    constraint act_jp_run_run_fk foreign key (runner_jp, flow, runnable_jp) references jp.DICT_ACT_RUN (runner_jp, flow, runnable_jp)
 
 )
 /
