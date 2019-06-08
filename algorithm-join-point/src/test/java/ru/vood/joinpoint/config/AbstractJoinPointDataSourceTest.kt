@@ -9,8 +9,6 @@ import ru.vood.test.db.DataBaseConfiguration
 @ContextHierarchy(
         ContextConfiguration(classes = [ConfigurationJointPointDatabaseTest::class]),
         ContextConfiguration(classes = [DataBaseConfiguration::class])
-
-        //ContextConfiguration(locations = ["classpath:tst-ctx-datasource-standard.xml"])
 )
 open class AbstractJoinPointDataSourceTest :
         AbstractSmartDatasourceTests() {
