@@ -5,6 +5,7 @@ create table act_jp_run
     constraint act_jp_run_runner_fk foreign key (runner_id, runner_jp) references jp.act_join_point (id, join_point),
     ---
     flow         varchar2(20)  not null,
+    constraint act_jp_run_fl_fk foreign key (runner_id, flow) references jp.act_flow (id, flow),
     ---
     is_async_run number,
     constraint act_jp_run_async_ck check ( is_async_run in (0, 1)),

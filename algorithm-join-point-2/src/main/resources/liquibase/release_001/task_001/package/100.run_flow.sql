@@ -49,9 +49,9 @@ create or replace package body run is
         values (l_current_id, runnable_jp, null, null, expire_at, null, null, null,
                 'WAIT_RUNNING')
                ---
-               when runner_jp is not null then
-        into jp.act_jp_runner(id, join_point, flow, is_async_run)
-        values (l_current_id, runner_jp, flow, is_async_run)
+--                when runner_jp is not null then
+--         into jp.act_jp_runner(id, join_point, flow, is_async_run)
+--         values (l_current_id, runner_jp, flow, is_async_run)
                ---
                when runner_jp is not null then
         into jp.act_jp_run(runner_id, runner_jp, flow, is_async_run, runnable_jp)
