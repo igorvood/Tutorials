@@ -4,3 +4,6 @@ from dual
 union all
 SELECT 'FLOW 2', 'Второй флоу'
 from dual
+union all
+SELECT 'FLOW 3', 'Третий флоу'
+from dual

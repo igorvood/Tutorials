@@ -1,7 +1,7 @@
 insert into JP.dict_act_type_context(ID, DESCRIPTION)
 with d as (select level num
            from DUAL
-           connect by level <= 5
+           connect by level <= 10
 ),
      ---
      b as (select 'Bean{num}RunContext' id, 'Bean{num}RunContext DESCRIPTION' descr

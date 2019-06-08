@@ -1,7 +1,7 @@
 insert into jp.dict_act_join_point(ID, DESCRIPTION, GLOBAL_TIMEOUT, BEAN_NAME, STATUS, RUN_CONTEXT, RETURN_CONTEXT)
 with d as (select level num
            from DUAL
-           connect by level <= 5
+           connect by level <= 10
 )
 select 'join point ' || d.num,
        'join point DESCRIPTION ' || d.num,
