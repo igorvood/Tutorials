@@ -9,6 +9,15 @@ IS
 end run;
 /
 create or replace package body run is
+    function create_flow(in_flow_id in varchar2, in_context varchar2) return number
+    is
+        l_id number := SEQ_ID.nextval;
+    begin
+        insert into jp.ACT_FLOW(ID, FLOW)
+        values (l_id, in_flow_id);
+        return l_id;
+    end;
+
     procedure create_first_context(in_id in varchar2, in_context varchar2)
     is
     begin
@@ -38,9 +47,11 @@ create or replace package body run is
     function create_runnable_flow(in_flow_id in varchar2) return varchar2
     is
         --PRAGMA AUTONOMOUS_TRANSACTION;
-        l_current_id number := SEQ_ID.nextval;
+        l_current_id number;
         l_current_time timestamp := current_timestamp;
     begin
+        l_current_id := create_flow(in_flow_id, '');
+
         insert all
             ---
             when 1 = 1 then

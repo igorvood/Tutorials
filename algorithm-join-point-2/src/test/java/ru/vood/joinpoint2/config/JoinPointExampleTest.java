@@ -1,0 +1,21 @@
+package ru.vood.joinpoint2.config;
+
+import org.junit.Test;
+import ru.vood.test.db.DataSourceTestUtil;
+
+//@Transactional
+public class JoinPointExampleTest extends AbstractJoinPointDataSourceTest {
+
+    @Override
+    protected boolean isThisTestStdSqlResources() {
+        System.out.println(DataSourceTestUtil.class);
+        return true;
+    }
+
+    @Test
+    public void test1() {
+
+        System.out.println(jdbcTemplate);
+        System.out.println(transactionManager);
+    }
+}
