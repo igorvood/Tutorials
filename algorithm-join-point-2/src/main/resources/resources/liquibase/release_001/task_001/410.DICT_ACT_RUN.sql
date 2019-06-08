@@ -1,15 +1,18 @@
 create table dict_act_run
 (
     runner_jp    varchar2(20) not null,
+    constraint dict_act_run_runner_fk foreign key (runner_jp)
+        references dict_act_join_point (id),
+
     ---
     flow         varchar2(20) not null,
+    constraint dict_act_run_flow_fk foreign key (flow)
+        references DICT_ACT_FLOW_TYPE (id),
+
     --
     is_async_run number,
     constraint dict_act_run_async_ck check ( is_async_run in (0, 1)),
     ---
-    constraint dict_act_run_runner_fk foreign key (runner_jp, flow, is_async_run)
-        references DICT_ACT_RUNNER (JOIN_POINT, flow, is_async_run),
----
     runnable_jp  varchar2(20),
     constraint dict_act_run_runnable_fk foreign key (runnable_jp)
         references dict_act_join_point (id),

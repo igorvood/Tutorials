@@ -16,16 +16,6 @@
         <sqlFile path="liquibase/release_001/task_001/110.DICT_ACT_FLOW_TYPE.sql"/>
     </changeSet>
 
-    <!--    <changeSet id="001/001/200.DICT_ACT_JP_TUNE.sql" author="vood" runAlways="true">-->
-    <!--        <validCheckSum>any</validCheckSum>-->
-    <!--        <sqlFile path="liquibase/release_001/task_001/200.DICT_ACT_JP_TUNE.sql"/>-->
-    <!--    </changeSet>-->
-
-    <!--    <changeSet id="001/001/300.DICT_ACT_EVENT.sql" author="vood" runAlways="true">-->
-    <!--        <validCheckSum>any</validCheckSum>-->
-    <!--        <sqlFile path="liquibase/release_001/task_001/300.DICT_ACT_EVENT.sql"/>-->
-    <!--    </changeSet>-->
-
     <changeSet id="001/001/310.DICT_ACT_TYPE_CONTEXT.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/310.DICT_ACT_TYPE_CONTEXT.sql"/>
@@ -40,18 +30,6 @@
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/400.DICT_ACT_JOIN_POINT.sql"/>
     </changeSet>
-
-    <changeSet id="001/001/406.DICT_ACT_RUNNER.sql" author="vood" runAlways="true">
-        <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/406.DICT_ACT_RUNNER.sql"/>
-    </changeSet>
-
-    <!--
-        <changeSet id="001/001/405.DICT_ACT_JP_FLOW.sql" author="vood" runAlways="true">
-            <validCheckSum>any</validCheckSum>
-            <sqlFile path="liquibase/release_001/task_001/405.DICT_ACT_JP_FLOW.sql"/>
-        </changeSet>
-    -->
 
     <changeSet id="001/001/410.DICT_ACT_RUN.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
