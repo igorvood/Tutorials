@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="001/001/data/10.DICT_ACT_TYPE_FLOW_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/10.DICT_ACT_TYPE_FLOW_data.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/data/11.DICT_ACT_STATE_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/11.DICT_ACT_STATE_data.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/data/100.dict_act_type_context_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/100.dict_act_type_context_data.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/data/200.dict_act_bean_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/200.dict_act_bean_data.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/data/500.dict_act_join_point_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/500.dict_act_join_point_data.sql"/>
+    </changeSet>
+
+    <!--
+        <changeSet id="001/001/data/505.dict_act_jp_flow_data.sql" author="vood" runAlways="true">
+            <validCheckSum>any</validCheckSum>
+            <sqlFile path="liquibase/release_001/task_001/data/505.dict_act_jp_flow_data.sql"/>
+        </changeSet>
+    -->
+
+
+    <changeSet id="001/001/data/590.dict_act_runner_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/590.dict_act_runner_data.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/data/600.dict_act_run_data.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/600.dict_act_run_data.sql"/>
+    </changeSet>
+
+</databaseChangeLog>

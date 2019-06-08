@@ -21,6 +21,7 @@
         <module>enum-from-table-maven-plugin</module>
         <module>kotlin-examples</module>
         <module>oracle-pluggable-db</module>
+        <module>algorithm-join-point-2</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="sqlBatchDelimiter" value="\n/"/>
+
+    <changeSet id="liquibase/release_001/task_001/forTests/1.cmn_str_num.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/forTests/1.cmn_str_num.sql" endDelimiter="${sqlBatchDelimiter}"/>
+    </changeSet>
+
+    <changeSet id="liquibase/release_001/task_001/forTests/2.cmn_str_tab.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/forTests/2.cmn_str_tab.sql" endDelimiter="${sqlBatchDelimiter}"/>
+    </changeSet>
+
+    <changeSet id="liquibase/release_001/task_001/forTests/10.tst_backuped_table_cache.sql" author="vood"
+               runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/forTests/10.tst_backuped_table_cache.sql"
+                 endDelimiter="${sqlBatchDelimiter}"/>
+    </changeSet>
+
+    <changeSet id="liquibase/release_001/task_001/forTests/20.tst_renamed_db_obj_cache.sql" author="vood"
+               runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/forTests/20.tst_renamed_db_obj_cache.sql"
+                 endDelimiter="${sqlBatchDelimiter}"/>
+    </changeSet>
+
+    <changeSet id="liquibase/release_001/task_001/forTests/100.test_util.pck" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/forTests/100.test_util.pck" endDelimiter="${sqlBatchDelimiter}"/>
+    </changeSet>
+
+</databaseChangeLog>
