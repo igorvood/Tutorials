@@ -46,21 +46,21 @@
         <sqlFile path="liquibase/release_001/task_001/600.ACT_JOIN_POINT_CONTEXT.sql"/>
     </changeSet>
 
-    <changeSet id="001/001/700.ACT_JP_RUNNER.sql" author="vood" runAlways="true">
-        <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/700.ACT_JP_RUNNER.sql"/>
-    </changeSet>
+    <!--    <changeSet id="001/001/700.ACT_JP_RUNNER.sql" author="vood" runAlways="true">-->
+    <!--        <validCheckSum>any</validCheckSum>-->
+    <!--        <sqlFile path="liquibase/release_001/task_001/700.ACT_JP_RUNNER.sql"/>-->
+    <!--    </changeSet>-->
 
-    <changeSet id="001/001/800.ACT_JP_RUN.sql" author="vood" runAlways="true">
-        <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/800.ACT_JP_RUN.sql"/>
-    </changeSet>
+    <!--    <changeSet id="001/001/800.ACT_JP_RUN.sql" author="vood" runAlways="true">-->
+    <!--        <validCheckSum>any</validCheckSum>-->
+    <!--        <sqlFile path="liquibase/release_001/task_001/800.ACT_JP_RUN.sql"/>-->
+    <!--    </changeSet>-->
 
 
     <include file="liquibase/release_001/task_001/sequence/task_001_sequence.xml"/>
-    <include file="liquibase/release_001/task_001/view/task_001_views.xml"/>
+    <!--    <include file="liquibase/release_001/task_001/view/task_001_views.xml"/>-->
     <include file="liquibase/release_001/task_001/package/task_001_package.xml"/>
-    <include file="liquibase/release_001/task_001/data/task_001_data.xml"/>
+    <!--    <include file="liquibase/release_001/task_001/data/task_001_data.xml"/>-->
 
 
 </databaseChangeLog>
