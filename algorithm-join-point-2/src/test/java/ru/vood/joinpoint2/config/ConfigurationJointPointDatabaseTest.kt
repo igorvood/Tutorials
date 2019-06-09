@@ -29,6 +29,7 @@ open class ConfigurationJointPointDatabaseTest {
 //
     @Bean
     open fun getTransactionManager(dataSource: DataSource): PlatformTransactionManager {
-        return DataSourceTransactionManager(dataSource)
+        val tm = DataSourceTransactionManager(dataSource)
+        return tm
     }
 }

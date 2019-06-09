@@ -23,13 +23,13 @@ create or replace package body run is
     begin
         insert into jp.act_join_point_context(id, join_point, bean_id, run_context_id, return_context_id, run_context,
                                               return_context)
-        select in_id,
-               v.runner_jp,
-               v.run_bean,
-               v.run_bean_in_ctx_type,
-               v.run_bean_ret_ctx_type,
-               in_context,
-               null
+        select distinct in_id,
+                        v.runner_jp,
+                        v.run_bean,
+                        v.run_bean_in_ctx_type,
+                        v.run_bean_ret_ctx_type,
+                        in_context,
+                        null
         from jp.act_ordered_jp_vw v
         where v.runner_id = in_id
           and v.lv = 2;
@@ -48,21 +48,29 @@ create or replace package body run is
     is
         --PRAGMA AUTONOMOUS_TRANSACTION;
         l_current_id number;
-        l_current_time timestamp := current_timestamp;
+        l_current_time timestamp := current_timestamp();
     begin
         l_current_id := create_flow(in_flow_id, '');
 
+        insert into jp.act_join_point(ID, JOIN_POINT, EXPIRE_AT, TIMOUT_DETECTED_AT, DATE_BEG, DATE_END, STATE)
+        select distinct l_current_id,
+                        runnable_jp,
+                        l_current_time + numtodsinterval(rbl_bean_timeout, 'second') expire_at,
+                        null,
+                        null,
+                        null,
+                        'WAIT_RUNNING'
+        from dict_act_ordered_jp_vw
+        where flow = in_flow_id;
+
+
         insert all
             ---
-            when 1 = 1 then
-            into jp.act_join_point(id, join_point, parent_id, parent_join_point, expire_at,
-                                   timout_detected_at, date_beg, date_end, state)
-        values (l_current_id, runnable_jp, null, null, expire_at, null, null, null,
-                'WAIT_RUNNING')
-               ---
---                when runner_jp is not null then
---         into jp.act_jp_runner(id, join_point, flow, is_async_run)
---         values (l_current_id, runner_jp, flow, is_async_run)
+--             when 1 = 1 then
+--             into jp.act_join_point(id, join_point, parent_id, parent_join_point, expire_at,
+--                                    timout_detected_at, date_beg, date_end, state)
+--         values (l_current_id, runnable_jp, null, null, expire_at, null, null, null,
+--                 'WAIT_RUNNING')
                ---
                when runner_jp is not null then
         into jp.act_jp_run(runner_id, runner_jp, flow, is_async_run, runnable_jp)

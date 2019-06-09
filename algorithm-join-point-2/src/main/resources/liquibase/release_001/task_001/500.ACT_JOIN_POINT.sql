@@ -5,9 +5,6 @@ create table act_join_point
 
     constraint act_join_point_pk primary key (id, join_point)
         using index tablespace jp_idx,
-    parent_id          varchar2(100),
-    parent_join_point  varchar2(20),
-    constraint act_join_point_parent_fk foreign key (parent_id, parent_join_point) references act_join_point (id, join_point),
     ---
     expire_at          timestamp     not null,
     timout_detected_at timestamp,
@@ -21,6 +18,8 @@ create table act_join_point
     state              varchar2(20)  not null,
     constraint act_join_point_state_fk foreign key (state) references dict_act_state (id),
     ---
+    constraint act_join_point_dict_fk foreign key (join_point) references dict_act_join_point (id),
+    --
     is_closed as (
         case
             when date_end is null or timout_detected_at is null
