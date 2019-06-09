@@ -9,4 +9,6 @@ interface ActivityJoinPointOrderRunDaoService {
     fun prevJoinPoints(id: Int, joinPoint: String, flowType: String): Map<String, JoinPointData>
 
     fun getFirstJoinPoint(id: Int, flowType: String): Map<String, JoinPointData>
+
+    fun getJoinPoint(id: Int, joinPoint: String): JoinPointData
 }

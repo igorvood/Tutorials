@@ -50,4 +50,14 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
         Assert.assertEquals(1, firstJoinPoint.size)
         Assert.assertEquals("join point 1", firstJoinPoint.keys.first())
     }
+
+    @Test
+    fun getJoinPoint() {
+        idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val firstJoinPoint = activityJoinPointOrderRunDao.getJoinPoint(idFlow, "join point 4")
+
+        Assert.assertEquals("join point 4", firstJoinPoint.runnable)
+
+
+    }
 }

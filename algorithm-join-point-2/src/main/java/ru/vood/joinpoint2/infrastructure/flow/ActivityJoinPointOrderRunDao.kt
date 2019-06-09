@@ -47,4 +47,14 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
                 .map { Pair<String, JoinPointData>(it.runnable, it) }
                 .toMap()
     }
+
+    override fun getJoinPoint(id: Int, joinPoint: String): JoinPointData {
+        return jdbcTemplate.queryForObject(
+                """select distinct lv, cycl, flow, runner_jp, is_async_run, runnable_jp, synthetic_id, parent, run_bean, run_bean_in_ctx_type, run_bean_ret_ctx_type, run_bean_timeout, rbl_bean, rbl_bean_in_ctx_type, rbl_bean_ret_ctx_type, rbl_bean_timeout, runner_id, runner_run_context, runner_ret_context, runnable_run_context, runnable_ret_context
+                            from act_ordered_jp_vw jp
+                            where jp.runnable_jp=:1 and jp.runner_id=:2 and rownum=1""",
+                rowMapperJoinPointData,
+                joinPoint, id
+        )
+    }
 }
