@@ -1,5 +1,6 @@
 package ru.vood.joinpoint2.infrastructure.bean;
 
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -14,16 +15,24 @@ import java.util.Map;
 public class BeanRunner {
 
     private final ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService;
-    private final HashMap<String, AbstractWorkerBean> beanMap;
+    private final HashMap<String, WorkerBeanInterface> beanMap;
     private final ThreadPoolTaskExecutor executor;
 
 
     @Autowired
-    public BeanRunner(ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService, HashMap<String, AbstractWorkerBean> beanMap,
-                      @Qualifier("jpThreadPool")
-                              ThreadPoolTaskExecutor executor) {
+    public BeanRunner(
+            ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService
+            , Map<String, WorkerBeanInterface> beanMap,
+            @Qualifier("jpThreadPool")
+                    ThreadPoolTaskExecutor executor
+    ) {
+        Assert.assertNotNull("activityJoinPointOrderRunDaoService must not null", activityJoinPointOrderRunDaoService);
+        Assert.assertNotNull("Executor must not null", executor);
+        Assert.assertNotNull("Worker bean must not null", beanMap);
+        Assert.assertTrue("Worker bean must not empty", !beanMap.isEmpty());
         this.activityJoinPointOrderRunDaoService = activityJoinPointOrderRunDaoService;
-        this.beanMap = beanMap;
+
+        this.beanMap = new HashMap(beanMap);
         this.executor = executor;
     }
 

@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-abstract class AbstractWorkerBean<InCtx, OutCtx> implements WorkerBeanInterface<InCtx, OutCtx> {
+public abstract class AbstractWorkerBean<InCtx, OutCtx> implements WorkerBeanInterface<InCtx, OutCtx> {
 
     private final static Gson gson =
             new GsonBuilder()

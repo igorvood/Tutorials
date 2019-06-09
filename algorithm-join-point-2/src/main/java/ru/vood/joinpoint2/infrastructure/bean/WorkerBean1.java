@@ -5,10 +5,10 @@ import ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext;
 import ru.vood.joinpoint2.infrastructure.flow.context.Bean1RunContext;
 
 @Component("Bean1")
-public class WorkerBeanInterfaceImpl extends AbstractWorkerBean<Bean1RunContext, Bean1ReturnContext> {
+public class WorkerBean1 extends AbstractWorkerBean<Bean1RunContext, Bean1ReturnContext> {
 
 
-    public WorkerBeanInterfaceImpl() {
+    public WorkerBean1() {
         super(Bean1RunContext.class, Bean1ReturnContext.class);
     }
 
