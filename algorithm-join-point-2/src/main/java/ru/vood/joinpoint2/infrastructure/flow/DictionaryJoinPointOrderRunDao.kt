@@ -3,6 +3,7 @@ package ru.vood.joinpoint2.infrastructure.flow
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import ru.vood.joinpoint2.infrastructure.flow.data.DictionaryJoinPointData
 
 @Service
 @Transactional

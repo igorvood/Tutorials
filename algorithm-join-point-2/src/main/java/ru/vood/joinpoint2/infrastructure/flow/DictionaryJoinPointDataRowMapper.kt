@@ -1,6 +1,7 @@
 package ru.vood.joinpoint2.infrastructure.flow
 
 import org.springframework.jdbc.core.RowMapper
+import ru.vood.joinpoint2.infrastructure.flow.data.DictionaryJoinPointData
 import java.sql.ResultSet
 
 class DictionaryJoinPointDataRowMapper : RowMapper<DictionaryJoinPointData> {

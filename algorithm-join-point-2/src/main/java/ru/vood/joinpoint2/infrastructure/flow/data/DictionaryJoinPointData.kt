@@ -1,4 +1,4 @@
-package ru.vood.joinpoint2.infrastructure.flow
+package ru.vood.joinpoint2.infrastructure.flow.data
 
 data class DictionaryJoinPointData(
         val lv: Int,
