@@ -28,7 +28,10 @@ class DictionaryJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
         Assert.assertEquals(2, prevJoinPoints.size)
         Assert.assertTrue(prevJoinPoints.keys.contains("join point 3"))
         Assert.assertTrue(prevJoinPoints.keys.contains("join point 2"))
-        //Assert.assertThat(asList("join point 3","join point 2") ,containsInAnyOrder(asList("join point 2","join point 3")))
+        val toList = prevJoinPoints.keys.toList()
+
+//        val asList = asList("join point 2", "join point 3")
+//        Assert.assertThat<List<String>>(toList, containsInAnyOrder(asList))
     }
 
     @Test

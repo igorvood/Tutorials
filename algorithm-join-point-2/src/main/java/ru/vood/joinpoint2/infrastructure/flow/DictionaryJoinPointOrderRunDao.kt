@@ -1,13 +1,14 @@
 package ru.vood.joinpoint2.infrastructure.flow
 
 import org.springframework.jdbc.core.JdbcTemplate
-import org.springframework.jdbc.core.RowMapper
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional
 open class DictionaryJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) : DictionaryJoinPointOrderRunDaoService {
+
+    val rowMapperDictionaryJoinPointData = DictionaryJoinPointDataRowMapper()
 
     override fun nextJoinPoints(joinPoint: String, flowType: String): Map<String, DictionaryJoinPointData> {
         return jdbcTemplate.query(
@@ -44,27 +45,6 @@ open class DictionaryJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate
         return listJP.asSequence()
                 .map { Pair<String, DictionaryJoinPointData>(it.runnable, it) }
                 .toMap()
-    }
-
-    val rowMapperDictionaryJoinPointData = RowMapper { rs, rowNum ->
-        DictionaryJoinPointData(
-                rs.getInt(1),
-                rs.getInt(2),
-                rs.getString(3),
-                rs.getString(4),
-                rs.getInt(5),
-                rs.getString(6),
-                rs.getString(7),
-                rs.getString(8),
-                rs.getString(9),
-                rs.getString(10),
-                rs.getString(11),
-                rs.getInt(12),
-                rs.getString(13),
-                rs.getString(14),
-                rs.getString(15),
-                rs.getInt(16)
-        )
     }
 
 }
