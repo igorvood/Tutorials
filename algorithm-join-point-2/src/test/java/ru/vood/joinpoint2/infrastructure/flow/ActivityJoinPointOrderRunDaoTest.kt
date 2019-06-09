@@ -10,7 +10,7 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
 
     lateinit var activityJoinPointOrderRunDao: ActivityJoinPointOrderRunDao
     lateinit var runFlowDaoImpl: RunFlowDao
-    var idFlow: Int = 0
+    var idFlow: Long = 0
 
     val FLOW_TYPE_3 = FlowType.FLOW_3.flowName
 

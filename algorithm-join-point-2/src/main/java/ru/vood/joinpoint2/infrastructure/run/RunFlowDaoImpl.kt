@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional()//(propagation = Propagation.REQUIRES_NEW)
 open class RunFlowDaoImpl(private val jdbcTemplate: JdbcTemplate) : RunFlowDao {
 
-    override fun createRunnableFlow(ft: String, inCtx: String): Int {
+    override fun createRunnableFlow(ft: String, inCtx: String): Long {
         val runnableFlowId = jdbcTemplate.execute(
                 CallableStatementCreator { conn ->
                     val cs = conn.prepareCall(
@@ -22,9 +22,9 @@ open class RunFlowDaoImpl(private val jdbcTemplate: JdbcTemplate) : RunFlowDao {
                     cs.setString(3, inCtx)
                     cs
                 },
-                CallableStatementCallback<Int> { cs ->
+                CallableStatementCallback<Long> { cs ->
                     cs.execute()
-                    cs.getInt(1)
+                    cs.getLong(1)
                 }
         )
         return runnableFlowId

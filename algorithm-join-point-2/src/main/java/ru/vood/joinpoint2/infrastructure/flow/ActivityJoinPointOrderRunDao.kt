@@ -12,7 +12,7 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
 
     val rowMapperJoinPointData = JoinPointDataRowMapper()
 
-    override fun nextJoinPoints(id: Int, joinPoint: String, flowType: String): Map<String, JoinPointData> {
+    override fun nextJoinPoints(id: Long, joinPoint: String, flowType: String): Map<String, JoinPointData> {
         return jdbcTemplate.query(
                 """select lv, cycl, flow, runner_jp, is_async_run, runnable_jp, synthetic_id, parent, run_bean, run_bean_in_ctx_type, run_bean_ret_ctx_type, run_bean_timeout, rbl_bean, rbl_bean_in_ctx_type, rbl_bean_ret_ctx_type, rbl_bean_timeout, runner_id, runner_run_context, runner_ret_context, runnable_run_context, runnable_ret_context
                             from act_ordered_jp_vw jp
@@ -24,7 +24,7 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
                 .toMap()
     }
 
-    override fun prevJoinPoints(id: Int, joinPoint: String, flowType: String): Map<String, JoinPointData> {
+    override fun prevJoinPoints(id: Long, joinPoint: String, flowType: String): Map<String, JoinPointData> {
         return jdbcTemplate.query(
                 """select lv, cycl, flow, runner_jp, is_async_run, runnable_jp, synthetic_id, parent, run_bean, run_bean_in_ctx_type, run_bean_ret_ctx_type, run_bean_timeout, rbl_bean, rbl_bean_in_ctx_type, rbl_bean_ret_ctx_type, rbl_bean_timeout, runner_id, runner_run_context, runner_ret_context, runnable_run_context, runnable_ret_context
                             from act_ordered_jp_vw jp
@@ -36,7 +36,7 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
                 .toMap()
     }
 
-    override fun getFirstJoinPoint(id: Int, flowType: String): Map<String, JoinPointData> {
+    override fun getFirstJoinPoint(id: Long, flowType: String): Map<String, JoinPointData> {
         return jdbcTemplate.query(
                 """select lv, cycl, flow, runner_jp, is_async_run, runnable_jp, synthetic_id, parent, run_bean, run_bean_in_ctx_type, run_bean_ret_ctx_type, run_bean_timeout, rbl_bean, rbl_bean_in_ctx_type, rbl_bean_ret_ctx_type, rbl_bean_timeout, runner_id, runner_run_context, runner_ret_context, runnable_run_context, runnable_ret_context
                             from act_ordered_jp_vw jp
@@ -48,7 +48,7 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
                 .toMap()
     }
 
-    override fun getJoinPoint(id: Int, joinPoint: String): JoinPointData {
+    override fun getJoinPoint(id: Long, joinPoint: String): JoinPointData {
         return jdbcTemplate.queryForObject(
                 """select distinct lv, cycl, flow, runner_jp, is_async_run, runnable_jp, synthetic_id, parent, run_bean, run_bean_in_ctx_type, run_bean_ret_ctx_type, run_bean_timeout, rbl_bean, rbl_bean_in_ctx_type, rbl_bean_ret_ctx_type, rbl_bean_timeout, runner_id, runner_run_context, runner_ret_context, runnable_run_context, runnable_ret_context
                             from act_ordered_jp_vw jp
