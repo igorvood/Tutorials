@@ -26,20 +26,24 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
 
     @Test
     fun nextJoinPoints() {
+        runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
         idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
-        val prevJoinPoints = activityJoinPointOrderRunDao.nextJoinPoints(idFlow, "join point 4", FLOW_TYPE_3)
+        val prevJoinPoints = activityJoinPointOrderRunDao.nextJoinPoints(idFlow, "join point 4")
         Assert.assertEquals(2, prevJoinPoints.size)
         Assert.assertTrue(prevJoinPoints.keys.contains("join point 5"))
         Assert.assertTrue(prevJoinPoints.keys.contains("join point 6"))
+        Assert.assertEquals(idFlow, prevJoinPoints["join point 6"]!!.id)
     }
 
     @Test
     fun prevJoinPoints() {
+        runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
         idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
-        val prevJoinPoints = activityJoinPointOrderRunDao.prevJoinPoints(idFlow, "join point 4", FLOW_TYPE_3)
+        val prevJoinPoints = activityJoinPointOrderRunDao.prevJoinPoints(idFlow, "join point 4")
         Assert.assertEquals(2, prevJoinPoints.size)
         Assert.assertTrue(prevJoinPoints.keys.contains("join point 3"))
         Assert.assertTrue(prevJoinPoints.keys.contains("join point 2"))
+        Assert.assertEquals(idFlow, prevJoinPoints["join point 2"]!!.id)
     }
 
     @Test

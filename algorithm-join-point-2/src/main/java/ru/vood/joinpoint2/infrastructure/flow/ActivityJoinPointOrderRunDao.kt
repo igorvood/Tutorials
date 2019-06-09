@@ -12,25 +12,25 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
 
     val rowMapperJoinPointData = JoinPointDataRowMapper()
 
-    override fun nextJoinPoints(id: Long, joinPoint: String, flowType: String): Map<String, JoinPointData> {
+    override fun nextJoinPoints(id: Long, joinPoint: String): Map<String, JoinPointData> {
         return jdbcTemplate.query(
                 """select lv, cycl, flow, runner_jp, is_async_run, runnable_jp, synthetic_id, parent, run_bean, run_bean_in_ctx_type, run_bean_ret_ctx_type, run_bean_timeout, rbl_bean, rbl_bean_in_ctx_type, rbl_bean_ret_ctx_type, rbl_bean_timeout, runner_id, runner_run_context, runner_ret_context, runnable_run_context, runnable_ret_context
                             from act_ordered_jp_vw jp
-                            where jp.flow=:1 and jp.runner_jp=:2 and jp.runner_id=:3""",
+                            where jp.runner_jp=:1 and jp.runner_id=:2""",
                 rowMapperJoinPointData,
-                flowType, joinPoint, id
+                joinPoint, id
         ).asSequence()
                 .map { Pair<String, JoinPointData>(it.runnable, it) }
                 .toMap()
     }
 
-    override fun prevJoinPoints(id: Long, joinPoint: String, flowType: String): Map<String, JoinPointData> {
+    override fun prevJoinPoints(id: Long, joinPoint: String): Map<String, JoinPointData> {
         return jdbcTemplate.query(
                 """select lv, cycl, flow, runner_jp, is_async_run, runnable_jp, synthetic_id, parent, run_bean, run_bean_in_ctx_type, run_bean_ret_ctx_type, run_bean_timeout, rbl_bean, rbl_bean_in_ctx_type, rbl_bean_ret_ctx_type, rbl_bean_timeout, runner_id, runner_run_context, runner_ret_context, runnable_run_context, runnable_ret_context
                             from act_ordered_jp_vw jp
-                            where jp.flow=:1 and jp.runner_jp is not null and jp.runnable_jp=:2 and jp.runner_id=:3""",
+                            where jp.runner_jp is not null and jp.runnable_jp=:1 and jp.runner_id=:2""",
                 rowMapperJoinPointData,
-                flowType, joinPoint, id
+                joinPoint, id
         ).asSequence()
                 .map { Pair<String, JoinPointData>(it.runner.toString(), it) }
                 .toMap()
@@ -56,5 +56,13 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
                 rowMapperJoinPointData,
                 joinPoint, id
         )
+    }
+
+    override fun insertReturnContext(id: Long, joinPoint: String, ctx: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun insertRunContext(id: Long, joinPoint: String, ctx: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

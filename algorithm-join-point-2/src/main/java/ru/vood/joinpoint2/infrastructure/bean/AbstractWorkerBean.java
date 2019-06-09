@@ -1,22 +1,31 @@
 package ru.vood.joinpoint2.infrastructure.bean;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Component;
-import ru.vood.joinpoint2.infrastructure.flow.ActivityJoinPointOrderRunDaoService;
 
 @Component
 abstract class AbstractWorkerBean<InCtx, OutCtx> implements WorkerBeanInterface<InCtx, OutCtx> {
-    private final ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService;
 
-    protected AbstractWorkerBean(ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService) {
-        this.activityJoinPointOrderRunDaoService = activityJoinPointOrderRunDaoService;
+    private final static Gson gson =
+            new GsonBuilder()
+                    .setPrettyPrinting()
+                    .create();
+
+    private final Class<InCtx> inCtxClass;
+    private final Class<OutCtx> outCtxClass;
+
+    protected AbstractWorkerBean(Class<InCtx> inCtxClass, Class<OutCtx> outCtxClass) {
+        this.inCtxClass = inCtxClass;
+        this.outCtxClass = outCtxClass;
     }
 
-    private void getRunContext(Long id, String joinPoint) {
-        //activityJoinPointOrderRunDaoService.
+
+    public InCtx getObjectFromContext(String json) {
+        return gson.fromJson(json, inCtxClass);
     }
 
-//    private OutCtx fullRun(InCtx inCtx){
-//
-//    }
-
+    public String getContextFormObject(OutCtx outCtx) {
+        return gson.toJson(outCtx);
+    }
 }
