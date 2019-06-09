@@ -10,7 +10,7 @@ import ru.vood.test.db.DataBaseConfiguration
         ContextConfiguration(classes = [ConfigurationJointPointDatabaseTest::class]),
         ContextConfiguration(classes = [DataBaseConfiguration::class])
 )
-open class AbstractJoinPointDataSourceTest :
+abstract class AbstractJoinPointDataSourceTest :
         AbstractSmartDatasourceTests() {
 
     override fun postConstructLocal() {
