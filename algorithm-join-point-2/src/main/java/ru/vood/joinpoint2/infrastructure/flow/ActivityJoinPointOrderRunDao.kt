@@ -3,6 +3,7 @@ package ru.vood.joinpoint2.infrastructure.flow
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Service
 import ru.vood.joinpoint2.infrastructure.flow.data.DictionaryJoinPointData
+import ru.vood.joinpoint2.infrastructure.flow.mapper.DictionaryJoinPointDataRowMapper
 
 @Service
 class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) : ActivityJoinPointOrderRunDaoService {

@@ -1,4 +1,4 @@
-package ru.vood.joinpoint2.infrastructure.flow
+package ru.vood.joinpoint2.infrastructure.flow.mapper
 
 import org.springframework.jdbc.core.RowMapper
 import ru.vood.joinpoint2.infrastructure.flow.data.DictionaryJoinPointData
