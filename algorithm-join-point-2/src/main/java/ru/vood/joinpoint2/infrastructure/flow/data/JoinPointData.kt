@@ -17,5 +17,10 @@ data class JoinPointData(
         val rbl_bean_in_ctx: String,
         val rbl_bean_ret_ctx: String,
         val rbl_bean_timeout: Int,
-        val id: Int
+        val id: Int,
+
+        val runner_run_context: String?,
+        val runner_ret_context: String?,
+        val runnable_run_context: String?,
+        val runnable_ret_context: String?
 )

@@ -23,7 +23,12 @@ class JoinPointDataRowMapper : RowMapper<JoinPointData> {
                 rs.getString(14),
                 rs.getString(15),
                 rs.getInt(16),
-                rs.getInt(17)
+                rs.getInt(17),
+
+                rs.getString(18),
+                rs.getString(19),
+                rs.getString(20),
+                rs.getString(21)
         )
     }
 }

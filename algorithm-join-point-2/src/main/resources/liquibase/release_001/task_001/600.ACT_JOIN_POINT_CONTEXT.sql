@@ -10,8 +10,8 @@ create table act_join_point_context
     return_context_id varchar2(20)  not null,
     --
     constraint act_join_point_context_bean_fk foreign key (bean_id, run_context_id, return_context_id) references DICT_ACT_BEAN (bean_id, run_context, return_context),
-    run_context       clob,
-    return_context    clob
+    run_context       varchar2(4000),
+    return_context    varchar2(4000)
 )
 /
 comment on table act_join_point_context

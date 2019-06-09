@@ -38,20 +38,27 @@ create or replace view act_ordered_jp_vw as
                     o.runner_id,
                     --o.path,
                     o.flow,
-                    o.runner_jp           runner_jp,
+                    o.runner_jp            runner_jp,
                     o.is_async_run,
-                    o.runnable_jp         runnable_jp,
-                    o.id                  synthetic_id,
+                    o.runnable_jp          runnable_jp,
+                    o.id                   synthetic_id,
                     o.parent,
-                    run_jp.bean_name      run_bean,
-                    run_jp.run_context    run_bean_in_ctx_type,
-                    run_jp.return_context run_bean_ret_ctx_type,
-                    run_jp.global_timeout run_bean_timeout,
-                    rbl_jp.bean_name      rbl_bean,
-                    rbl_jp.run_context    rbl_bean_in_ctx_type,
-                    rbl_jp.return_context rbl_bean_ret_ctx_type,
-                    rbl_jp.global_timeout rbl_bean_timeout
+                    run_jp.bean_name       run_bean,
+                    run_jp.run_context     run_bean_in_ctx_type,
+                    run_jp.return_context  run_bean_ret_ctx_type,
+                    run_jp.global_timeout  run_bean_timeout,
+                    rbl_jp.bean_name       rbl_bean,
+                    rbl_jp.run_context     rbl_bean_in_ctx_type,
+                    rbl_jp.return_context  rbl_bean_ret_ctx_type,
+                    rbl_jp.global_timeout  rbl_bean_timeout,
+                    ajpc_rn.run_context    runner_run_context,
+                    ajpc_rn.return_context runner_ret_context,
+                    ajpc_rb.run_context    runnable_run_context,
+                    ajpc_rb.run_context    runnable_ret_context
     from ord o
              left join dict_act_join_point rbl_jp on o.runnable_jp = rbl_jp.id
              left join dict_act_join_point run_jp on o.runner_jp = run_jp.id
+             left join act_join_point_context ajpc_rn on (o.runner_id, o.runner_jp) = ((ajpc_rn.id, ajpc_rn.join_point))
+             left join act_join_point_context ajpc_rb
+                       on (o.runner_id, o.runnable_jp) = ((ajpc_rn.id, ajpc_rn.join_point))
     order by o.lv, o.flow nulls first
