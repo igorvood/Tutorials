@@ -15,5 +15,19 @@
         <sqlFile path="liquibase/release_001/task_001/view/101.act_ordered_jp_vw.sql"/>
     </changeSet>
 
+    <changeSet id="001/001/view/102.act_jp_info.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/view/102.act_jp_info.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/view/103.act_next_jp_info.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/view/103.act_next_jp_info.sql"/>
+    </changeSet>
+
+    <changeSet id="001/001/view/104.act_prev_jp_info.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/view/104.act_prev_jp_info.sql"/>
+    </changeSet>
 
 </databaseChangeLog>

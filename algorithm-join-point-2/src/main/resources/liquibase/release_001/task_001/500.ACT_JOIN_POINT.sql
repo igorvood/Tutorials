@@ -16,7 +16,12 @@ create table act_join_point
     date_end           timestamp,
     --
     --
-    state              varchar2(20) not null,
+    state as ( case
+                   when timout_detected_at is not null then 'ERROR'
+                   when date_beg is not null and date_beg is null then 'RUNNING'
+                   when date_beg is not null and date_beg is not null then 'CLOSE'
+        end
+        )                           not null,
     constraint act_join_point_state_fk foreign key (state) references dict_act_state (id),
     ---
     constraint act_join_point_dict_fk foreign key (join_point) references dict_act_join_point (id),

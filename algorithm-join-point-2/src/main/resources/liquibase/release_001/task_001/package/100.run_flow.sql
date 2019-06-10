@@ -52,14 +52,13 @@ create or replace package body run is
     begin
         l_current_id := create_flow(in_flow_id, '');
 
-        insert into jp.act_join_point(ID, JOIN_POINT, EXPIRE_AT, TIMOUT_DETECTED_AT, DATE_BEG, DATE_END, STATE)
+        insert into jp.act_join_point(ID, JOIN_POINT, EXPIRE_AT, TIMOUT_DETECTED_AT, DATE_BEG, DATE_END)
         select distinct l_current_id,
                         runnable_jp,
                         l_current_time + numtodsinterval(rbl_bean_timeout, 'second') expire_at,
                         null,
                         null,
-                        null,
-                        'WAIT_RUNNING'
+                        null
         from dict_act_ordered_jp_vw
         where flow = in_flow_id;
 
@@ -73,7 +72,7 @@ create or replace package body run is
 --                 'WAIT_RUNNING')
                ---
                when runner_jp is not null then
-        into jp.act_jp_run(runner_id, runner_jp, flow, is_async_run, runnable_jp)
+            into jp.act_jp_run(flow_id, runner_jp, flow, is_async_run, runnable_jp)
         values (l_current_id, runner_jp, flow, is_async_run, runnable_jp)
                ---
         select --runnable_jp                                                  join_point,
