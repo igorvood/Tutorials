@@ -1,12 +1,13 @@
 create table act_join_point
 (
-    id                 varchar2(100) not null,
-    join_point         varchar2(20)  not null,
+    id                 number       not null,
+    constraint act_join_point_id_fk foreign key (id) references act_flow (id),
+    join_point         varchar2(20) not null,
 
     constraint act_join_point_pk primary key (id, join_point)
         using index tablespace jp_idx,
     ---
-    expire_at          timestamp     not null,
+    expire_at          timestamp    not null,
     timout_detected_at timestamp,
     date_beg           timestamp,
     ---
@@ -15,7 +16,7 @@ create table act_join_point
     date_end           timestamp,
     --
     --
-    state              varchar2(20)  not null,
+    state              varchar2(20) not null,
     constraint act_join_point_state_fk foreign key (state) references dict_act_state (id),
     ---
     constraint act_join_point_dict_fk foreign key (join_point) references dict_act_join_point (id),

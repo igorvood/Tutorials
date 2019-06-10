@@ -1,13 +1,13 @@
 create or replace view act_ordered_jp_vw as
-    with runner_only as (select runner.runner_jp jp_runner, runner.flow jp_runner_flow, runner_id runner_id
+    with runner_only as (select runner.runner_jp jp_runner, runner.flow jp_runner_flow, flow_id flow_id
                          from act_jp_run runner
                          where not exists(
                                  select 1
                                  from act_jp_run r
                                  where runner.runner_jp = r.runnable_jp
-                                   and runner.runner_id = r.runner_id))
+                                   and runner.flow_id = r.flow_id))
        ---
-       , tree as (select nvl(r.runner_id, ro.runner_id)                                            runner_id,
+       , tree as (select nvl(r.flow_id, ro.flow_id)                                                runner_id,
                          r.runner_jp,
                          nvl(r.flow, ro.jp_runner_flow)                                            flow,
                          r.is_async_run,
@@ -16,8 +16,8 @@ create or replace view act_ordered_jp_vw as
                          r.runner_jp || '~' || r.flow                                              parent
                   from act_jp_run r
                            full join runner_only ro
-                                     on (ro.jp_runner_flow, ro.jp_runner, ro.runner_id) =
-                                        ((ro.jp_runner_flow, r.runnable_jp, r.runner_id)))
+                                     on (ro.jp_runner_flow, ro.jp_runner, ro.flow_id) =
+                                        ((ro.jp_runner_flow, r.runnable_jp, r.flow_id)))
 ---
        , ord as (select level                                    lv,
                         connect_by_iscycle                       cycl,

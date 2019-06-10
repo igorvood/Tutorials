@@ -1,7 +1,7 @@
 create table act_flow
 (
-    id           varchar2(100) not null,
-    flow         varchar2(20)  not null,
+    id   number       not null,
+    flow varchar2(20) not null,
     ---
     constraint act_flow_pk primary key (id, flow) using index tablespace jp_idx,
     constraint act_flow_flow_fk foreign key (flow) references DICT_ACT_FLOW_TYPE (id),

@@ -36,6 +36,11 @@
         <sqlFile path="liquibase/release_001/task_001/410.DICT_ACT_RUN.sql"/>
     </changeSet>
 
+    <changeSet id="001/001/490.act_flow.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/490.act_flow.sql"/>
+    </changeSet>
+
     <changeSet id="001/001/500.ACT_JOIN_POINT.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/500.ACT_JOIN_POINT.sql"/>
@@ -44,11 +49,6 @@
     <changeSet id="001/001/600.ACT_JOIN_POINT_CONTEXT.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
         <sqlFile path="liquibase/release_001/task_001/600.ACT_JOIN_POINT_CONTEXT.sql"/>
-    </changeSet>
-
-    <changeSet id="001/001/700.act_flow.sql" author="vood" runAlways="true">
-        <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/700.act_flow.sql"/>
     </changeSet>
 
     <changeSet id="001/001/800.ACT_JP_RUN.sql" author="vood" runAlways="true">
