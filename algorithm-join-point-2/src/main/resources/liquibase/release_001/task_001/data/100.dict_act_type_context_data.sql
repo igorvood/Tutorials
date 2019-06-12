@@ -8,8 +8,12 @@ with d as (select level num
            from DUAL
            union all
            select 'Bean{num}ReturnContext' id, 'Bean{num}ReturnContext DESCRIPTION' descr
-           from DUAL)
+           from DUAL
+     )
 select replace(b.id, '{num}', d.num), replace(b.descr, '{num}', d.num)
 from b
          cross join d
+union all
+select 'BeanContext', 'BeanContext DESCRIPTION'
+from dual
 
