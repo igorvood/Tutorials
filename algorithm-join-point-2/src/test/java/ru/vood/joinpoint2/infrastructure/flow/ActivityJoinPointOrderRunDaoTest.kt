@@ -134,6 +134,7 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
         activityJoinPointOrderRunDao.setJoinPointBegin(flowId, joinPoint)
         contextData = activityJoinPointOrderRunDao.getJoinPoint(flowId, joinPoint)
         Assert.assertEquals(JoinPointState.RUNNING.stateName, contextData.state)
+        Assert.assertEquals(false, contextData.isClosed)
 
         Assert.assertNotNull(contextData.dateBegin)
         Assert.assertNull(contextData.dateEnd)
@@ -158,6 +159,7 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
         Assert.assertNotNull(contextData.dateBegin)
         Assert.assertNotNull(contextData.dateEnd)
         Assert.assertEquals(JoinPointState.CLOSE.stateName, contextData.state)
+        Assert.assertEquals(true, contextData.isClosed)
     }
 
 

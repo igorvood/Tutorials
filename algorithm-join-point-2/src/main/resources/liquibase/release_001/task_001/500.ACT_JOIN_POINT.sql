@@ -31,9 +31,9 @@ create table act_join_point
     --
     is_closed as (
         case
-            when date_end is null or timout_detected_at is null
-                then 0
-            else 1 end ),
+            when date_end is not null or timout_detected_at is not null
+                then 1
+            else 0 end ),
     ---
     constraint act_join_point_date_ck check (date_beg <= date_end)
 )

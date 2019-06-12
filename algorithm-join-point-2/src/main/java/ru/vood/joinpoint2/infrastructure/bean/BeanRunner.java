@@ -45,10 +45,17 @@ public class BeanRunner {
 
     private void runBean(WorkerBeanInterface workerBean, Long id, String joinPointName, Object inCtx) {
         executor.execute(() -> {
+            activityJoinPointOrderRunDaoService.setJoinPointBegin(id, joinPointName);
             final Object o = workerBean.doIt(inCtx);
             final String contextFormObject = workerBean.getContextFormObject(o);
             activityJoinPointOrderRunDaoService.insertContext(id, joinPointName, KindContext.RETURN, contextFormObject);
+            activityJoinPointOrderRunDaoService.setJoinPointEnd(id, joinPointName);
+
             final Map<String, JoinPointContextData> nextJoinPoints = activityJoinPointOrderRunDaoService.nextJoinPoints(id, joinPointName);
+            nextJoinPoints.values()
+                    .forEach(
+                            jp -> activityJoinPointOrderRunDaoService.insertContext(jp.getId(), jp.getJoinPoint(), KindContext.RUN, contextFormObject)
+                    );
         });
     }
 

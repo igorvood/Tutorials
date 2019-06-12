@@ -2,13 +2,14 @@ package ru.vood.joinpoint2.infrastructure.flow
 
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointContextData
 import ru.vood.joinpoint2.infrastructure.flow.mapper.JoinPointContextDataRowMapper
 import java.util.*
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) : ActivityJoinPointOrderRunDaoService {
 
     val joinPointContextDataRowMapper = JoinPointContextDataRowMapper()
