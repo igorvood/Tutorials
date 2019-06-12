@@ -14,4 +14,8 @@ interface ActivityJoinPointOrderRunDaoService {
 
     fun insertContext(id: Long, joinPoint: String, kindContext: KindContext, ctx: String)
 
+    fun setJoinPointBegin(id: Long, joinPoint: String)
+
+    fun setJoinPointEnd(id: Long, joinPoint: String)
+
 }

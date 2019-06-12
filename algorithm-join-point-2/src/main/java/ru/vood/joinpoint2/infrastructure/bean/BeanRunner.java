@@ -48,6 +48,7 @@ public class BeanRunner {
             final Object o = workerBean.doIt(inCtx);
             final String contextFormObject = workerBean.getContextFormObject(o);
             activityJoinPointOrderRunDaoService.insertContext(id, joinPointName, KindContext.RETURN, contextFormObject);
+            final Map<String, JoinPointContextData> nextJoinPoints = activityJoinPointOrderRunDaoService.nextJoinPoints(id, joinPointName);
         });
     }
 

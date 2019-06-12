@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointContextData
 import ru.vood.joinpoint2.infrastructure.flow.mapper.JoinPointContextDataRowMapper
+import java.util.*
 
 @Service
 @Transactional
@@ -64,4 +65,21 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
         )
     }
 
+    override fun setJoinPointBegin(id: Long, joinPoint: String) {
+        jdbcTemplate.update(
+                """update ACT_JOIN_POINT AJP set AJP.DATE_BEG=:1
+                    where AJP.ID=:2 and AJP.JOIN_POINT=:3 and AJP.DATE_BEG is null """,
+                Date(), id, joinPoint
+        )
+        jdbcTemplate.update("commit ")
+    }
+
+    override fun setJoinPointEnd(id: Long, joinPoint: String) {
+        jdbcTemplate.update(
+                """update ACT_JOIN_POINT AJP set AJP.DATE_END=:1
+                     where AJP.ID=:2 and AJP.JOIN_POINT=:3 and AJP.DATE_END is null """,
+                Date(), id, joinPoint
+        )
+        jdbcTemplate.update("commit ")
+    }
 }

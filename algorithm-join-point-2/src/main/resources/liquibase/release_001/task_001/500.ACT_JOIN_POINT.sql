@@ -14,12 +14,14 @@ create table act_join_point
     --   request_id         varchar2(20) not null,
     --   responce_id        varchar2(20),
     date_end           timestamp,
+    constraint act_join_point_date_fill_ck check ( (date_beg is null and date_end is null) or (date_beg is not null) or
+                                                   (date_beg is not null and date_end is not null) ),
     --
     --
     state as ( case
                    when timout_detected_at is not null then 'ERROR'
-                   when date_beg is not null and date_beg is null then 'RUNNING'
-                   when date_beg is not null and date_beg is not null then 'CLOSE'
+                   when date_beg is not null and date_end is null then 'RUNNING'
+                   when date_beg is not null and date_end is not null then 'CLOSE'
                    when expire_at is not null then 'WAIT_RUNNING'
         end
         )                           not null,

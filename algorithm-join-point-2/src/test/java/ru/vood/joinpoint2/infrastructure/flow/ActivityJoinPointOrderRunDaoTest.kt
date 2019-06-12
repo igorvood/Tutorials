@@ -125,6 +125,41 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
         Assert.assertEquals(ctx, contextData[0].runContext)
     }
 
+    @Test
+    fun setJoinPointBegin() {
+        val flowId = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val joinPoint = "join point 4"
+        var contextData = activityJoinPointOrderRunDao.getJoinPoint(flowId, joinPoint)
+        Assert.assertEquals(JoinPointState.WAIT_RUNNING.stateName, contextData.state)
+        activityJoinPointOrderRunDao.setJoinPointBegin(flowId, joinPoint)
+        contextData = activityJoinPointOrderRunDao.getJoinPoint(flowId, joinPoint)
+        Assert.assertEquals(JoinPointState.RUNNING.stateName, contextData.state)
+
+        Assert.assertNotNull(contextData.dateBegin)
+        Assert.assertNull(contextData.dateEnd)
+    }
+
+    @Test(expected = DataIntegrityViolationException::class)
+    fun setJoinPointEndNoDateBegError() {
+        val flowId = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val joinPoint = "join point 4"
+        activityJoinPointOrderRunDao.setJoinPointEnd(flowId, joinPoint)
+    }
+
+    @Test
+    fun setJoinPointEnd() {
+        val flowId = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val joinPoint = "join point 4"
+        activityJoinPointOrderRunDao.setJoinPointBegin(flowId, joinPoint)
+        activityJoinPointOrderRunDao.setJoinPointEnd(flowId, joinPoint)
+
+        val contextData = activityJoinPointOrderRunDao.getJoinPoint(flowId, joinPoint)
+
+        Assert.assertNotNull(contextData.dateBegin)
+        Assert.assertNotNull(contextData.dateEnd)
+        Assert.assertEquals(JoinPointState.CLOSE.stateName, contextData.state)
+    }
+
 
     private fun getContext(idFlow: Long, joinPoint: String): List<JPContextData> {
         return jdbcTemplate.query("select id, join_point, bean_id, run_context, return_context from act_join_point_context c where c.id=:1 and c.join_point=:2",
