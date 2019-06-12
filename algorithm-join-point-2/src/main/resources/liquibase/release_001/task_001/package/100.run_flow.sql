@@ -21,18 +21,17 @@ create or replace package body run is
     procedure create_first_context(in_id in varchar2, in_context varchar2)
     is
     begin
-        insert into jp.act_join_point_context(id, join_point, bean_id, run_context_id, return_context_id, run_context,
+        insert into jp.act_join_point_context(id, join_point, bean_id, run_context,
                                               return_context)
-        select distinct in_id,
-                        v.runner_jp,
-                        v.run_bean,
-                        v.run_bean_in_ctx_type,
-                        v.run_bean_ret_ctx_type,
-                        in_context,
-                        null
-        from jp.act_ordered_jp_vw v
-        where v.runner_id = in_id
-          and v.lv = 2;
+        with first as (
+            select distinct runner.runner_jp jp, runner.flow jp_flow, runner.FLOW_ID
+            from act_jp_run runner
+            where not exists(
+                    select 1 from act_jp_run r where runner.runner_jp = r.runnable_jp and runner.FLOW_ID = r.FLOW_ID))
+        select in_id, f.jp, dajp.bean_name, in_context, null
+        from first f
+                 join dict_act_join_point dajp on dajp.ID = f.jp
+        where f.flow_id = in_id;
     end;
 
     function create_runnable_flow(in_flow_id in varchar2, in_context varchar2) return varchar2
@@ -41,6 +40,7 @@ create or replace package body run is
     begin
         ret_id := create_runnable_flow(in_flow_id);
         create_first_context(ret_id, in_context);
+        commit;
         return ret_id;
     end;
 
@@ -53,38 +53,34 @@ create or replace package body run is
         l_current_id := create_flow(in_flow_id, '');
 
         insert into jp.act_join_point(ID, JOIN_POINT, EXPIRE_AT, TIMOUT_DETECTED_AT, DATE_BEG, DATE_END)
-        select distinct l_current_id,
-                        runnable_jp,
-                        l_current_time + numtodsinterval(rbl_bean_timeout, 'second') expire_at,
-                        null,
-                        null,
-                        null
-        from dict_act_ordered_jp_vw
-        where flow = in_flow_id;
+        with first as (
+            select runner.runner_jp jp, runner.flow jp_flow
+            from dict_act_run runner
+        ),
+             ----
+             last as (select runner.runnable_jp jp, runner.flow jp_flow
+                      from dict_act_run runner
+             ),
+             all_jp as (select f.jp, f.jp_flow
+                        from first f
+                        union
+                        select l.jp, l.jp_flow
+                        from last l
+             )
+        select l_current_id,
+               f.jp,
+               l_current_time + numtodsinterval(dajp.GLOBAL_TIMEOUT, 'second') expire_at,
+               null,
+               null,
+               null
+        from dict_act_join_point dajp
+                 join all_jp f on f.jp = dajp.id
+        where f.jp_flow = in_flow_id;
 
-
-        insert all
-            ---
---             when 1 = 1 then
---             into jp.act_join_point(id, join_point, parent_id, parent_join_point, expire_at,
---                                    timout_detected_at, date_beg, date_end, state)
---         values (l_current_id, runnable_jp, null, null, expire_at, null, null, null,
---                 'WAIT_RUNNING')
-               ---
-               when runner_jp is not null then
-            into jp.act_jp_run(flow_id, runner_jp, flow, is_async_run, runnable_jp)
-        values (l_current_id, runner_jp, flow, is_async_run, runnable_jp)
-               ---
-        select --runnable_jp                                                  join_point,
-               l_current_time + numtodsinterval(rbl_bean_timeout, 'second') expire_at,
-               runner_jp                                                    runner_jp,
-               flow                                                         flow,
-               run_bean                                                     run_bean,
-               is_async_run                                                 is_async_run,
-               runnable_jp                                                  runnable_jp
-        from dict_act_ordered_jp_vw
-        where flow = in_flow_id
-        order by lv;
+        insert into jp.act_jp_run(flow_id, runner_jp, flow, is_async_run, runnable_jp)
+        select l_current_id, RUNNER_JP, FLOW, IS_ASYNC_RUN, RUNNABLE_JP
+        from DICT_ACT_RUN DAR
+        where DAR.flow = in_flow_id;
         return l_current_id;
     end;
 

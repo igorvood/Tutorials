@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import ru.vood.joinpoint2.infrastructure.flow.ActivityJoinPointOrderRunDaoService;
-import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointData;
+import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointContextData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +45,7 @@ public class BeanRunner {
     }
 
     private Object getRunContext(Long id, String joinPoint) {
-        final String runnableRunContext = activityJoinPointOrderRunDaoService.getJoinPoint(id, joinPoint).getRunnableRunContext();
+        final String runnableRunContext = activityJoinPointOrderRunDaoService.getJoinPoint(id, joinPoint).getRunContext();
         return beanMap.get(joinPoint).getObjectFromContext(runnableRunContext);
     }
 
@@ -56,10 +56,10 @@ public class BeanRunner {
     }
 
     public void tryToRunNext(Long id, String joinPoint) {
-        final Map<String, JoinPointData> nextJoinPointDataMap = activityJoinPointOrderRunDaoService.nextJoinPoints(id, joinPoint);
+        final Map<String, JoinPointContextData> nextJoinPointDataMap = activityJoinPointOrderRunDaoService.nextJoinPoints(id, joinPoint);
         if (!nextJoinPointDataMap.isEmpty()) {
             nextJoinPointDataMap.values().
-                    forEach(joinPointData -> run(joinPointData.getId(), joinPointData.getRunnable()));
+                    forEach(joinPointData -> run(joinPointData.getId(), joinPointData.getJoinPoint()));
         }
     }
 

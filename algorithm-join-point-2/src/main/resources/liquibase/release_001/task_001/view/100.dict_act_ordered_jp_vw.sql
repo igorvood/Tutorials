@@ -31,22 +31,24 @@ create or replace view dict_act_ordered_jp_vw as
                     o.cycl,
                     --o.path,
                     o.flow,
-                    o.runner_jp           runner_jp,
+                    o.runner_jp            runner_jp,
                     o.is_async_run,
-                    o.runnable_jp         runnable_jp,
-                    o.id                  synthetic_id,
+                    o.runnable_jp          runnable_jp,
+                    o.id                   synthetic_id,
                     o.parent,
-                    run_jp.bean_name      run_bean,
-                    run_jp.run_context    run_bean_in_ctx_type,
-                    run_jp.return_context run_bean_ret_ctx_type,
-                    run_jp.global_timeout run_bean_timeout,
-                    rbl_jp.bean_name      rbl_bean,
-                    rbl_jp.run_context    rbl_bean_in_ctx_type,
-                    rbl_jp.return_context rbl_bean_ret_ctx_type,
-                    rbl_jp.global_timeout rbl_bean_timeout
+                    run_jp.bean_name       run_bean,
+                    run_dab.run_context    run_bean_in_ctx_type,
+                    run_dab.return_context run_bean_ret_ctx_type,
+                    run_jp.global_timeout  run_bean_timeout,
+                    rbl_jp.bean_name       rbl_bean,
+                    rbl_dab.run_context    rbl_bean_in_ctx_type,
+                    rbl_dab.return_context rbl_bean_ret_ctx_type,
+                    rbl_jp.global_timeout  rbl_bean_timeout
     from ord o
              left join dict_act_join_point rbl_jp on o.runnable_jp = rbl_jp.id
+             left join dict_act_bean rbl_dab on rbl_dab.bean_id = rbl_jp.bean_name
              left join dict_act_join_point run_jp on o.runner_jp = run_jp.id
+             left join DICT_ACT_BEAN run_dab on run_dab.bean_id = run_jp.bean_name
     order by o.lv, o.flow nulls first
 
 --

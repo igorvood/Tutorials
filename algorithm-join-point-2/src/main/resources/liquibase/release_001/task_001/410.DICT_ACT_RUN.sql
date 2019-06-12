@@ -30,8 +30,11 @@ create table dict_act_run
 /
 create index dict_act_run_runner_i on dict_act_run (runner_jp, flow) tablespace jp_idx
 /
--- create index dict_act_run_runable_i on dict_act_run (runnable, runnable_flow) tablespace jp_idx
--- /
+create index dict_act_run_runable_i on dict_act_run (runnable_jp, flow) tablespace jp_idx
+/
+create index dict_act_run_flow_i on dict_act_run (flow) tablespace jp_idx
+/
+
 comment on table dict_act_run
     is 'запускаемые бины '
 /

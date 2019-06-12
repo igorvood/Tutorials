@@ -26,7 +26,6 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
 
     @Test
     fun nextJoinPoints() {
-        runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
         idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
         val prevJoinPoints = activityJoinPointOrderRunDao.nextJoinPoints(idFlow, "join point 4")
         Assert.assertEquals(2, prevJoinPoints.size)
@@ -47,6 +46,7 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
     }
 
     @Test
+//    @Ignore
     fun getFirstJoinPoint() {
         idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
         val firstJoinPoint = activityJoinPointOrderRunDao.getFirstJoinPoint(idFlow, FLOW_TYPE_3)
@@ -57,11 +57,11 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
 
     @Test
     fun getJoinPoint() {
+//        for (i in 1..1000) {
+//            runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+//        }
         idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
         val firstJoinPoint = activityJoinPointOrderRunDao.getJoinPoint(idFlow, "join point 4")
-
-        Assert.assertEquals("join point 4", firstJoinPoint.runnable)
-
-
+        Assert.assertEquals("join point 4", firstJoinPoint.joinPoint)
     }
 }

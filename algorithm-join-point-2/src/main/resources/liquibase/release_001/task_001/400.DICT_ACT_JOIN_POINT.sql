@@ -9,9 +9,9 @@ create table dict_act_join_point
     constraint dict_act_join_point_timeout_ck check (global_timeout > 0),
     --
     bean_name      varchar2(255) not null,
-    run_context    varchar2(512) not null,
-    return_context varchar2(512) not null,
-    constraint dict_act_join_process_bean_fk foreign key (bean_name, run_context, return_context) references dict_act_bean (bean_id, run_context, return_context),
+--     run_context    varchar2(512) not null,
+--     return_context varchar2(512) not null,
+    constraint dict_act_join_process_bean_fk foreign key (bean_name) references dict_act_bean (bean_id),
     --
     status         varchar2(1)   not null,
     constraint dict_act_join_point_state_ck check (status in ('d', 'o', 'm'))
