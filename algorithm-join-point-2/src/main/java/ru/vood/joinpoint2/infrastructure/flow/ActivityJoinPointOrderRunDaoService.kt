@@ -1,7 +1,6 @@
 package ru.vood.joinpoint2.infrastructure.flow
 
 import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointContextData
-import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointData
 
 interface ActivityJoinPointOrderRunDaoService {
 
@@ -9,7 +8,7 @@ interface ActivityJoinPointOrderRunDaoService {
 
     fun prevJoinPoints(id: Long, joinPoint: String): Map<String, JoinPointContextData>
 
-    fun getFirstJoinPoint(id: Long, flowType: String): Map<String, JoinPointData>
+    fun getFirstJoinPoint(id: Long, flowType: String): Map<String, JoinPointContextData>
 
     fun getJoinPoint(id: Long, joinPoint: String): JoinPointContextData
 

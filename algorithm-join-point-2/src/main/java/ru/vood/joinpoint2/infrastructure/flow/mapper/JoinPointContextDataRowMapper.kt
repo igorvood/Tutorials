@@ -6,11 +6,6 @@ import java.sql.ResultSet
 
 class JoinPointContextDataRowMapper : RowMapper<JoinPointContextData> {
     override fun mapRow(rs: ResultSet, rowNum: Int): JoinPointContextData? {
-
-        val timestamp3 = rs.getTimestamp(3)
-        val timestamp6 = rs.getTimestamp(6)
-        println(timestamp3)
-        println(timestamp6)
         return JoinPointContextData(
                 rs.getLong(1),
                 rs.getString(2),

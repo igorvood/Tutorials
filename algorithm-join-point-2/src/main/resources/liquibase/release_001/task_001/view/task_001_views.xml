@@ -30,4 +30,10 @@
         <sqlFile path="liquibase/release_001/task_001/view/104.act_prev_jp_info.sql"/>
     </changeSet>
 
+    <changeSet id="001/001/view/105.act_first_jp_info.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/view/105.act_first_jp_info.sql"/>
+    </changeSet>
+
+
 </databaseChangeLog>
