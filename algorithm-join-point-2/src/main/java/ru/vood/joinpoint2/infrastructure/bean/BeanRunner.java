@@ -1,5 +1,6 @@
 package ru.vood.joinpoint2.infrastructure.bean;
 
+import javafx.util.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -13,7 +14,10 @@ import ru.vood.joinpoint2.infrastructure.flow.KindContext;
 import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointContextData;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static java.util.stream.Collectors.toList;
 
 @Component
 public class BeanRunner {
@@ -51,11 +55,13 @@ public class BeanRunner {
             activityJoinPointOrderRunDaoService.insertContext(id, joinPointName, KindContext.RETURN, contextFormObject);
             activityJoinPointOrderRunDaoService.setJoinPointEnd(id, joinPointName);
 
-            final Map<String, JoinPointContextData> nextJoinPoints = activityJoinPointOrderRunDaoService.nextJoinPoints(id, joinPointName);
+            Map<String, JoinPointContextData> nextJoinPoints = activityJoinPointOrderRunDaoService.nextJoinPoints(id, joinPointName);
             nextJoinPoints.values()
                     .forEach(
                             jp -> activityJoinPointOrderRunDaoService.insertContext(jp.getId(), jp.getJoinPoint(), KindContext.RUN, contextFormObject)
                     );
+            nextJoinPoints = activityJoinPointOrderRunDaoService.nextJoinPoints(id, joinPointName);
+            tryToRunNext(nextJoinPoints);
         });
     }
 
@@ -65,18 +71,27 @@ public class BeanRunner {
 
     public void run(Long id, @NotNull String joinPoint) {
         final JoinPointContextData jp = activityJoinPointOrderRunDaoService.getJoinPoint(id, joinPoint);
-        final WorkerBeanInterface workerBean = beanMap.get(jp.getBeanName());
-        final Object runContext = getRunContext(workerBean, jp.getRunContext());
-        runBean(workerBean, id, jp.getJoinPoint(), runContext);
-        //tryToRunNext(id, joinPoint);
+        run(jp);
     }
 
-    public void tryToRunNext(Long id, String joinPoint) {
-        final Map<String, JoinPointContextData> nextJoinPointDataMap = activityJoinPointOrderRunDaoService.nextJoinPoints(id, joinPoint);
-        if (!nextJoinPointDataMap.isEmpty()) {
-            nextJoinPointDataMap.values().
-                    forEach(joinPointData -> run(joinPointData.getId(), joinPointData.getJoinPoint()));
-        }
+    private void run(JoinPointContextData jp) {
+        final WorkerBeanInterface workerBean = beanMap.get(jp.getBeanName());
+        final Object runContext = getRunContext(workerBean, jp.getRunContext());
+        runBean(workerBean, jp.getId(), jp.getJoinPoint(), runContext);
+    }
+
+    public void tryToRunNext(Map<String, JoinPointContextData> nextJoinPoints) {
+        final List<JoinPointContextData> run = nextJoinPoints.values().stream()
+                .map(jp -> {
+                    final Map<String, JoinPointContextData> prevJoinPoints = activityJoinPointOrderRunDaoService.prevJoinPoints(jp.getId(), jp.getJoinPoint());
+                    Pair<JoinPointContextData, Map<String, JoinPointContextData>> map = new Pair<>(jp, prevJoinPoints);
+                    return map;
+                }).filter(pair -> pair.getValue().values().stream()
+                        .filter(jp -> !jp.isClosed())
+                        .count() == 0).map(joinPointContextDataMapPair -> joinPointContextDataMapPair.getKey())
+                .collect(toList());
+        run.forEach(jp -> run(jp));
+
     }
 
     public HashMap<String, WorkerBeanInterface> getBeanMap() {

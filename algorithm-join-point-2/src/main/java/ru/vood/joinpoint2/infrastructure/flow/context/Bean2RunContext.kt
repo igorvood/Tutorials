@@ -1,3 +1,3 @@
 package ru.vood.joinpoint2.infrastructure.flow.context
 
-data class Bean2RunContext(val cnt: String)
+data class Bean2RunContext(val str: String)

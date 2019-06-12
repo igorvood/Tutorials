@@ -46,7 +46,7 @@ class BeanRunnerTest : AbstractJoinPointDataSourceTest() {
         Assert.assertNotNull(flowId)
         val firstJoinPoint = activityJoinPointOrderRunDaoService.getFirstJoinPoint(flowId, ft)
         beanRunner.run(flowId, firstJoinPoint.joinPoint)
-        sleep(2000)
+        sleep(10000)
     }
 
     @Test
