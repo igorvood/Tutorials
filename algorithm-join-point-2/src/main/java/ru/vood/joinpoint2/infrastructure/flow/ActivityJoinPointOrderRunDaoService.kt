@@ -12,7 +12,6 @@ interface ActivityJoinPointOrderRunDaoService {
 
     fun getJoinPoint(id: Long, joinPoint: String): JoinPointContextData
 
-    fun insertReturnContext(id: Long, joinPoint: String, ctx: String)
+    fun insertContext(id: Long, joinPoint: String, kindContext: KindContext, ctx: String)
 
-    fun insertRunContext(id: Long, joinPoint: String, ctx: String)
 }

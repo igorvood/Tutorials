@@ -1,11 +1,14 @@
 package ru.vood.joinpoint2.infrastructure.bean;
 
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import ru.vood.joinpoint2.infrastructure.flow.ActivityJoinPointOrderRunDaoService;
+import ru.vood.joinpoint2.infrastructure.flow.KindContext;
 import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointContextData;
 
 import java.util.HashMap;
@@ -14,6 +17,8 @@ import java.util.Map;
 @Component
 public class BeanRunner {
 
+    private static final Logger logger = LoggerFactory.getLogger(BeanRunner.class);
+
     private final ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService;
     private final HashMap<String, WorkerBeanInterface> beanMap;
     private final ThreadPoolTaskExecutor executor;
@@ -21,15 +26,15 @@ public class BeanRunner {
 
     @Autowired
     public BeanRunner(
-            ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService
-            , Map<String, WorkerBeanInterface> beanMap,
+            ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService,
+            Map<String, WorkerBeanInterface> beanMap,
             @Qualifier("jpThreadPool")
                     ThreadPoolTaskExecutor executor
     ) {
         Assert.assertNotNull("activityJoinPointOrderRunDaoService must not null", activityJoinPointOrderRunDaoService);
         Assert.assertNotNull("Executor must not null", executor);
         Assert.assertNotNull("Worker bean must not null", beanMap);
-        Assert.assertTrue("Worker bean must not empty", !beanMap.isEmpty());
+        Assert.assertFalse("Worker bean must not empty", beanMap.isEmpty());
         this.activityJoinPointOrderRunDaoService = activityJoinPointOrderRunDaoService;
 
         this.beanMap = new HashMap(beanMap);
@@ -38,9 +43,10 @@ public class BeanRunner {
 
     private void runBean(Long id, String joinPointName, Object inCtx) {
         executor.execute(() -> {
-            final Object o = beanMap.get(joinPointName).doIt(inCtx);
-            final String contextFormObject = beanMap.get(joinPointName).getContextFormObject(o);
-            activityJoinPointOrderRunDaoService.insertReturnContext(id, joinPointName, contextFormObject);
+            final WorkerBeanInterface workerBeanInterface = beanMap.get(joinPointName);
+            final Object o = workerBeanInterface.doIt(inCtx);
+            final String contextFormObject = workerBeanInterface.getContextFormObject(o);
+            activityJoinPointOrderRunDaoService.insertContext(id, joinPointName, KindContext.RETURN, contextFormObject);
         });
     }
 

@@ -2,6 +2,8 @@ package ru.vood.joinpoint2.infrastructure.flow
 
 import org.junit.Assert
 import org.junit.Test
+import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.jdbc.core.RowMapper
 import ru.vood.joinpoint2.config.AbstractJoinPointDataSourceTest
 import ru.vood.joinpoint2.infrastructure.run.RunFlowDao
 import ru.vood.joinpoint2.infrastructure.run.RunFlowDaoImpl
@@ -64,4 +66,80 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
         val firstJoinPoint = activityJoinPointOrderRunDao.getJoinPoint(idFlow, "join point 4")
         Assert.assertEquals("join point 4", firstJoinPoint.joinPoint)
     }
+
+    @Test(expected = DataIntegrityViolationException::class)
+    fun insertReturnContextError() {
+        val createRunnableFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val joinPoint = "join point 4"
+        val ctx = "context join point 4"
+        activityJoinPointOrderRunDao.insertContext(createRunnableFlow, joinPoint, KindContext.RETURN, ctx)
+        val contextData = getContext(createRunnableFlow, joinPoint)
+        Assert.assertFalse(contextData.isEmpty())
+        Assert.assertEquals(1, contextData.size)
+        Assert.assertEquals(ctx, contextData[0].returnContext)
+    }
+
+    @Test(expected = DataIntegrityViolationException::class)
+    fun insertReturnContextNoJpError() {
+        val joinPoint = "join point 4"
+        val ctx = "context join point 4"
+        activityJoinPointOrderRunDao.insertContext(-9999, joinPoint, KindContext.RETURN, ctx)
+    }
+
+    @Test(expected = DataIntegrityViolationException::class)
+    fun insertRunContextNoJpError() {
+        val joinPoint = "join point 4"
+        val ctx = "context join point 4"
+        activityJoinPointOrderRunDao.insertContext(-9999, joinPoint, KindContext.RUN, ctx)
+    }
+
+    fun insertReturnContext() {
+        val createRunnableFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val joinPoint = "join point 4"
+        val ctx = "context join point 4"
+        activityJoinPointOrderRunDao.insertContext(createRunnableFlow, joinPoint, KindContext.RUN, ctx)
+        activityJoinPointOrderRunDao.insertContext(createRunnableFlow, joinPoint, KindContext.RETURN, ctx)
+        val contextData = getContext(createRunnableFlow, joinPoint)
+        Assert.assertFalse(contextData.isEmpty())
+        Assert.assertEquals(1, contextData.size)
+        Assert.assertEquals(ctx, contextData[0].returnContext)
+    }
+
+
+    @Test
+    fun insertRunContext() {
+        val createRunnableFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val joinPoint = "join point 4"
+        val ctx = "context join point 4"
+        activityJoinPointOrderRunDao.insertContext(createRunnableFlow, joinPoint, KindContext.RUN, ctx)
+        val contextData = getContext(createRunnableFlow, joinPoint)
+        Assert.assertFalse(contextData.isEmpty())
+        Assert.assertEquals(1, contextData.size)
+        Assert.assertEquals(ctx, contextData[0].runContext)
+    }
+
+
+    private fun getContext(idFlow: Long, joinPoint: String): List<JPContextData> {
+        return jdbcTemplate.query("select id, join_point, bean_id, run_context, return_context from act_join_point_context c where c.id=:1 and c.join_point=:2",
+                RowMapper<JPContextData> { rs, rowNum ->
+                    JPContextData(
+                            rs.getLong(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5)
+                    )
+                },
+                idFlow, joinPoint)
+    }
 }
+
+data class JPContextData(
+        val id: Long,
+        val joinPoint: String,
+        val beanId: String,
+        val runContext: String?,
+        val returnContext: String?
+)
+
+

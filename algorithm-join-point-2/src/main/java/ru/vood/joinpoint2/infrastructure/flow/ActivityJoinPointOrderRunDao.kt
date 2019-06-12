@@ -5,13 +5,11 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import ru.vood.joinpoint2.infrastructure.flow.data.JoinPointContextData
 import ru.vood.joinpoint2.infrastructure.flow.mapper.JoinPointContextDataRowMapper
-import ru.vood.joinpoint2.infrastructure.flow.mapper.JoinPointDataRowMapper
 
 @Service
 @Transactional
 open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) : ActivityJoinPointOrderRunDaoService {
 
-    val rowMapperJoinPointData = JoinPointDataRowMapper()
     val joinPointContextDataRowMapper = JoinPointContextDataRowMapper()
 
     override fun nextJoinPoints(id: Long, joinPoint: String): Map<String, JoinPointContextData> {
@@ -60,11 +58,11 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
         )
     }
 
-    override fun insertReturnContext(id: Long, joinPoint: String, ctx: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun insertContext(id: Long, joinPoint: String, kindContext: KindContext, ctx: String) {
+        jdbcTemplate.update(
+                "begin run.insert_context(:1, :2, :3, :4); end;",
+                id, joinPoint, kindContext.kind, ctx
+        )
     }
 
-    override fun insertRunContext(id: Long, joinPoint: String, ctx: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }
