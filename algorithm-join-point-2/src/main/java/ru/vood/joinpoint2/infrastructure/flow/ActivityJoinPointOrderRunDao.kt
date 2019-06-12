@@ -36,16 +36,15 @@ open class ActivityJoinPointOrderRunDao(private val jdbcTemplate: JdbcTemplate) 
                 .toMap()
     }
 
-    override fun getFirstJoinPoint(id: Long, flowType: String): Map<String, JoinPointContextData> {
-        return jdbcTemplate.query(
+    override fun getFirstJoinPoint(id: Long, flowType: String): JoinPointContextData {
+        val queryForObject = jdbcTemplate.queryForObject(
                 """select flow_id, join_point, expire_at, timout_detected_at, date_beg,date_end, state, is_closed, bean_name, run_context_id, return_context_id, run_context, return_context, is_async_run
                             from act_first_jp_info jp
                             where jp.flow=:1 and jp.flow_id=:2""",
                 joinPointContextDataRowMapper,
                 flowType, id
-        ).asSequence()
-                .map { Pair<String, JoinPointContextData>(it.joinPoint, it) }
-                .toMap()
+        )
+        return queryForObject
     }
 
     override fun getJoinPoint(id: Long, joinPoint: String): JoinPointContextData {

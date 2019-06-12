@@ -50,11 +50,13 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
     @Test
 //    @Ignore
     fun getFirstJoinPoint() {
-        idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val inCtx = "Context - 33"
+        idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, inCtx)
         val firstJoinPoint = activityJoinPointOrderRunDao.getFirstJoinPoint(idFlow, FLOW_TYPE_3)
         jdbcTemplate.execute("commit")
-        Assert.assertEquals(1, firstJoinPoint.size)
-        Assert.assertEquals("join point 1", firstJoinPoint.keys.first())
+        Assert.assertEquals("join point 1", firstJoinPoint.joinPoint)
+        Assert.assertEquals(inCtx, firstJoinPoint.runContext)
+
     }
 
     @Test
@@ -62,9 +64,14 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
 //        for (i in 1..1000) {
 //            runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
 //        }
-        idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+        val inCtx = "Context - 33"
+        idFlow = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, inCtx)
         val firstJoinPoint = activityJoinPointOrderRunDao.getJoinPoint(idFlow, "join point 4")
         Assert.assertEquals("join point 4", firstJoinPoint.joinPoint)
+        val firstJoinPoint1 = activityJoinPointOrderRunDao.getJoinPoint(idFlow, "join point 1")
+        Assert.assertEquals("join point 1", firstJoinPoint1.joinPoint)
+        Assert.assertEquals(inCtx, firstJoinPoint1.runContext)
+
     }
 
     @Test(expected = DataIntegrityViolationException::class)

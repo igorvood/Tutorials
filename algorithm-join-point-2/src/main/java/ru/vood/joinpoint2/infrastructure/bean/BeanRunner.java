@@ -1,5 +1,6 @@
 package ru.vood.joinpoint2.infrastructure.bean;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ public class BeanRunner {
     private static final Logger logger = LoggerFactory.getLogger(BeanRunner.class);
 
     private final ActivityJoinPointOrderRunDaoService activityJoinPointOrderRunDaoService;
+
     private final HashMap<String, WorkerBeanInterface> beanMap;
     private final ThreadPoolTaskExecutor executor;
 
@@ -51,14 +53,15 @@ public class BeanRunner {
     }
 
     private Object getRunContext(Long id, String joinPoint) {
-        final String runnableRunContext = activityJoinPointOrderRunDaoService.getJoinPoint(id, joinPoint).getRunContext();
-        return beanMap.get(joinPoint).getObjectFromContext(runnableRunContext);
+        final JoinPointContextData jp = activityJoinPointOrderRunDaoService.getJoinPoint(id, joinPoint);
+        final String runnableRunContext = jp.getRunContext();
+        return beanMap.get(jp.getBeanName()).getObjectFromContext(runnableRunContext);
     }
 
-    public void run(Long id, String joinPoint) {
+    public void run(Long id, @NotNull String joinPoint) {
         final Object runContext = getRunContext(id, joinPoint);
         runBean(id, joinPoint, runContext);
-        tryToRunNext(id, joinPoint);
+        //tryToRunNext(id, joinPoint);
     }
 
     public void tryToRunNext(Long id, String joinPoint) {
@@ -67,6 +70,10 @@ public class BeanRunner {
             nextJoinPointDataMap.values().
                     forEach(joinPointData -> run(joinPointData.getId(), joinPointData.getJoinPoint()));
         }
+    }
+
+    public HashMap<String, WorkerBeanInterface> getBeanMap() {
+        return beanMap;
     }
 
 }
