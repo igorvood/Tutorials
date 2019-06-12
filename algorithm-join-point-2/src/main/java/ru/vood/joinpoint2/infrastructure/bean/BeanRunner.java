@@ -43,24 +43,23 @@ public class BeanRunner {
         this.executor = executor;
     }
 
-    private void runBean(Long id, String joinPointName, Object inCtx) {
+    private void runBean(WorkerBeanInterface workerBean, Long id, String joinPointName, Object inCtx) {
         executor.execute(() -> {
-            final WorkerBeanInterface workerBeanInterface = beanMap.get(joinPointName);
-            final Object o = workerBeanInterface.doIt(inCtx);
-            final String contextFormObject = workerBeanInterface.getContextFormObject(o);
+            final Object o = workerBean.doIt(inCtx);
+            final String contextFormObject = workerBean.getContextFormObject(o);
             activityJoinPointOrderRunDaoService.insertContext(id, joinPointName, KindContext.RETURN, contextFormObject);
         });
     }
 
-    private Object getRunContext(Long id, String joinPoint) {
-        final JoinPointContextData jp = activityJoinPointOrderRunDaoService.getJoinPoint(id, joinPoint);
-        final String runnableRunContext = jp.getRunContext();
-        return beanMap.get(jp.getBeanName()).getObjectFromContext(runnableRunContext);
+    private Object getRunContext(WorkerBeanInterface workerBean, String context) {
+        return workerBean.getObjectFromContext(context);
     }
 
     public void run(Long id, @NotNull String joinPoint) {
-        final Object runContext = getRunContext(id, joinPoint);
-        runBean(id, joinPoint, runContext);
+        final JoinPointContextData jp = activityJoinPointOrderRunDaoService.getJoinPoint(id, joinPoint);
+        final WorkerBeanInterface workerBean = beanMap.get(jp.getBeanName());
+        final Object runContext = getRunContext(workerBean, jp.getRunContext());
+        runBean(workerBean, id, jp.getJoinPoint(), runContext);
         //tryToRunNext(id, joinPoint);
     }
 

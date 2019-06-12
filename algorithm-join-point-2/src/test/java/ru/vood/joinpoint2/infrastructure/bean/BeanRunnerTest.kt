@@ -12,6 +12,7 @@ import ru.vood.joinpoint2.infrastructure.flow.ActivityJoinPointOrderRunDaoServic
 import ru.vood.joinpoint2.infrastructure.flow.context.Bean1RunContext
 import ru.vood.joinpoint2.infrastructure.run.RunFlowDao
 import ru.vood.joinpoint2.infrastructure.run.RunFlowDaoImpl
+import java.lang.Thread.sleep
 
 @RunWith(SpringRunner::class)
 @ContextConfiguration(classes = [BeanRunnerTestConfiguration::class])
@@ -45,6 +46,7 @@ class BeanRunnerTest : AbstractJoinPointDataSourceTest() {
         Assert.assertNotNull(flowId)
         val firstJoinPoint = activityJoinPointOrderRunDaoService.getFirstJoinPoint(flowId, ft)
         beanRunner.run(flowId, firstJoinPoint.joinPoint)
+        sleep(2000);
     }
 
     @Test

@@ -14,6 +14,6 @@ public class WorkerBean1 extends AbstractWorkerBean<Bean1RunContext, Bean1Return
 
     @Override
     public Bean1ReturnContext doIt(Bean1RunContext bean1RunContext) {
-        return new Bean1ReturnContext(bean1RunContext.toString());
+        return new Bean1ReturnContext(String.valueOf(bean1RunContext.getCnt()));
     }
 }
