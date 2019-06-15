@@ -7,8 +7,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @SpringBootApplication
 @EnableTransactionManagement
 
-open class RouteResponseApplication
-
-fun main(args: Array<String>) {
-    SpringApplication.run(RouteResponseApplication::class.java, *args)
+open class RouteResponseApplication {
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            SpringApplication.run(RouteResponseApplication::class.java, *args)
+        }
+    }
 }
