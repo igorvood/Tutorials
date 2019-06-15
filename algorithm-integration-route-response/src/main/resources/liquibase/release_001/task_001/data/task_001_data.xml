@@ -6,9 +6,9 @@
 
     <include file="liquibase/release_001/task_001/forTests/task_001_for_tests.xml"/>
 
-    <changeSet id="001/001/100.meta_consumer_service.sql" author="vood" runAlways="true">
+    <changeSet id="001/001/data/100.meta_consumer_service_data.sql" author="vood" runAlways="true">
         <validCheckSum>any</validCheckSum>
-        <sqlFile path="liquibase/release_001/task_001/100.meta_consumer_service.sql"/>
+        <sqlFile path="liquibase/release_001/task_001/data/100.meta_consumer_service_data.sql"/>
     </changeSet>
 
     <!--    <include file="liquibase/release_001/task_001/sequence/task_001_sequence.xml"/>-->
