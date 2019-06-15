@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:int="http://www.springframework.org/schema/integration"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/integration
+             http://www.springframework.org/schema/integration/spring-integration.xsd
+
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <int:channel id="serviceActivatorRequestChannel_1" datatype="java.lang.String"/>
+    <int:channel id="serviceActivatorResponseChannel_1" datatype="java.lang.String"/>
+    <int:channel id="transformerResponseChannel_1" datatype="java.lang.String">
+        <int:queue/>
+    </int:channel>
+    <!--    <int:channel id="requestChannel_2" datatype="java.lang.String"/>-->
+    <!--    <int:channel id="requestChannel_3" datatype="java.lang.String">-->
+    <!--        <int:dispatcher task-executor="exec"/>-->
+    <!--    </int:channel>-->
+    <!--    <int:channel id="requestChannel_4" datatype="java.lang.String"/>-->
+    <!--    <int:channel id="requestChannel_5">-->
+    <!--        <int:queue/>-->
+    <!--    </int:channel>-->
+
+    <int:service-activator input-channel="serviceActivatorRequestChannel_1" ref="serviceServiceActivator" method="run"
+                           output-channel="serviceActivatorResponseChannel_1"
+    />
+
+    <int:transformer input-channel="serviceActivatorResponseChannel_1"
+                     output-channel="transformerResponseChannel_1"
+                     ref="transformerAfterServiceActivator"
+                     method="transform"
+    />
+
+
+    <!--    <int:transformer input-channel="requestChannel_1"-->
+    <!--                     output-channel="requestChannel_2"-->
+    <!--                     ref="transformerOne"-->
+    <!--                     method="transform"-->
+    <!--    />-->
+
+    <!--    <int:splitter input-channel="requestChannel_2" output-channel="requestChannel_3"-->
+    <!--                  ref="splitterOne"-->
+    <!--                  method="split"-->
+    <!--                  apply-sequence="true"/>-->
+
+    <!--    <task:executor id="exec" pool-size="10"/>-->
+
+    <!--    <int:transformer input-channel="requestChannel_3"-->
+    <!--                     output-channel="requestChannel_4"-->
+    <!--                     ref="transformerTwo"-->
+    <!--                     method="transform"-->
+
+    <!--    />-->
+    <!--    <int:aggregator input-channel="requestChannel_4"-->
+    <!--                    output-channel="requestChannel_5"-->
+
+    <!--    />-->
+
+</beans:beans>
