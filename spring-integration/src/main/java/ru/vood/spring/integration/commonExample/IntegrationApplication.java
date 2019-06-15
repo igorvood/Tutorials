@@ -1,4 +1,4 @@
-package ru.vood.spring.integration;
+package ru.vood.spring.integration.commonExample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

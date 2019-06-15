@@ -1,4 +1,4 @@
-package ru.vood.spring.integration.entity
+package ru.vood.spring.integration.commonExample.entity
 
 import java.math.BigDecimal
 

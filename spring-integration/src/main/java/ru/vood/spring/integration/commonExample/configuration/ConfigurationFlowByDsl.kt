@@ -1,4 +1,4 @@
-package ru.vood.spring.integration.configuration
+package ru.vood.spring.integration.commonExample.configuration
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -6,11 +6,11 @@ import org.springframework.integration.channel.DirectChannel
 import org.springframework.integration.channel.ExecutorChannel
 import org.springframework.integration.dsl.IntegrationFlow
 import org.springframework.integration.dsl.IntegrationFlows
-import ru.vood.spring.integration.repository.VBdObjectTypeEntityRepository
-import ru.vood.spring.integration.service.VBdObjectTypeEntityImpl
-import ru.vood.spring.integration.splitter.SplitterOne
-import ru.vood.spring.integration.transformer.TransformerOne
-import ru.vood.spring.integration.transformer.TransformerTwo
+import ru.vood.spring.integration.commonExample.repository.VBdObjectTypeEntityRepository
+import ru.vood.spring.integration.commonExample.service.VBdObjectTypeEntityImpl
+import ru.vood.spring.integration.commonExample.splitter.SplitterOne
+import ru.vood.spring.integration.commonExample.transformer.TransformerOne
+import ru.vood.spring.integration.commonExample.transformer.TransformerTwo
 import java.util.concurrent.Executor
 import java.util.concurrent.ForkJoinPool
 

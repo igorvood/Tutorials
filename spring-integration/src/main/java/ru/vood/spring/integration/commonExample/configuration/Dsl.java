@@ -1,10 +1,10 @@
-package ru.vood.spring.integration.configuration;
+package ru.vood.spring.integration.commonExample.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlowDefinition;
-import ru.vood.spring.integration.transformer.TransformerOne;
+import ru.vood.spring.integration.commonExample.transformer.TransformerOne;
 
 @Configuration
 public class Dsl {

@@ -1,6 +1,6 @@
-package ru.vood.spring.integration.service
+package ru.vood.spring.integration.commonExample.service
 
-import ru.vood.spring.integration.repository.VBdObjectTypeEntityRepository
+import ru.vood.spring.integration.commonExample.repository.VBdObjectTypeEntityRepository
 
 //@Service
 //@Transactional

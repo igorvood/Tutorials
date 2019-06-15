@@ -1,7 +1,7 @@
-package ru.vood.spring.integration.repository
+package ru.vood.spring.integration.commonExample.repository
 
 import org.springframework.stereotype.Service
-import ru.vood.spring.integration.entity.VBdObjectTypeEntity
+import ru.vood.spring.integration.commonExample.entity.VBdObjectTypeEntity
 import java.math.BigDecimal
 
 @Service

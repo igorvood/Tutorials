@@ -1,4 +1,4 @@
-package ru.vood.spring.integration.transformer
+package ru.vood.spring.integration.commonExample.transformer
 
 import java.text.MessageFormat
 

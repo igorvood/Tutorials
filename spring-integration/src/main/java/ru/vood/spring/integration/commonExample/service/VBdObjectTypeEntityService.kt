@@ -1,6 +1,6 @@
-package ru.vood.spring.integration.service
+package ru.vood.spring.integration.commonExample.service
 
-import ru.vood.spring.integration.entity.VBdObjectTypeEntity
+import ru.vood.spring.integration.commonExample.entity.VBdObjectTypeEntity
 
 interface VBdObjectTypeEntityService {
     fun findByCode(code: String): VBdObjectTypeEntity

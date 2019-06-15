@@ -1,9 +1,9 @@
-package ru.vood.spring.integration.splitter
+package ru.vood.spring.integration.commonExample.splitter
 
 import org.slf4j.LoggerFactory
 import org.springframework.messaging.handler.annotation.Headers
-import ru.vood.spring.integration.service.VBdObjectTypeEntityService
-import ru.vood.spring.integration.transformer.transformHeaderMap
+import ru.vood.spring.integration.commonExample.service.VBdObjectTypeEntityService
+import ru.vood.spring.integration.commonExample.transformer.transformHeaderMap
 import java.util.*
 
 //@Component
