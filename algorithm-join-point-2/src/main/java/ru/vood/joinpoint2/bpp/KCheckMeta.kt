@@ -28,6 +28,17 @@ constructor(beanMap: Map<String, WorkerBeanInterface<*, *>>, private val jdbcTem
         allJoinPointUse()
         allContextСonsistency()
         beanContextСonsistencyMeta(beanMap)
+        unUseContext()
+    }
+
+    private fun unUseContext() {
+        val unUse = jdbcTemplate.query("""select DATC.id
+                            from DICT_ACT_TYPE_CONTEXT DATC
+                                     left join DICT_ACT_BEAN DABru on DABru.RUN_CONTEXT = DATC.ID
+                                     left join DICT_ACT_BEAN DABre on DABre.RETURN_CONTEXT = DATC.ID
+                            where DABru.BEAN_ID is null and DABre.BEAN_ID is null """)
+        { rs: ResultSet, rowNum: Int -> rs.getString(1) }
+        unUse.forEach { ctx -> logger.warn("Unused context $ctx") }
     }
 
     private fun beanContextСonsistencyMeta(beanMap: HashMap<String, WorkerBeanInterface<*, *>>) {
