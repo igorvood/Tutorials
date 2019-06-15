@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Component
 import ru.vood.joinpoint2.infrastructure.bean.WorkerBeanInterface
-import ru.vood.joinpoint2.infrastructure.run.RunFlowDaoImpl
 import java.sql.ResultSet
 import java.util.*
 import javax.annotation.PostConstruct
@@ -15,7 +14,7 @@ import javax.annotation.PostConstruct
 class KCheckMeta @Autowired
 constructor(beanMap: Map<String, WorkerBeanInterface<*, *>>, private val jdbcTemplate: JdbcTemplate) {
 
-    private val logger = LoggerFactory.getLogger(RunFlowDaoImpl::class.java)
+    private val logger = LoggerFactory.getLogger(KCheckMeta::class.java)
     private val beanMap: HashMap<String, WorkerBeanInterface<*, *>>
 
     init {
@@ -32,23 +31,24 @@ constructor(beanMap: Map<String, WorkerBeanInterface<*, *>>, private val jdbcTem
     }
 
     private fun beanContextСonsistencyMeta(beanMap: HashMap<String, WorkerBeanInterface<*, *>>) {
-        val metaBeanCtx = jdbcTemplate.query("select BEAN_ID, RUN_CONTEXT, RETURN_CONTEXT from DICT_ACT_BEAN",
-                { rs: ResultSet, rowNum: Int -> Pair<String, Pair<String, String>>(rs.getString(1), Pair(rs.getString(2), rs.getString(3))) }
-        ).toMap()
+        val metaBeanCtx = jdbcTemplate.query("select BEAN_ID, RUN_CONTEXT, RETURN_CONTEXT from DICT_ACT_BEAN"
+        ) { rs: ResultSet, rowNum: Int -> Pair<String, Pair<String, String>>(rs.getString(1), Pair(rs.getString(2), rs.getString(3))) }.toMap()
 
         val beanMap = beanMap.asSequence()
                 .map { b -> Pair<String, Pair<String, String>>(b.key, getClassParameters(b.value.javaClass)) }
                 .toMap()
-        val toList = metaBeanCtx.asSequence()
-                .filter { meta -> !beanMap.contains(meta.key) }
+        val notConsistentBeans = metaBeanCtx.asSequence()
+                .filter { context ->
+                    val get = beanMap.get(context.key)
+                    !get?.first.equals(context.value.first) || !get?.second.equals(context.value.second)
+                }
+                .map { b -> b.key }
+                .toList()
 
-                //todo тут продолжить проверку консистетнтности контекста спринг и меты
-                .filter { meta -> beanMap.get(meta.key).second.se }
-
-
-
-        println(metaBeanCtx)
-        println(beanMap)
+        if (notConsistentBeans.isNotEmpty()) {
+            notConsistentBeans.forEach { b -> logger.error("Not consistent meta and bean $b context expected inClass ${metaBeanCtx[b]?.first} outClass ${metaBeanCtx[b]?.second} actual inClass ${beanMap[b]?.first} outClass ${beanMap[b]?.second}") }
+            throw RuntimeException("Not consistent meta and bean context, beans:  $notConsistentBeans")
+        }
     }
 
     private fun getClassParameters(clazz: Class<WorkerBeanInterface<*, *>>): Pair<String, String> {

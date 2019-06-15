@@ -1,14 +1,13 @@
 package ru.vood.joinpoint2.infrastructure.bean
 
 import org.springframework.stereotype.Component
-import ru.vood.joinpoint2.infrastructure.flow.context.Bean2ReturnContext
-import ru.vood.joinpoint2.infrastructure.flow.context.Bean2RunContext
+import ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext
 
 
 @Component("Bean6")
-class WorkerBean6 : AbstractWorkerBean<Bean2RunContext, Bean2ReturnContext>(Bean2RunContext::class.java, Bean2ReturnContext::class.java) {
+class WorkerBean6 : AbstractWorkerBean<Bean1ReturnContext, Bean1ReturnContext>(Bean1ReturnContext::class.java, Bean1ReturnContext::class.java) {
 
-    override fun doIt(bean2RunContext: Bean2RunContext): Bean2ReturnContext {
-        return Bean2ReturnContext(java.lang.Long.valueOf(bean2RunContext.str))
+    override fun doIt(bean2RunContext: Bean1ReturnContext): Bean1ReturnContext {
+        return Bean1ReturnContext(bean2RunContext.str.reversed())
     }
 }

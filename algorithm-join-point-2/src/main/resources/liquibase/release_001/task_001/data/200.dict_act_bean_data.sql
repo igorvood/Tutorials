@@ -1,33 +1,53 @@
 insert into JP.dict_act_bean(BEAN_ID, RUN_CONTEXT, RETURN_CONTEXT, DESCRIPTION)
 with ctx(BEAN_ID, RUN_CONTEXT, RETURN_CONTEXT) as (
-    select 'Bean1', 'Bean1RunContext', 'BeanContext'
+    select 'Bean1',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1RunContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean2', 'BeanContext', 'BeanContext'
+    select 'Bean2',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean3', 'BeanContext', 'BeanContext'
+    select 'Bean3',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean4', 'BeanContext', 'BeanContext'
+    select 'Bean4',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean5', 'BeanContext', 'BeanContext'
+    select 'Bean5',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean6', 'BeanContext', 'BeanContext'
+    select 'Bean6',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean7', 'BeanContext', 'BeanContext'
+    select 'Bean7',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean8', 'BeanContext', 'BeanContext'
+    select 'Bean8',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean9', 'BeanContext', 'BeanContext'
+    select 'Bean9',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
-    select 'Bean10', 'BeanContext', 'BeanContext'
+    select 'Bean10',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext',
+           'ru.vood.joinpoint2.infrastructure.flow.context.Bean1ReturnContext'
     from dual
     union all
 
