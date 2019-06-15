@@ -22,10 +22,5 @@ class ScheduledServiceActivator(@Autowired
         chanelSecond.send(MessageBuilder.withPayload("Sin Ti").build())
     }
 
-    @Scheduled(fixedRate = 1000)
-    fun runServiceActivator() {
-        s.run("Мой Лабиринт")
-    }
-
 
 }
