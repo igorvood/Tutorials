@@ -4,7 +4,8 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.ResultSetExtractor
 import org.springframework.stereotype.Service
 import ru.vood.responce.handler.ServiceName
-import ru.vood.responce.handler.getByServiceName
+import ru.vood.responce.handler.ServiceName.Companion.getByServiceName
+
 
 @Service
 class ServiceResolverServiceImpl(val jdbcTemplate: JdbcTemplate) : ServiceResolverService {
@@ -23,8 +24,8 @@ class ServiceResolverServiceImpl(val jdbcTemplate: JdbcTemplate) : ServiceResolv
                             get[it.getString(2)] = it.getString(3)
                         } else {
                             val except = ServiceExceptionMap()
-                            except.put(it.getString(2), it.getString(3))
-                            res.put(getByServiceName(it.getString(1)), except)
+                            except[it.getString(2)] = it.getString(3)
+                            res[getByServiceName(it.getString(1))] = except
                         }
                     }
                     return@ResultSetExtractor res
