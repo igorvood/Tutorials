@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="liquibase/release_001/task_001/forTests/task_001_for_tests.xml"/>
+
+    <changeSet id="001/001/100.meta_consumer_service.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/100.meta_consumer_service.sql"/>
+    </changeSet>
+
+    <include file="liquibase/release_001/task_001/data/task_001_data.xml"/>
+
+
+</databaseChangeLog>
