@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/algorithm-big-file-sort" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/algorithm-integration-route-response" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/algorithm-join-point" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/algorithm-join-point-2" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/algorithm-xml-validator" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/alogorithm-random-string" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cuncurrency" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cuncurrency/synchronized" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cuncurrency/synchronized-dead-lock" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/enum-from-table-maven-plugin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hibernate-performance-tuning" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kotlin-examples" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/maven-plugin-custom" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/maven-plugin-custom/maven-plugin-template" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/maven-plugin-custom/maven-plugin-template-test-use" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oracle-pluggable-db" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-liquibase" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-integration" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-integration-baeldung" charset="UTF-8" />
+  </component>
+</project>

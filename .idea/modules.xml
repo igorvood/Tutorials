@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Tutorials.iml" filepath="$PROJECT_DIR$/Tutorials.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algorithm-big-file-sort/algorithm-big-file-sort.iml" filepath="$PROJECT_DIR$/algorithm-big-file-sort/algorithm-big-file-sort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algorithm-integration-route-response/algorithm-integration-route-response.iml" filepath="$PROJECT_DIR$/algorithm-integration-route-response/algorithm-integration-route-response.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algorithm-join-point/algorithm-join-point.iml" filepath="$PROJECT_DIR$/algorithm-join-point/algorithm-join-point.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algorithm-join-point-2/algorithm-join-point-2.iml" filepath="$PROJECT_DIR$/algorithm-join-point-2/algorithm-join-point-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algorithm-xml-validator/algorithm-xml-validator.iml" filepath="$PROJECT_DIR$/algorithm-xml-validator/algorithm-xml-validator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/enum-from-table-maven-plugin/alogorithm-enum-from-table-maven-plugin.iml" filepath="$PROJECT_DIR$/enum-from-table-maven-plugin/alogorithm-enum-from-table-maven-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/alogorithm-random-string/alogorithm-random-string.iml" filepath="$PROJECT_DIR$/alogorithm-random-string/alogorithm-random-string.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cuncurrency/cuncurrency.iml" filepath="$PROJECT_DIR$/cuncurrency/cuncurrency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hibernate-performance-tuning/hibernate-performance-tuning.iml" filepath="$PROJECT_DIR$/hibernate-performance-tuning/hibernate-performance-tuning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kotlin-examples/kotlin-examples.iml" filepath="$PROJECT_DIR$/kotlin-examples/kotlin-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-plugin-custom/maven-plugin-custom.iml" filepath="$PROJECT_DIR$/maven-plugin-custom/maven-plugin-custom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-plugin-custom/maven-plugin-template/maven-plugin-template.iml" filepath="$PROJECT_DIR$/maven-plugin-custom/maven-plugin-template/maven-plugin-template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-plugin-custom/maven-plugin-template-test-use/maven-plugin-template-test-use.iml" filepath="$PROJECT_DIR$/maven-plugin-custom/maven-plugin-template-test-use/maven-plugin-template-test-use.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oracle-pluggable-db/oracle-pluggable-db.iml" filepath="$PROJECT_DIR$/oracle-pluggable-db/oracle-pluggable-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-liquibase/spring-boot-liquibase.iml" filepath="$PROJECT_DIR$/spring-boot-liquibase/spring-boot-liquibase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-integration/spring-integration.iml" filepath="$PROJECT_DIR$/spring-integration/spring-integration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-integration-baeldung/spring-integration-baeldung.iml" filepath="$PROJECT_DIR$/spring-integration-baeldung/spring-integration-baeldung.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cuncurrency/synchronized/synchronized.iml" filepath="$PROJECT_DIR$/cuncurrency/synchronized/synchronized.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cuncurrency/synchronized-dead-lock/synchronized-dead-lock.iml" filepath="$PROJECT_DIR$/cuncurrency/synchronized-dead-lock/synchronized-dead-lock.iml" />
+    </modules>
+  </component>
+</project>

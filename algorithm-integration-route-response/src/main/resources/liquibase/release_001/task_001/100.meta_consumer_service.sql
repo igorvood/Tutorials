@@ -1,12 +1,10 @@
 create table meta_consumer_service
 (
-    id            varchar2(20)  not null,
+    id          varchar2(20)  not null,
     constraint dict_act_state_pk primary key (id)
         using index tablespace jp_idx,
     ---
-    description   varchar2(255) not null,
-    --
-    outputChannel varchar2(100)
+    description varchar2(255) not null
 )
 /
 comment on table meta_consumer_service
@@ -18,6 +16,4 @@ comment on column meta_consumer_service.id
 comment on column meta_consumer_service.description
     is 'Описание'
 /
-comment on column meta_consumer_service.outputChannel
-    is 'имя очереди для ответа'
 

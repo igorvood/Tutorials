@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hibernate-performance-tuning" />
+        <module name="spring-integration-baeldung" />
+        <module name="maven-plugin-template" />
+        <module name="synchronized-dead-lock" />
+        <module name="algorithm-integration-route-response" />
+        <module name="algorithm-big-file-sort" />
+        <module name="algorithm-xml-validator" />
+        <module name="maven-plugin-template-test-use" />
+        <module name="alogorithm-random-string" />
+        <module name="kotlin-examples" />
+        <module name="spring-boot-liquibase" />
+        <module name="algorithm-join-point-2" />
+        <module name="oracle-pluggable-db" />
+        <module name="spring-integration" />
+        <module name="algorithm-join-point" />
+        <module name="synchronized" />
+        <module name="alogorithm-enum-from-table-maven-plugin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="algorithm-big-file-sort" target="1.8" />
+      <module name="algorithm-integration-route-response" target="8" />
+      <module name="algorithm-join-point" target="1.8" />
+      <module name="algorithm-join-point-2" target="1.8" />
+      <module name="algorithm-xml-validator" target="1.8" />
+      <module name="alogorithm-enum-from-table-maven-plugin" target="1.8" />
+      <module name="alogorithm-random-string" target="1.8" />
+      <module name="cuncurrency" target="1.5" />
+      <module name="hibernate-performance-tuning" target="1.8" />
+      <module name="kotlin-examples" target="1.8" />
+      <module name="maven-plugin-custom" target="1.5" />
+      <module name="maven-plugin-template" target="1.8" />
+      <module name="maven-plugin-template-test-use" target="1.8" />
+      <module name="oracle-pluggable-db" target="1.5" />
+      <module name="spring-boot-liquibase" target="1.8" />
+      <module name="spring-integration" target="8" />
+      <module name="spring-integration-baeldung" target="1.8" />
+      <module name="synchronized" target="1.8" />
+      <module name="synchronized-dead-lock" target="1.8" />
+      <module name="Tutorials" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
