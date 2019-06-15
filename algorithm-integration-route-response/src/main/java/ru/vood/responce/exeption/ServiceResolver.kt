@@ -8,7 +8,7 @@ import ru.vood.responce.handler.ServiceName.Companion.getByServiceName
 
 
 @Service
-class ServiceResolverServiceImpl(val jdbcTemplate: JdbcTemplate) : ServiceResolverService {
+class ServiceResolver(val jdbcTemplate: JdbcTemplate) : ServiceResolverService {
 
     override fun getServiceById(s: String): Map<ServiceName, ServiceExceptionMap> {
         val query = jdbcTemplate.query(
