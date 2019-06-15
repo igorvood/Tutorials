@@ -41,6 +41,8 @@ constructor(beanMap: Map<String, WorkerBeanInterface<*, *>>, private val jdbcTem
                 .toMap()
         val toList = metaBeanCtx.asSequence()
                 .filter { meta -> !beanMap.contains(meta.key) }
+
+                //todo тут продолжить проверку консистетнтности контекста спринг и меты
                 .filter { meta -> beanMap.get(meta.key).second.se }
 
 

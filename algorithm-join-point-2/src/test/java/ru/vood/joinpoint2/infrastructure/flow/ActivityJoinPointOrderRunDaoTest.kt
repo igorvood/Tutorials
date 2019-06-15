@@ -127,6 +127,9 @@ class ActivityJoinPointOrderRunDaoTest : AbstractJoinPointDataSourceTest() {
 
     @Test
     fun setJoinPointBegin() {
+//        for (i in 1..100000)
+//            runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
+
         val flowId = runFlowDaoImpl.createRunnableFlow(FLOW_TYPE_3, "Context - 33")
         val joinPoint = "join point 4"
         var contextData = activityJoinPointOrderRunDao.getJoinPoint(flowId, joinPoint)
