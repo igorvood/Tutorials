@@ -11,6 +11,11 @@
         <sqlFile path="liquibase/release_001/task_001/data/100.meta_consumer_service_data.sql"/>
     </changeSet>
 
+    <changeSet id="001/001/data/110.meta_cns_service_exception_date.sql" author="vood" runAlways="true">
+        <validCheckSum>any</validCheckSum>
+        <sqlFile path="liquibase/release_001/task_001/data/110.meta_cns_service_exception_date.sql"/>
+    </changeSet>
+
     <!--    <include file="liquibase/release_001/task_001/sequence/task_001_sequence.xml"/>-->
 
 
