@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:int="http://www.springframework.org/schema/integration"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/integration
+             http://www.springframework.org/schema/integration/spring-integration.xsd
+
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <int:channel id="commonResponseChannel"/>
+    <int:channel id="rtdsResponseChannel">
+        <int:queue/>
+    </int:channel>
+
+    <int:channel id="service1ResponseChannel">
+        <int:queue/>
+    </int:channel>
+
+    <int:channel id="service2ResponseChannel">
+        <int:queue/>
+    </int:channel>
+
+    <router input-channel="commonResponseChannel" ref="commonRequestRouter" method="route"
+            default-output-channel="rtdsResponseChannel"/>
+
+
+</beans:beans>
