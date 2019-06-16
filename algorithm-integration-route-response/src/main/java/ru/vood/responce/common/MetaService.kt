@@ -1,13 +1,13 @@
-package ru.vood.responce.handler
+package ru.vood.responce.common
 
-enum class ServiceName(val serviceName: String) {
+enum class MetaService(val serviceName: String) {
 
     SERVICE1("service 1"),
     SERVICE2("service 2");
 
     companion object {
-        fun getByServiceName(name: String): ServiceName {
-            val toList = ServiceName.values().asSequence()
+        fun getByServiceName(name: String): MetaService {
+            val toList = values().asSequence()
                     .filter { n -> n.serviceName == name }
                     .toList()
             if (toList.size != 1) {
