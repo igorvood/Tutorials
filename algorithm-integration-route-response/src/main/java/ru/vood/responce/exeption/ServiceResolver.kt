@@ -10,20 +10,20 @@ import ru.vood.responce.handler.ServiceName.Companion.getByServiceName
 @Service
 class ServiceResolver(val jdbcTemplate: JdbcTemplate) : ServiceResolverService {
 
-    override fun getServiceById(s: String): Map<ServiceName, ServiceExceptionMap> {
+    override fun getServiceById(s: String): Pair<ServiceName, ServiceCodeExceptionMap> {
         val query = jdbcTemplate.query(
-                """select mcs.id, mcse.exception_class, mcse.code
+                """select mcs.id, mcse.exception_class, mcse.code, mcse.default_code
                         from jp.meta_consumer_service mcs
                             left join meta_cns_service_exception mcse on mcse.service_id = mcs.id
                         where mcs.ID='service 1' """,
-                ResultSetExtractor<Map<ServiceName, ServiceExceptionMap>> {
-                    val res = HashMap<ServiceName, ServiceExceptionMap>()
+                ResultSetExtractor<Map<ServiceName, ServiceCodeExceptionMap>> {
+                    val res = HashMap<ServiceName, ServiceCodeExceptionMap>()
                     while (it.next()) {
                         val get = res[getByServiceName(it.getString(1))]
                         if (get != null) {
                             get[it.getString(2)] = it.getString(3)
                         } else {
-                            val except = ServiceExceptionMap()
+                            val except = ServiceCodeExceptionMap()
                             except[it.getString(2)] = it.getString(3)
                             res[getByServiceName(it.getString(1))] = except
                         }
@@ -31,6 +31,10 @@ class ServiceResolver(val jdbcTemplate: JdbcTemplate) : ServiceResolverService {
                     return@ResultSetExtractor res
                 }
         )
-        return query
+        if (query.size != 1) throw IllegalStateException("Uupossible exception when try to find service ")
+        val first = query.keys.first()
+        val second = query[first]
+        val pair = second?.let { Pair<ServiceName, ServiceCodeExceptionMap>(first, it) }
+        return pair!!
     }
 }

@@ -1,20 +1,20 @@
 insert into jp.meta_cns_service_exception(service_id, exception_class, code)
-select 'service 1', 'runtime', '1'
+select 'service 1', null, '1'
 from DUAL
 union all
-select 'service 1', 'runtime1', '2'
+select 'service 1', 'runtime2', '2'
 from DUAL
 union all
-select 'service 1', 'runtime1', '3'
+select 'service 1', 'runtime3', '3'
 from DUAL
 union all
-select 'service 1', 'runtime1', '4'
+select 'service 1', 'runtime4', '4'
 from DUAL
 union all
 
-select 'service 2', 'runtime', '1'
+select 'service 2', null, '1'
 from DUAL
 union all
-select 'service 2', 'runtime', '2'
+select 'service 2', 'runtime2', '2'
 from DUAL
 /
