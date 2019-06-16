@@ -6,7 +6,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.junit.Assert;
 import ru.vood.template.plugin.generated.from.xsd.ClassFromTablesType;
-import ru.vood.template.plugin.generated.from.xsd.PluginTines;
+import ru.vood.template.plugin.generated.from.xsd.PluginTinesType;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -39,11 +39,11 @@ public class PluginTestParams extends AbstractMojo {
             throw new RuntimeException(e);
         }
         System.out.println("------>\n" + sb + "\n");
-        final PluginTines pluginTines = pluginParamsXml.xmlToObj(sb.toString());
+        final PluginTinesType pluginTines = pluginParamsXml.xmlToObj(sb.toString());
         System.out.println("pluginTines------>" + toString(pluginTines));
     }
 
-    private String toString(PluginTines pluginTines) {
+    private String toString(PluginTinesType pluginTines) {
         List<ClassFromTablesType> lists = pluginTines.getTableClassList().getClassFromTables();
         String s = lists.stream()
                 .map(classTablesType -> "class=" + classTablesType.getGeneratingClass() + " TableList=" +
