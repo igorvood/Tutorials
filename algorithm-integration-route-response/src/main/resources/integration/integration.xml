@@ -9,7 +9,9 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <int:channel id="commonResponseChannel"/>
+    <int:channel id="commonResponseChannel">
+        <int:queue/>
+    </int:channel>
     <int:channel id="rtdsResponseChannel">
         <int:queue/>
     </int:channel>
@@ -22,8 +24,10 @@
         <int:queue/>
     </int:channel>
 
-    <router input-channel="commonResponseChannel" ref="commonRequestRouter" method="route"
-            default-output-channel="rtdsResponseChannel"/>
+    <!--
+        <router id="appRouter" input-channel="commonResponseChannel" ref="commonRequestRouter" method="route"
+                default-output-channel="rtdsResponseChannel"/>
+    -->
 
 
 </beans:beans>
