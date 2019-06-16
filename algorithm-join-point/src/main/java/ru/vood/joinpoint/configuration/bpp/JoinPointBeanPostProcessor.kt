@@ -2,15 +2,13 @@ package ru.vood.joinpoint.configuration.bpp
 
 import org.springframework.beans.factory.config.BeanPostProcessor
 import org.springframework.jdbc.core.JdbcTemplate
-import org.springframework.jdbc.core.query
 import org.springframework.stereotype.Component
-import ru.vood.joinpoint.configuration.infrastructure.jp.BeanInterface
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl
 
 @Component
 class JoinPointBeanPostProcessor(private val jdbcTemplate: JdbcTemplate) : BeanPostProcessor {
 
     override fun postProcessAfterInitialization(bean: Any, beanName: String): Any? {
+/*
         val query = jdbcTemplate.query("select 1 from dual") { rs, rowNum ->
             rs.getString(1)
         }
@@ -37,6 +35,7 @@ class JoinPointBeanPostProcessor(private val jdbcTemplate: JdbcTemplate) : BeanP
             println(bean)
             println(beanName)
         }
+*/
         return bean
     }
 }
