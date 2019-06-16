@@ -10,7 +10,7 @@ enum class MetaService(val serviceName: String) {
             val toList = values().asSequence()
                     .filter { n -> n.serviceName == name }
                     .toList()
-            if (toList.size != 1) {
+            if (toList.size == 1) {
                 return toList[0]
             }
             throw RuntimeException("Service with name '$name' does not exists")

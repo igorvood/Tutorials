@@ -11,7 +11,7 @@ class ServiceResolver(val jdbcTemplate: JdbcTemplate) : ServiceResolverService {
 
     override fun getServiceById(s: String): Pair<MetaService, ServiceCodeExceptionMap> {
         val query = jdbcTemplate.query(
-                """select mcs.id, mcse.default_code, mcse.code
+                """select mcs.id, mcse.default_exept, mcse.code
                         from jp.meta_consumer_service mcs
                             left join meta_cns_service_exception mcse on mcse.service_id = mcs.id
                         where mcs.ID='service 1' """,
