@@ -10,6 +10,7 @@ import org.springframework.messaging.MessageChannel
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.ContextHierarchy
 import org.springframework.test.context.junit4.SpringRunner
+import ru.vood.responce.common.RandomizedDelayTrigger
 import ru.vood.responce.common.ServiceResolver
 import ru.vood.responce.common.ServiceResolverService
 import ru.vood.responce.config.ConfigurationDatabaseTest
@@ -29,9 +30,6 @@ import ru.vood.responce.send.SenderServiceImpl
         ContextConfiguration(classes = [ConfigurationDatabaseTest::class])
 )
 @ImportResource("classpath*:integration/integration.xml")
-//@ComponentScan("ru.vood.responce.common")
-//@ComponentScan("ru.vood.responce.common")
-
 class RouteResponseApplicationTestConfiguration {
 
     @Bean
@@ -58,4 +56,6 @@ class RouteResponseApplicationTestConfiguration {
         return SenderServiceImpl(messageChannel, getServiceResolver(jdbcTemplate), getHandleService(jdbcTemplate))
     }
 
+    @Bean
+    fun getRandomizedDelayTrigger() = RandomizedDelayTrigger()
 }

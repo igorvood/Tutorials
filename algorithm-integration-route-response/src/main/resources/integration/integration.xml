@@ -24,10 +24,11 @@
         <int:queue/>
     </int:channel>
 
-    <!--
-        <router id="appRouter" input-channel="commonResponseChannel" ref="commonRequestRouter" method="route"
-                default-output-channel="rtdsResponseChannel"/>
-    -->
+    <int:poller id="defaultPoller" default="true" trigger="randomizedDelayTrigger"/>
+
+
+    <router id="appRouter" input-channel="commonResponseChannel" ref="commonRequestRouter" method="route"
+            default-output-channel="rtdsResponseChannel"/>
 
 
 </beans:beans>
