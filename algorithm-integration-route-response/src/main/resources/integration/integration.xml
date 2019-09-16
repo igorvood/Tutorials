@@ -31,4 +31,5 @@
             default-output-channel="rtdsResponseChannel"/>
 
 
+    <beans:bean id="randomizedDelayTrigger" class="ru.vood.responce.common.RandomizedDelayTrigger"/>
 </beans:beans>

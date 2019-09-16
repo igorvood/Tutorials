@@ -56,6 +56,6 @@ class RouteResponseApplicationTestConfiguration {
         return SenderServiceImpl(messageChannel, getServiceResolver(jdbcTemplate), getHandleService(jdbcTemplate))
     }
 
-    @Bean
+    @Bean("commonRequestRouter")
     fun getRandomizedDelayTrigger() = RandomizedDelayTrigger()
 }
