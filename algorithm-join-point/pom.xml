@@ -55,8 +55,8 @@
 
         <dependency>
             <groupId>ru.vood</groupId>
-            <artifactId>test-lib</artifactId>
-            <version>1.0</version>
+            <artifactId>libs-dbtest-lib</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>

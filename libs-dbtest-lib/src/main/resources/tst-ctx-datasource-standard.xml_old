@@ -1,0 +1,26 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--<context:property-placeholder location="okr.delivery.properties" ignore-resource-not-found="true" ignore-unresolvable="true" order="50"/>-->
+    <!--<context:property-placeholder ignore-resource-not-found="true" ignore-unresolvable="true" order="50"/>-->
+    <!--<context:property-placeholder location="okr.database.properties" ignore-resource-not-found="true" ignore-unresolvable="true" order="50"/>-->
+
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+    <!--<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>-->
+    <!--<property name="url" value="${db.connection.url}"/>-->
+    <!--<property name="username" value="${db.userId}"/>-->
+    <!--<property name="password" value="${db.password}"/>-->
+    <!--</bean>-->
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="dataSource"/>
+    </bean>
+
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+</beans>

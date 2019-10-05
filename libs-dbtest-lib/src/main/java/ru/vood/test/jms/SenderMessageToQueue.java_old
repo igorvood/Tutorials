@@ -1,0 +1,60 @@
+package ru.sberbank.okr.test.jms;
+
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.util.StringUtils;
+
+import javax.jms.Destination;
+import javax.jms.TextMessage;
+import java.util.Map;
+
+public class SenderMessageToQueue {
+
+    private final JmsTemplate jmsTemplate;
+
+    public SenderMessageToQueue(JmsTemplate jmsTemplate) {
+        this.jmsTemplate = jmsTemplate;
+    }
+
+    public void sendMessage(final Destination destination, final Map<String, Object> userHeaders, final String payload) {
+
+        jmsTemplate.send(destination, session -> {
+            TextMessage message = session.createTextMessage();
+
+            for (Map.Entry<String, Object> header : userHeaders.entrySet()) {
+
+                String headerName = header.getKey();
+                Object headerValue = header.getValue();
+
+                if (headerValue != null && headerValue instanceof String) {
+                    String headerValueString = (String) headerValue;
+                    if (!StringUtils.isEmpty(headerName) && !StringUtils.isEmpty(headerValueString)) {
+                        //log.debug("Header name={}, Header value={}", headerName, headerValue);
+                        message.setStringProperty(headerName, headerValueString);
+                    }
+                }
+
+            }
+
+            message.setText(payload);
+
+            return message;
+        });
+    }
+
+    public void sendMessage(final Destination destination, final String messageId, Map<String, Object> userHeaders, String messageText) {
+
+        String payload = replaceRqUID(messageText, messageId);
+        sendMessage(destination, userHeaders, payload);
+    }
+
+    private String replaceRqUID(String messageText, String messageId) {
+        return messageText.replaceFirst("<RqUID>XXX</RqUID>", "<RqUID>" + messageId + "</RqUID>");
+    }
+
+    /*
+    public void sendMessage(final Destination destination, MessageCreator messageCreator) {
+        jmsTemplate.send(destination, messageCreator);
+    }
+    */
+
+}

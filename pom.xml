@@ -23,6 +23,7 @@
         <module>oracle-pluggable-db</module>
         <module>algorithm-join-point-2</module>
         <module>algorithm-integration-route-response</module>
+        <module>libs-dbtest-lib</module>
     </modules>
 
     <packaging>pom</packaging>
