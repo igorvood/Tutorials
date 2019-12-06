@@ -1,4 +1,5 @@
 *.log
 *.iml
 *.gz
+*.class
 .idea/
