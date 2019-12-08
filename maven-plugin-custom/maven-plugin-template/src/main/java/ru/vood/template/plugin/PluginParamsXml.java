@@ -1,6 +1,6 @@
 package ru.vood.template.plugin;
 
-import ru.vood.template.plugin.generated.from.xsd.PluginTines;
+import ru.vood.template.plugin.generated.from.xsd.PluginTinesType;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,21 +14,21 @@ public class PluginParamsXml {
 
     PluginParamsXml() {
         try {
-            jaxbContext = JAXBContext.newInstance(PluginTines.class);
+            jaxbContext = JAXBContext.newInstance(PluginTinesType.class);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public String objToXml(PluginTines request) {
+    public String objToXml(PluginTinesType request) {
         return jaxbElementToXml(request);
     }
 
-    public PluginTines xmlToObj(String xml) {
+    public PluginTinesType xmlToObj(String xml) {
         try {
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             StringReader sr = new StringReader(xml);
-            return (PluginTines) unmarshaller.unmarshal(sr);
+            return (PluginTinesType) unmarshaller.unmarshal(sr);
 
         } catch (JAXBException e) {
             throw new RuntimeException(e);
