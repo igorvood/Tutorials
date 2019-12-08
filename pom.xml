@@ -24,6 +24,7 @@
         <module>algorithm-join-point-2</module>
         <module>algorithm-integration-route-response</module>
         <module>libs-dbtest-lib</module>
+        <module>rest-client-and-server</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -46,12 +47,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <kotlin.version>1.3.31</kotlin.version>
+        <kotlin.version>1.3.61</kotlin.version>
         <lombok.version>1.18.2</lombok.version>
         <junit4.version>4.12</junit4.version>
         <junit5.version>4.12</junit5.version>
         <hibernate.version>5.3.1.Final</hibernate.version>
-        <springframework.boot.version>2.1.3.RELEASE</springframework.boot.version>
+        <springframework.boot.version>2.2.1.RELEASE</springframework.boot.version>
         <liquibase.plugin.version>3.6.3</liquibase.plugin.version>
     </properties>
 
