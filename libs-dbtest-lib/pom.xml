@@ -13,7 +13,6 @@
 
     <properties>
         <springframework.boot.version>2.1.3.RELEASE</springframework.boot.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
     </properties>
 
