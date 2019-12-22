@@ -25,6 +25,7 @@
         <module>algorithm-integration-route-response</module>
         <module>libs-dbtest-lib</module>
         <module>rest-client-and-server</module>
+        <module>yaml-reader</module>
     </modules>
 
     <packaging>pom</packaging>
