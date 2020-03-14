@@ -1,0 +1,24 @@
+server:
+  port: 7070
+spring:
+  application:
+    name: local-grpc-client
+  task:
+    execution:
+      pool:
+        core-size: 4
+        max-size: 50
+    scheduling:
+      pool:
+        size: 100
+
+grpc:
+  client:
+    local-grpc-server:
+      #      address: 'static://192.168.1.10:50051'
+      address: 'static://localhost:50051'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
+      max-inbound-message-size: 100000000
+

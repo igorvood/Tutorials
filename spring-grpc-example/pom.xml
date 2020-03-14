@@ -19,6 +19,14 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springframework.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>ru.vood</groupId>
                 <artifactId>grpc-server-example</artifactId>
                 <version>${project.version}</version>
@@ -39,6 +47,7 @@
     <modules>
         <module>grpc-lib</module>
         <module>grpc-server-example</module>
+        <module>grpc-client-example</module>
     </modules>
 
 
