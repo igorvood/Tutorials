@@ -1,0 +1,5 @@
+grpc:
+  server:
+    port: 50051
+    reflection-service-enabled: false
+    max-inbound-message-size: 100000000

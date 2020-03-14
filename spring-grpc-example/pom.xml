@@ -11,8 +11,34 @@
 
     <artifactId>spring-grpc-example</artifactId>
     <packaging>pom</packaging>
+
+    <properties>
+        <grpc.starter.vesion>2.6.2.RELEASE</grpc.starter.vesion>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ru.vood</groupId>
+                <artifactId>grpc-server-example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.vood</groupId>
+                <artifactId>grpc-client-example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.vood</groupId>
+                <artifactId>grpc-lib</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <modules>
         <module>grpc-lib</module>
+        <module>grpc-server-example</module>
     </modules>
 
 
