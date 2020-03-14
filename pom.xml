@@ -26,6 +26,7 @@
         <module>libs-dbtest-lib</module>
         <module>rest-client-and-server</module>
         <module>yaml-reader</module>
+        <module>spring-grpc-example</module>
     </modules>
 
     <packaging>pom</packaging>
